@@ -76,13 +76,11 @@ In the EDA part, we wanted to visualize and analyze the relationship between the
 
 - The chart below showed that most of the customer in the dataset were blue collars. However, customers who are retired, students, unemployed, or work as management has higher percentage of subscribing to the term deposit compared to other job titles.
 
-<figure>
-	<a href="https://github.com/jsiwu94/jsiwu94.github.io/tree/master/bank_prediction/output_9_0.png"><img src="https://github.com/jsiwu94/jsiwu94.github.io/tree/master/bank_prediction/output_9_0.png"></a>
-</figure>
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_9_0.png)
+
 
 ![png](output_9_1.png)
 
-![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_9_0.png)
 
 
 - The chart below showed that customers who successfully subscribed from the previous marketing campaign will be most likely to subscribe again. 
