@@ -4,6 +4,7 @@ title: "Predicting Crime Type in Boston Using Artificial Neural Network"
 date: 2019-11-29
 excerpt: "Using Artificial Neural Network to Prevent Crimes"
 tags: [Machine Learning, Artificial Neural Networks, Keras, Tensorflow, Crime, Python]
+feature : <img width="766" alt="boston" src="https://user-images.githubusercontent.com/54050356/70125058-eda9ff00-162a-11ea-9ff8-f9144d0c9ac5.png">
 comments: true
 ---
 
