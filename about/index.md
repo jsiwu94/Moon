@@ -7,7 +7,7 @@ comments: false
 ---
     
 <center><a href="https://jsiwu94.github.io"><b>Jennifer Siwu</b><br>
-    </a>Turning Data into Decision and Insight into Action.</center>
+    </a>Welcome to my page!</center>
 
 ## About Me
 
