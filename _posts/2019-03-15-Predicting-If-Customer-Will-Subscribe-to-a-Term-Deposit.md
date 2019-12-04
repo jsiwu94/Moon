@@ -76,8 +76,10 @@ In the EDA part, we wanted to visualize and analyze the relationship between the
 
 - The chart below showed that most of the customer in the dataset were blue collars. However, customers who are retired, students, unemployed, or work as management has higher percentage of subscribing to the term deposit compared to other job titles.
 
-![png](https://github.com/jsiwu94/BostonCrimeProject/blob/master/GIF/Distribution%20by%20Hour/Individual/2015.PNG)
-
+<figure>
+	<a href="http://farm9.staticflickr.com/8426/7758832526_cc8f681e48_b.jpg"><img src="http://farm9.staticflickr.com/8426/7758832526_cc8f681e48_c.jpg"></a>
+	<figcaption><a href="http://www.flickr.com/photos/80901381@N04/7758832526/" title="Morning Fog Emerging From Trees by A Guy Taking Pictures, on Flickr">Morning Fog Emerging From Trees by A Guy Taking Pictures, on Flickr</a>.</figcaption>
+</figure>
 
 ![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_9_1.png)
 
