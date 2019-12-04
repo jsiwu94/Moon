@@ -2,7 +2,7 @@
 layout: post
 title: "Predicting If Customer Will Subscribe to a Term Deposit"
 date: 2019-11-26
-excerpt: ""
+excerpt: "Logistics Regression Models"
 tags: [Machine Learning, Predictive Modelling, Logistics Regression, Python]
 comments: true
 ---
