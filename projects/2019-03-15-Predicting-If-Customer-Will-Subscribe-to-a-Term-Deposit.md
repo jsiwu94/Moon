@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: project
 title:  "Predicting If Customer Will Subscribe to a Term Deposit"
 date:   2019-03-15
 excerpt: ""
