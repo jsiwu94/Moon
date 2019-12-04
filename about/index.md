@@ -12,9 +12,7 @@ comments: false
 ## About Me
 
 My name is Jennifer, and I am currently pursuing a Master's degree in Analytics and Applied Statistics until June 2020.
-<br>
 My 2.5 years of professional experience includes Supply Chain, Customer Insight, & Continuous Improvement Analytics.
-<br>
 I leveraged data and statistical concepts to analyze areas of improvement, root cause issues, test hypotheses, and identify optimal solutions.
 <br>
 <br>
@@ -22,7 +20,6 @@ I leveraged data and statistical concepts to analyze areas of improvement, root 
 ## About This Page
 
 In this website, I will showcase my current or previous works around machine learning and analytics. 
-<br>
 The topics that I am interested in are around Natural Language Processing and Sentiment Analysis, Multiclass Classifications, Customer Segmentation, Customer Churn Predictions, Forecasting Models, and AB Testings.
 
 
