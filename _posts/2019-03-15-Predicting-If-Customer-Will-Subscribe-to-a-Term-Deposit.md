@@ -82,6 +82,8 @@ In the EDA part, we wanted to visualize and analyze the relationship between the
 
 ![png](output_9_1.png)
 
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_9_0.png)
+
 
 - The chart below showed that customers who successfully subscribed from the previous marketing campaign will be most likely to subscribe again. 
 
