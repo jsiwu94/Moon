@@ -37,20 +37,20 @@ disqus_shortname:   taylantatli
   #ad-client:
   #ad-slot:
 #bing-verify:
-#email:
-twitter:            username
-facebook:           username
-github-url:         username
+email:              jsiwu@uci.edu
+#twitter:            username
+facebook:           https://www.facebook.com/jennifer.wu.7186
+github-url:         https://github.com/jsiwu94
 #stackoverflow:     123456/username   from a "http://stackoverflow.com/users/123456/username" link
 #linkedin:          username
 #xing:              username
-instagram:          username
+#instagram:          username
 #lastfm:            username
 #tumblr:            username
 #medium:            '@username'
 #pinterest:         username
 #foursquare:        username
-steam:              username
+linkedin:           https://www.linkedin.com/in/jennifer-siwu/
 #dribbble:          username
 #youtube:           username
 #youtube-channel:   channel
