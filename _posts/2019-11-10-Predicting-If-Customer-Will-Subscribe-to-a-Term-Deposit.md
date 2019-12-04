@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Predicting If Customer Will Subscribe to a Term Deposit"
-date: 2019-11-26
+date: 2019-11-10
 excerpt: "Using Machine Learning to Make Better Marketing Desicion"
 tags: [Machine Learning, Predictive Modelling, Logistics Regression, Python]
 comments: true
