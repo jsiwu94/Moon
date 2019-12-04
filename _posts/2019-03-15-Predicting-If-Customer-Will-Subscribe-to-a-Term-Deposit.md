@@ -79,35 +79,34 @@ In the EDA part, we wanted to visualize and analyze the relationship between the
 ![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_9_0.png)
 
 
-![png](output_9_1.png)
-
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_9_1.png)
 
 
 - The chart below showed that customers who successfully subscribed from the previous marketing campaign will be most likely to subscribe again. 
 
-![png](output_11_0.png)
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_11_0.png)
 
 
 
-![png](output_11_1.png)
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_11_1.png)
 
 
 - The chart below showed that customers who were single were most likely to subscribe as compared to customers who are divorced or married.
 
-![png](output_13_0.png)
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_13_0.png)
 
 
 
-![png](output_13_1.png)
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_13_1.png)
 
 
 - The chart below showed that most data were collected in May. However, there were higher percentage of customer subscribring in the month of Feb, Mar, Apr, Oct, Sep, Dec.
 
-![png](output_15_0.png)
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_15_0.png)
 
 
 
-![png](output_15_1.png)
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_15_1.png)
 
 
 ## Correlation Matrix and Chi Square Test
@@ -118,7 +117,7 @@ We also wanted to see the correlation between the continuous independent variabl
 - In terms of the Chi-Squared Test, the result was favorable in that all variables showed significant relationship to the dependent variables. This means that all variables are important in predicting the **deposit**.
 
 
-![png](output_17_0.png)
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_17_0.png)
 
 
 
@@ -733,7 +732,7 @@ plt.show()
 ```
 
 
-![png](output_45_0.png)
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_45_0.png)
 
 
 ## Model 2 - Using SMOTE and Dropping Insignificant Variables
@@ -1128,7 +1127,7 @@ test1 = test.drop(columns=['pdays','default','day','month_apr', 'month_aug', 'mo
     =======================================================================================
 
 
-![png](output_63_0.png)
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_63_0.png)
 
 
     Accuracy: 0.7138741134751773
@@ -1136,10 +1135,10 @@ test1 = test.drop(columns=['pdays','default','day','month_apr', 'month_aug', 'mo
     Recall: 0.6281553398058253
 
 
-![png](output_64_1.png)
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_64_1.png)
 
 
-![png](output_65_0.png)
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_65_0.png)
 
 
 # Model 4
@@ -1218,7 +1217,7 @@ y_test1 = test1.loc[:, test1.columns == 'deposit'].values
     =======================================================================================
 
 
-![png](output_71_0.png)
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_71_0.png)
 
 
     Accuracy: 0.7750301568154403
@@ -1227,7 +1226,7 @@ y_test1 = test1.loc[:, test1.columns == 'deposit'].values
 
 
 
-![png](output_72_0.png)
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_72_0.png)
 
 
 ## Conclusion and Key Takeaways
