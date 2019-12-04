@@ -1,3 +1,18 @@
+---
+layout: post
+title:  "Predicting If Customer Will Subscribe to a Term Deposit"
+date:   2019-03-15
+excerpt: ""
+tag:
+- markdown 
+- syntax
+- sample
+- test
+- jekyll
+comments: true
+---
+
+
 ## Predicting If Customer Will Subscribe to a Term Deposit
 
 On November 9th to 10th 2019, my team **won the First Place for Best Model Award** at Data Hackathon (a less than 24 data science competition) held by **OCRUG and Merage Analytics Club** at The Paul Merage School of Business. We were a team of 3 people from UCI Master's in Business Analytics Program. Below is the report of our analysis and prediction for the competition.
