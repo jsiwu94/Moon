@@ -1,15 +1,12 @@
 ---
+---
 layout: post
-title:  "Predicting If Customer Will Subscribe to a Term Deposit"
-date:   2019-11-26
-excerpt:""
-tag:
-- markdown 
-- logisticsregression
-- machinelearning
-- python
-- prediction
+title: "Predicting If Customer Will Subscribe to a Term Deposit"
+date: 2019-11-26
+excerpt: ""
+tags: [Machine Learning, Predictive Modelling, Logistics Regression, Python]
 comments: true
+---
 
 ---
 
