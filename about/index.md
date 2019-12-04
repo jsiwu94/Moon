@@ -6,7 +6,7 @@ date: 2016-03-21
 comments: false
 ---
     
-<center><a href="https://jsiwu94.github.io"><b>Jennifer Siwu</b></a>Turning Data into Decision and Insight into Action.</center>
+<center><a href="https://jsiwu94.github.io"><br><b>Jennifer Siwu</b></a>Turning Data into Decision and Insight into Action.</center>
 
 ## Features
 * Minimal, you can focus on your content
