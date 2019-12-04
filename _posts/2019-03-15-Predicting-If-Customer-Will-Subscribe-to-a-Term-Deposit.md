@@ -78,7 +78,6 @@ In the EDA part, we wanted to visualize and analyze the relationship between the
 
 <figure>
 	<a href="https://github.com/jsiwu94/jsiwu94.github.io/tree/master/bank_prediction/output_9_0.png"><img src="https://github.com/jsiwu94/jsiwu94.github.io/tree/master/bank_prediction/output_9_0.png"></a>
-	<figcaption><a href="http://www.flickr.com/photos/80901381@N04/7758832526/" title="Morning Fog Emerging From Trees by A Guy Taking Pictures, on Flickr">Morning Fog Emerging From Trees by A Guy Taking Pictures, on Flickr</a>.</figcaption>
 </figure>
 
 ![png](output_9_1.png)
