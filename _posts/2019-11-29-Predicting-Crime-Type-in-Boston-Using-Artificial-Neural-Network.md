@@ -7,6 +7,7 @@ tags: [Machine Learning, Artificial Neural Networks, Keras, Tensorflow, Crime, P
 comments: true
 ---
 
+
 # Predicting Crime Type in Boston Using Artificial Neural Network
 
 ## Purpose
