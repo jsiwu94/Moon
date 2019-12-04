@@ -9,7 +9,9 @@ tag:
 - machinelearning
 - python
 - prediction
+feature: https://github.com/jsiwu94/jsiwu94.github.io/blob/master/assets/img/boston.png
 comments: true
+
 ---
 
 
