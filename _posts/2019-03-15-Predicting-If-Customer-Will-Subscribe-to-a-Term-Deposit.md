@@ -76,29 +76,19 @@ In the EDA part, we wanted to visualize and analyze the relationship between the
 
 - The chart below showed that customers who successfully subscribed from the previous marketing campaign will be most likely to subscribe again. 
 
-![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_11_0.png)
-
-
-
-![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_11_1.png)
-
+![output_11_0](https://user-images.githubusercontent.com/54050356/70123406-758e0a00-1627-11ea-9e68-37dcfbb422b0.png)
+![output_11_1](https://user-images.githubusercontent.com/54050356/70123431-83438f80-1627-11ea-8714-4dd8bf192bd4.png)
 
 - The chart below showed that customers who were single were most likely to subscribe as compared to customers who are divorced or married.
 
-![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_13_0.png)
-
-
-
-![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_13_1.png)
+![output_13_0](https://user-images.githubusercontent.com/54050356/70123455-935b6f00-1627-11ea-9a98-6954d7a85a1e.png)
+![output_13_1](https://user-images.githubusercontent.com/54050356/70123483-a3734e80-1627-11ea-8fba-8e9385281e64.png)
 
 
 - The chart below showed that most data were collected in May. However, there were higher percentage of customer subscribring in the month of Feb, Mar, Apr, Oct, Sep, Dec.
 
-![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_15_0.png)
-
-
-
-![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_15_1.png)
+![output_15_0](https://user-images.githubusercontent.com/54050356/70123496-ad954d00-1627-11ea-8c78-7166d9606839.png)
+![output_15_1](https://user-images.githubusercontent.com/54050356/70123532-be45c300-1627-11ea-98f1-b51eff11387f.png)
 
 
 ## Correlation Matrix and Chi Square Test
@@ -109,7 +99,7 @@ We also wanted to see the correlation between the continuous independent variabl
 - In terms of the Chi-Squared Test, the result was favorable in that all variables showed significant relationship to the dependent variables. This means that all variables are important in predicting the **deposit**.
 
 
-![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_17_0.png)
+![output_17_0](https://user-images.githubusercontent.com/54050356/70123573-cb62b200-1627-11ea-82bd-c96e3265fcb2.png)
 
 
 
@@ -135,7 +125,7 @@ for col in categorical.columns:
     P_Value.append(chisq_of_df_cols(categorical, col,bank.deposit)[1])
 ```
 
-![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/chi.png)
+<img width="248" alt="chi" src="https://user-images.githubusercontent.com/54050356/70123608-d7e70a80-1627-11ea-9cd5-d00f6fc028b1.png">
 
 
 ```python
@@ -277,7 +267,7 @@ bank[[i for i in list(set(bank.columns) - set(variable)) if i != 'deposit']].des
 
 
 Now, let's revisit the boxplot of each of these continous independent variables after we capped the outliers.
-![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_26_1.png)
+![output_26_1](https://user-images.githubusercontent.com/54050356/70123650-f220e880-1627-11ea-9521-8eb1f41d211c.png)
 
 
 ## Prepare the Data for Model
@@ -664,8 +654,7 @@ print("Recall:",metrics.recall_score(y_test, y_predbin))
 ```
 
 
-![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_42_0.png)
-
+![output_42_0](https://user-images.githubusercontent.com/54050356/70123686-06fd7c00-1628-11ea-82c0-a4b8bf126dce.png)
 
     Accuracy: 0.8922872340425532
     Precision: 0.5923566878980892
@@ -707,8 +696,7 @@ plt.title('Predicted Classes')
 
 
 
-![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_44_2.png)
-
+![output_44_2](https://user-images.githubusercontent.com/54050356/70123711-12e93e00-1628-11ea-864b-c7be972a44b8.png)
 
 
 ```python
@@ -724,7 +712,7 @@ plt.show()
 ```
 
 
-![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_45_0.png)
+![output_45_0](https://user-images.githubusercontent.com/54050356/70123724-1da3d300-1628-11ea-9779-1f6bc63ca2fb.png)
 
 
 ## Model 2 - Using SMOTE and Dropping Insignificant Variables
@@ -1030,7 +1018,7 @@ print(logit_model1.summary())
     poutcome_unknown        0.1025      0.076      1.342      0.179      -0.047       0.252
     =======================================================================================
 
-![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_54_0.png)
+![output_54_0](https://user-images.githubusercontent.com/54050356/70123754-2dbbb280-1628-11ea-8c30-c9a8d7557aa8.png)
 
 
     Accuracy: 0.7116578014184397
@@ -1056,10 +1044,9 @@ pd.DataFrame(y_predbin1)[0].value_counts()/(len(pd.DataFrame(y_predbin1)[0])+1)
 
 
 
-![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_56_1.png)
 
-![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_57_0.png)
-
+![output_56_1](https://user-images.githubusercontent.com/54050356/70123774-36ac8400-1628-11ea-98f2-1631aaebcbe4.png)
+![output_57_0](https://user-images.githubusercontent.com/54050356/70123795-40ce8280-1628-11ea-8cb4-8e6a3992137e.png)
 
 # Model 3
 - Based on model 2 result on variable importance, we dropped variables that had p-value > 0.05
@@ -1119,19 +1106,16 @@ test1 = test.drop(columns=['pdays','default','day','month_apr', 'month_aug', 'mo
     =======================================================================================
 
 
-![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_63_0.png)
+![output_63_0](https://user-images.githubusercontent.com/54050356/70123819-4af08100-1628-11ea-8ddc-f8fdcdf8688a.png)
 
 
     Accuracy: 0.7138741134751773
     Precision: 0.22733661278988054
     Recall: 0.6281553398058253
 
+![output_64_1](https://user-images.githubusercontent.com/54050356/70123844-56dc4300-1628-11ea-9ce2-f1f5bbe17751.png)
 
-![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_64_1.png)
-
-
-![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_65_0.png)
-
+![output_65_0](https://user-images.githubusercontent.com/54050356/70123874-652a5f00-1628-11ea-8232-f9b41841b2d7.png)
 
 # Model 4
 - Since we knew there were 2 types of customers in the dataset, one who had **been contacted before** and one who had **not been contacted before**, we wanted to create separate models for these customers since we believed that personalization is key.
@@ -1208,17 +1192,14 @@ y_test1 = test1.loc[:, test1.columns == 'deposit'].values
     poutcome_success        2.3982      0.082     29.264      0.000       2.238       2.559
     =======================================================================================
 
-
-![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_71_0.png)
+![output_71_0](https://user-images.githubusercontent.com/54050356/70123898-73787b00-1628-11ea-90f4-a4a9a6019d91.png)
 
 
     Accuracy: 0.7750301568154403
     Precision: 0.49353448275862066
     Recall: 0.6239782016348774
 
-
-
-![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_72_0.png)
+![output_72_0](https://user-images.githubusercontent.com/54050356/70123900-73787b00-1628-11ea-989c-fa2fdeafa037.png)
 
 
 ## Conclusion and Key Takeaways
