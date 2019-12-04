@@ -1,8 +1,7 @@
 ---
 layout: post
 title:  "Predicting If Customer Will Subscribe to a Term Deposit"
-date:   2019-03-15
-excerpt: ""
+date:   2019-11-26
 tag:
 - markdown 
 - logisticsregression
@@ -10,6 +9,7 @@ tag:
 - python
 - prediction
 comments: true
+
 ---
 
 
@@ -77,7 +77,6 @@ In the EDA part, we wanted to visualize and analyze the relationship between the
 - The chart below showed that most of the customer in the dataset were blue collars. However, customers who are retired, students, unemployed, or work as management has higher percentage of subscribing to the term deposit compared to other job titles.
 
 ![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_9_0.png)
-
 
 ![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_9_1.png)
 
