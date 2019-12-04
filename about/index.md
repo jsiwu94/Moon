@@ -9,30 +9,23 @@ comments: false
 <center><a href="https://jsiwu94.github.io"><b>Jennifer Siwu</b><br>
     </a>Turning Data into Decision and Insight into Action.</center>
 
-## Features
-* Minimal, you can focus on your content
-* Responsive
-* Disqus integration
-* Syntax highlighting
-* Optional post image
-* Social icons
-* Page for sharing projects
-* Optional background image
-* Simple navigation menu
-* MathJax support
+## About Me
 
-## Preview
+My name is Jennifer, and I am currently pursuing a Master's degree in Analytics and Applied Statistics until June 2020.
+<br>
+<br>
+My 2.5 years of professional experience includes Supply Chain, Customer Insight, & Continuous Improvement Analytics.
+<br>
+<br>
+I leveraged data and statistical concepts to analyze areas of improvement, root cause issues, test hypotheses, and identify optimal solutions.
+<br>
+<br>
 
-{% capture images %}
-    https://cloud.githubusercontent.com/assets/754514/14509720/61c61058-01d6-11e6-93ab-0918515ecd56.png
-    https://cloud.githubusercontent.com/assets/754514/14509716/61ac6c8e-01d6-11e6-879f-8308883de790.png
-{% endcapture %}
-{% include gallery images=images caption="Screenshots of Moon Theme" cols=2 %}
+## About This Page
 
-See a [live version of Moon](http://taylantatli.github.io/Moon) hosted on GitHub.
+In this website, I will showcase my current or previous works around machine learning and analytics. 
+<br>
+<br>
+The topics that I am interested in are around Natural Language Processing and Sentiment Analysis, Multiclass Classifications, Customer Segmentation, Customer Churn Predictions, Forecasting Models, and AB Testings.
 
-## Getting Started
 
-To learn how to install and use this theme check out the [Setup Guide](http://taylantatli.me/Moon/moon-theme/) for more information.
-      
-[Install Moon](https://github.com/TaylanTatli/Moon){: .btn}
