@@ -60,19 +60,19 @@ For data cleaning, the first step I took was by checking for null and Nan's. Thr
 ### EDA
 
 I started the EDA by looking at the Number of Crime Frequency pattern across different days of week. Based on the graph below, Friday has been the highest crime day and Sunday has been the lowest for all five years. Based on this, I will make this variable categorical in the model.
-![png](DOW.png)
+<img width="788" alt="DOW" src="https://user-images.githubusercontent.com/54050356/70124675-2bf2ee80-162a-11ea-8444-ea60eba3664f.png">
 
 Based on the below, the Peak Crime hour were at 12pm and between 4pm to 7pm. This trend was seen in all five years.
-![png](hr.png)
+<img width="813" alt="hr" src="https://user-images.githubusercontent.com/54050356/70124676-2bf2ee80-162a-11ea-8110-cd2c7ca4400e.png">
 
 Below graph shows the top 70% **offense code group** or **crime type** based on the number of times they occured through out the entire 5 years. This is the dependent variable that we will predict in the model.
-![png](top2.png)
+<img width="643" alt="top2" src="https://user-images.githubusercontent.com/54050356/70124768-5775d900-162a-11ea-82af-72c87081515a.png">
 
 Looking at the crime density, the northern areas seemed to have more crime than the southern Boston areas. Below graph shows the number of crime occured grouped by the district.
-![png](district.png)
+<img width="718" alt="district" src="https://user-images.githubusercontent.com/54050356/70124673-2bf2ee80-162a-11ea-8289-c8b03c407d5c.png">
 
 The figures below depicts the top 70% crime offense code group or crime type. It is clearly shown that some crimes happened more often in specific areas while some other occured almost evenly all throughout Boston.
-![png](scatterplt.png)
+<img width="657" alt="scatterplt" src="https://user-images.githubusercontent.com/54050356/70124812-6a88a900-162a-11ea-9234-fcc750e46aae.png">
 
 ## Part 3
 ### Building The Model
@@ -115,7 +115,8 @@ Before I started building my model, it's always a good idea to see how the curre
 In this case, I plotted the correlation matrix for the continuous independent variables and ran a chi-squared test for the categorical variables.
 
 Based on the correlation test, year seemed to have very minimal correlation with the dependent variable. 
-![png](output_12_0.png)
+![output_12_0](https://user-images.githubusercontent.com/54050356/70124679-2c8b8500-162a-11ea-9097-0a63b616d758.png)
+
 
 
 ## Chi-Squared Test to Test the Significant Relationship between Independent Var vs Dependent Var
@@ -480,11 +481,11 @@ Based on the above, **I chose model 2 to predict the crime type or offense code 
 ### ROC Curve
 
 ##### MODEL 1
-![png](output_48_0.png)
+![output_48_0](https://user-images.githubusercontent.com/54050356/70124681-2c8b8500-162a-11ea-9248-c24acb5a0364.png)
 
 
 ##### MODEL 2
-![png](output_50_0.png)
+![output_50_0](https://user-images.githubusercontent.com/54050356/70124682-2c8b8500-162a-11ea-8f61-7804aef953eb.png)
 
 ### Model Raw Output
 ```python
@@ -602,7 +603,7 @@ predictiondata['MaxProbLabel'] = [labels[np.argmax(i)] for i in predictions]
 </div>
 
 ### Final Prediction Output
-![png](output.png)
+<img width="698" alt="output" src="https://user-images.githubusercontent.com/54050356/70124678-2c8b8500-162a-11ea-89c0-8434ce1b4af3.png">
 
 <br>
 Analysis and Report Written by : Jennifer Siwu <br>
