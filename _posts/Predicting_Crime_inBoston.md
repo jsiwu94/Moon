@@ -1,3 +1,11 @@
+---
+layout: post
+title: "Predicting Crime Type in Boston Using Artificial Neural Network"
+date: 2019-11-29
+excerpt: "Using Artificial Neural Network to Prevent Crimes"
+tags: [Machine Learning, Predictive Modelling, Logistics Regression, Python]
+comments: true
+---
 # Predicting Crime Type in Boston Using Artificial Neural Network
 
 ## Purpose
