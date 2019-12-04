@@ -1038,7 +1038,7 @@ print(logit_model1.summary())
     poutcome_unknown        0.1025      0.076      1.342      0.179      -0.047       0.252
     =======================================================================================
 
-![png](output_54_0.png)
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_54_0.png)
 
 
     Accuracy: 0.7116578014184397
