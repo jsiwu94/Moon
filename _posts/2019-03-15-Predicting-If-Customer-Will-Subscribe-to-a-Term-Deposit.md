@@ -143,7 +143,7 @@ for col in categorical.columns:
     P_Value.append(chisq_of_df_cols(categorical, col,bank.deposit)[1])
 ```
 
-![png](chi.png)
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/chi.png)
 
 
 ```python
@@ -285,7 +285,7 @@ bank[[i for i in list(set(bank.columns) - set(variable)) if i != 'deposit']].des
 
 
 Now, let's revisit the boxplot of each of these continous independent variables after we capped the outliers.
-![png](output_26_1.png)
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_26_1.png)
 
 
 ## Prepare the Data for Model
@@ -672,7 +672,7 @@ print("Recall:",metrics.recall_score(y_test, y_predbin))
 ```
 
 
-![png](output_42_0.png)
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_42_0.png)
 
 
     Accuracy: 0.8922872340425532
@@ -715,7 +715,7 @@ plt.title('Predicted Classes')
 
 
 
-![png](output_44_2.png)
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_44_2.png)
 
 
 
@@ -1064,9 +1064,9 @@ pd.DataFrame(y_predbin1)[0].value_counts()/(len(pd.DataFrame(y_predbin1)[0])+1)
 
 
 
-![png](output_56_1.png)
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_56_1.png)
 
-![png](output_57_0.png)
+![png](https://github.com/jsiwu94/jsiwu94.github.io/blob/master/bank_prediction/output_57_0.png)
 
 
 # Model 3
