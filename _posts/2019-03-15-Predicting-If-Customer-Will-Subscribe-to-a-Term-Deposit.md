@@ -5,10 +5,10 @@ date:   2019-03-15
 excerpt: ""
 tag:
 - markdown 
-- syntax
-- sample
-- test
-- jekyll
+- logisticsregression
+- machinelearning
+- python
+- prediction
 comments: true
 ---
 
