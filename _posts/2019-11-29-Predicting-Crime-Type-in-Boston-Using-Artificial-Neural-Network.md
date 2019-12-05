@@ -58,7 +58,7 @@ For data cleaning, the first step I took was by checking for null and Nan's. Thr
 
 ## Part 2
 ### EDA
-[folium](https://github.com/jsiwu94/BostonCrimeProject/blob/master/index.html)
+![folium](https://github.com/jsiwu94/BostonCrimeProject/blob/master/index.html)
 
 I started the EDA by looking at the Number of Crime Frequency pattern across different days of week. Based on the graph below, Friday has been the highest crime day and Sunday has been the lowest for all five years. Based on this, I will make this variable categorical in the model.
 <img width="788" alt="DOW" src="https://user-images.githubusercontent.com/54050356/70124675-2bf2ee80-162a-11ea-8444-ea60eba3664f.png">
