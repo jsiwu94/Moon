@@ -9,7 +9,8 @@ comments: true
 
 
 <script src="https://gist.github.com/jsiwu94/4b674c99cfecc24ecac732bb0a74abbb.js"></script>
-#### High Crime Points in Boston (2015 to 2019)
+**High Crime Points in Boston (2015 to 2019)**
+
 
 ## Purpose
 We hear stories about crimes happening in Boston everyday. Often times, we only found out about it after it happened.
