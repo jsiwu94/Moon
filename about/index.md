@@ -19,6 +19,5 @@ I leveraged data and statistical concepts to analyze areas of improvement, root 
 ## About This Page
 
 In this website, I will showcase my current or previous works around machine learning and analytics. 
-The topics that I am interested in are around Natural Language Processing and Sentiment Analysis, Multiclass Classifications, Customer Segmentation, Customer Churn Predictions, Forecasting Models, and AB Testings.
-
+The topics that I am interested in are around Natural Language Processing and Sentiment Analysis, Multiclass Classifications, Customer Segmentation, Customer Churn Predictions, Forecasting Models, and AB Testings. Feel free to check out my <a href="https://jsiwu94.github.io/posts/"><b>Posts</b><br></a> if you are interested and leave a comment or email me directly. I would love to hear your feedbacks, suggestions, or chat more about the topic.
 
