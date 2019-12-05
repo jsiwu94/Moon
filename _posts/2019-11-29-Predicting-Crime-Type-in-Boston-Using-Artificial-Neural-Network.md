@@ -7,7 +7,7 @@ tags: [Machine Learning, Artificial Neural Networks, Keras, Tensorflow, Crime, P
 comments: true
 ---
 
-# Plot of High Crime Points in Boston (Crime data from May 2015 to Nov 2019)
+## High Crime Points in Boston (2015 to 2019)
 <script src="https://gist.github.com/jsiwu94/4b674c99cfecc24ecac732bb0a74abbb.js"></script>
 
 
