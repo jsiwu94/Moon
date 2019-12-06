@@ -547,6 +547,7 @@ test.deposit.value_counts()/(len(test.deposit)+1)
 ## Model 1
 - Our first model had a really high accuracy of ~89%. However, the recall was ~18.8%. This indicated that the model was predicting a lot of "no subscription" and it is not representative enough because it was highly skewed to only one class of the predicted variable. It will not work well if we evaluate the model on data with a lot of "yes".
 - This happened since we had an **imbalance dataset**. We would like to create a more representative model that can handle more variability. Therefore, we built the next model with a **modified or different sampling method** on the training dataset.
+- Additionally, this model was not giving us a good result because in this context, we would like to maximize our recall to predict more customers who will be willing to subscribe to the term deposit.
 
 
 ```python
@@ -1203,13 +1204,7 @@ y_test1 = test1.loc[:, test1.columns == 'deposit'].values
 
 
 ## Conclusion and Key Takeaways
-- Accuracy is not the only measure of how good the model is
-- We should assess the quality of the model and improvise
-- Ensure that the data is not imbalanced
-- Create segments of similar customers using affinity clustering or k-means 
-- Create separate model for each segment to capture different customer behaviour 
-- There is no such thing as an average customer because personalisation is the key!
-
+- Accuracy is not the only measure to assess your model performance. Instead, based on the context, we believe that maximizing our recall or sensitivity is a more important metrics. Having a context knowledge is very important in assessing a more realistic and accurate model. Addtionally, context understanding helps us in determining what method to go with in handling imbalance data. Lastly, Having separate model for different segment of customers really help the business understands their customers and also provide a more accurate prediction. 
 <br>
 
 
