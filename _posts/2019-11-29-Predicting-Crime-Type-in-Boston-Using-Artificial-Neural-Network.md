@@ -62,15 +62,19 @@ For data cleaning, the first step I took was by checking for null and Nan's. Thr
 ### EDA
 
 I started the EDA by looking at the Number of Crime Frequency pattern across different days of week. Based on the graph below, Friday has been the highest crime day and Sunday has been the lowest for all five years. Based on this, I will make this variable categorical in the model.
+
 <img width="788" alt="DOW" src="https://user-images.githubusercontent.com/54050356/70124675-2bf2ee80-162a-11ea-8444-ea60eba3664f.png">
 
 Based on the below, the Peak Crime hour were at 12pm and between 4pm to 7pm. This trend was seen in all five years.
+
 <img width="813" alt="hr" src="https://user-images.githubusercontent.com/54050356/70124676-2bf2ee80-162a-11ea-8110-cd2c7ca4400e.png">
 
 Below graph shows the top 70% **offense code group** or **crime type** based on the number of times they occured through out the entire 5 years. This is the dependent variable that we will predict in the model.
+
 <img width="643" alt="top2" src="https://user-images.githubusercontent.com/54050356/70124768-5775d900-162a-11ea-82af-72c87081515a.png">
 
 Looking at the crime density, the northern areas seemed to have more crime than the southern Boston areas. Below graph shows the number of crime occured grouped by the district.
+
 <img width="718" alt="district" src="https://user-images.githubusercontent.com/54050356/70124673-2bf2ee80-162a-11ea-8289-c8b03c407d5c.png">
 
 The figures below depicts the top 70% crime offense code group or crime type. It is clearly shown that some crimes happened more often in specific areas while some other occured almost evenly all throughout Boston.
