@@ -1204,7 +1204,7 @@ y_test1 = test1.loc[:, test1.columns == 'deposit'].values
 
 
 ## Conclusion and Key Takeaways
-- Accuracy is not the only measure to assess your model performance. Instead, based on the context, we believe that maximizing our recall or sensitivity is a more important metrics. Having a context knowledge is very important in assessing a more realistic and accurate model. Addtionally, context understanding helps us in determining what method to go with in handling imbalance data. Lastly, Having separate model for different segment of customers really help the business understands their customers and also provide a more accurate prediction. 
+Accuracy is not the only measure to assess your model performance. Instead, based on the context, we believe that maximizing our recall or sensitivity is a more important metrics. Having a context knowledge is very important in assessing a more realistic and accurate model. Addtionally, context understanding helps us in determining what method to go with in handling imbalance data. Lastly, Having separate model for different segment of customers really help the business understands their customers and also provide a more accurate prediction. 
 <br>
 
 
