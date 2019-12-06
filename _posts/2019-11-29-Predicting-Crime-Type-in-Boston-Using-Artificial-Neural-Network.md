@@ -109,32 +109,17 @@ In this section I will talk about the detailed steps I took in building the pred
       'Vandalism': 10,
       'Verbal Disputes': 11}}
 
+## Feature Selection
 
+There was already a limited amount of features provided in this dataset. Therefore, I will only drop some features that do not make sense for a more realistic model. Given that, the features that I will drop are :
+1. **YEAR**. Using this variable does not make sense in predicting the crime code because it does not matter what year the crime happened in. Instead, we care more about the seasonal, monthly, weekly, or daily, pattern in within each of the year when predicting the future.
 
-## Correlation Matrix to Test for Collinearity
+2. **SHOOTING**. As mentioned above, the SHOOTING variable tells us if shooting was involved when the crime occured. Therefore, it is impossible to get this data before the crime incident happens. 
 
-Before I started building my model, it's always a good idea to see how the current independent variables are related to the dependent variable. A correlation matrix can also help identify collinearity between independent variables.
-In this case, I plotted the correlation matrix for the continuous independent variables and ran a chi-squared test for the categorical variables.
-
-Based on the correlation test, year seemed to have very minimal correlation with the dependent variable. 
-![output_12_0](https://user-images.githubusercontent.com/54050356/70124679-2c8b8500-162a-11ea-9097-0a63b616d758.png)
-
-
-
-## Chi-Squared Test to Test the Significant Relationship between Independent Var vs Dependent Var
-There were only 2 categorical variables in the data and they were both have significant relationship with the dependent variable. However, I decided not to use the **SHOOTING**(yes/no) variable as the data would only be available after the incident or the crime had happened.
-
-    SHOOTING and Offense Code Group
-    Chi Squared Value :
-    186.06374094281534
-    P-Value :
-    5.728576066226494e-34
-     
-    Day of Week and Offense Code Group
-    Chi Squared Value :
-    1817.9993218058914
-    P-Value :
-    0.0
+## Feature Engineering
+To prevent information loss and improve the prediction, I created 2 variables:
+1. **Season** to group the months variable.
+2. **Top 10% high crime addressess** to group the address variable.
      
 
 ## Preparing the Data Format for The Model
@@ -474,7 +459,7 @@ model1.fit(Train1Data, Train1Labels, nb_epoch=20)
 The baseline probability was ~8.3% for each class since there were 12 classes in the dependent variable.
 In the first model, I fitted all the independent variables into the model which resulted in an accuracy of ~21.8% and a loss of ~2.26. This is considerably good since this was a multiclass classification with 12 classes.
 
-However, there were definitely room for improvements in the model performance. In the second model, I decided to remove the year variable based on the correlation test result and the address grouping variable to enhance the performance of the model.
+However, there were definitely room for improvements in the model performance. In the second model, I decided to remove the season and address variables to enhance the performance of the model.
 The result was that the accuracy slightly improved to ~22.2% and the loss was reduced slightly.
 
 Though the average TPR and FPR comparison in the ROC curve showed that model 2 has bigger area under the curve compared to model 1, this performance assessment in inaccurate for non-binary classification model. Therefore, I would rely more the loss and accuracy to measure the model performance.
