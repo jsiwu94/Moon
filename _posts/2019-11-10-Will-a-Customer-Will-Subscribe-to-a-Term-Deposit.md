@@ -18,7 +18,7 @@ The data is about direct marketing campaigns (phone calls) of a Portuguese banki
 Predict whether the client will subscribe (yes/no) to a term deposit. Key Process Owners can use the output of this prediction to improve the stragegy for the next market campaign.
 
 ### Data Dictionary:
-<u>**Independent Variable**</u> <br>
+**<u>Independent Variable</u>** <br>
 **Bank client data** <br>
 - Age (numeric) <br>
 - Job : type of job <br>
@@ -41,7 +41,7 @@ Predict whether the client will subscribe (yes/no) to a term deposit. Key Proces
 - Previous: number of contacts performed before this campaign and for this client <br>
 - Poutcome: outcome of the previous marketing campaign <br>
 
-**<u>Dependent Variable (desired target)</u>**<br>
+**<u>Dependent Variable (desired target)</u>** <br>
 - Deposit - has the client subscribed a term deposit? (“yes”,“no”)
 
 
