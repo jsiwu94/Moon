@@ -12,6 +12,8 @@ comments: true
 **Plot of High Crime Points in Boston (2015 to 2019)**
 
 
+This project is an extension of my initial Keras & Tensorflow practice in a Kaggle Competition of Predicting Crime in SF. Using a similar approach in ANN, I was ranked within the top 30% in the competition. With that practice, I wanted to take the analysis another step further by trying to apply it to a different state. The detail can be found [here][https://www.kaggle.com/jenniferwu94/using-ann-in-tensorflow-to-predict-sf-crime].
+
 ## Purpose
 We hear stories about crimes happening in Boston everyday. Often times, we only found out about it after it happened.
 In this project, I would like to utilize machine learning model to proactively predict certain types of crime that will occur based on a given date, time, day of week, and location. The main target user, The Police Authority, can use the output of this model to proactively lay out their plans to prevent it from happening.
@@ -384,15 +386,16 @@ model1.fit(Train1Data, Train1Labels, nb_epoch=20)
 ### Model Prediction and Conclusion
 The baseline probability was ~8.3% for each class since there were 12 classes in the dependent variable.
 After running 3 different models with backward eliminiatino process, the final model was built based on removing the season, year, and top addresses variables. Based on comparison with the previous models, this has proved to have the best result without overfitting.
-The result for accuracy was ~22.2% and loss was 2.256, both on Test data.
+
+The result for accuracy was ~22.2% and loss was 2.256, both on Test data. The winner of a similar prediction for a Kaggle Competition (Predicting Crime in SF) with similar variables as this dataset received a loss of 2.11 and accuracy of 25% predicting 24 classes of crimes using dataset with ~30 years of observations (roughly 7x this project's dataset). Therefore, this prediction is considerably good given the limited amount of data.
 
 To evaluate the model prediction, ROC does not provide a well enough overview on a multiclass classification. Therefore, I decided to visualize it with a confusion matrix instead. The result on the Confusion Matrix showed that our prediction of crime distribution followed the pattern of the actual crime distribution with Motor Vehicle Accident being the highest.
 
 
 
-##### Final Model ROC and Confusion Matrix
-![output_50_0](https://user-images.githubusercontent.com/54050356/70124682-2c8b8500-162a-11ea-8f61-7804aef953eb.png)
+##### Final Model Confusion Matrix and ROC
 ![image](https://user-images.githubusercontent.com/54050356/70853266-76f9d680-1e60-11ea-8be8-eeac5482542f.png)
+![output_50_0](https://user-images.githubusercontent.com/54050356/70124682-2c8b8500-162a-11ea-8f61-7804aef953eb.png)
 
 
 ### Model Raw Output
