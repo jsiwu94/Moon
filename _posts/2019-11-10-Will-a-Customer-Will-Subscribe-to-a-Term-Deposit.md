@@ -35,7 +35,7 @@ Predict whether the client will subscribe (yes/no) to a term deposit. Key Proces
 - Month: last contact month of year <br>
 - Duration: last contact duration, in seconds (numeric) <br><br>
 
-<u>Other variables</u> <br>
+_Other variables_ <br>
 - Campaign: number of contacts performed during this campaign and for this client <br>
 - Pdays: number of days that passed by after the client was last contacted from a previous campaign (-1 means - client was not previously contacted) <br>
 - Previous: number of contacts performed before this campaign and for this client <br>
