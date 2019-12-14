@@ -41,7 +41,7 @@ Predict whether the client will subscribe (yes/no) to a term deposit. Key Proces
 - Previous: number of contacts performed before this campaign and for this client <br>
 - Poutcome: outcome of the previous marketing campaign <br>
 
-<b><u>Dependent Variable (desired target)</b></u> <br>
+<b><u>Dependent Variable (desired target) </b> </u> 
 - Deposit - has the client subscribed a term deposit? (“yes”,“no”)
 
 
