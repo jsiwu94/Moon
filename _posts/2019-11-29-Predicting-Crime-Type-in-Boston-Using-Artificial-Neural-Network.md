@@ -383,17 +383,17 @@ model1.fit(Train1Data, Train1Labels, nb_epoch=20)
     0.22216306626796722
 
 ## Part 4
-### Model Prediction and Conclusion
+### Model Prediction Result
 The baseline probability was ~8.3% for each class since there were 12 classes in the dependent variable.
 After running 3 different models with backward eliminiatino process, the final model was built based on removing the season, year, and top addresses variables. Based on comparison with the previous models, this has proved to have the best result without overfitting.
 
-The result for accuracy was ~22.2% and loss was 2.256, both on Test data. The winner of a similar prediction for a Kaggle Competition (Predicting Crime in SF) with similar variables as this dataset received a loss of 2.11 and accuracy of 25% predicting 24 classes of crimes using dataset with ~30 years of observations (roughly 7x this project's dataset). Therefore, this prediction is considerably good given the limited amount of data.
-
 To evaluate the model prediction, ROC does not provide a well enough overview on a multiclass classification. Therefore, I decided to visualize it with a confusion matrix instead. The result on the Confusion Matrix showed that our prediction of crime distribution followed the pattern of the actual crime distribution with Motor Vehicle Accident being the highest.
 
+The result for accuracy was ~22.2% and loss was 2.256, both on Test data. The winner of a similar prediction for a Kaggle Competition (Predicting Crime in SF) received a loss of 2.11 and accuracy of 25% predicting 24 classes of crimes using dataset with ~30 years of observations (roughly 7x this project's dataset). Therefore, this prediction is considerably good given the limited amount of data.
 
+### Final Thought and Conclusion
+Although this model gives a pretty good estimate on crime prediction, it is only as a simple prove of concept (POC). There are definitely a lot of improvements can be made in the future. As time goes by, adding more data would definitely improve the prediction performance. When more data have been collected, a more advanced deep learning method such as RNN (Recurrent Neural Network) can be used for a better prediction. 
 
-##### Final Model Confusion Matrix and ROC
 ![image](https://user-images.githubusercontent.com/54050356/70853266-76f9d680-1e60-11ea-8be8-eeac5482542f.png)
 ![output_50_0](https://user-images.githubusercontent.com/54050356/70124682-2c8b8500-162a-11ea-8f61-7804aef953eb.png)
 
