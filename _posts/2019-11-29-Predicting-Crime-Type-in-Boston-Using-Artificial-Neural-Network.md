@@ -395,7 +395,6 @@ The result for accuracy was ~22.2% and loss was 2.256, both on Test data. The wi
 Although this model gives a pretty good estimate on crime prediction, it is only a simple prove of concept (POC). There are definitely a lot of improvements can be made in the future. As time goes by, adding more data would definitely improve the prediction performance. When more data have been collected, a more advanced deep learning method such as RNN (Recurrent Neural Network) can be used for a better prediction. 
 
 ![image](https://user-images.githubusercontent.com/54050356/70853266-76f9d680-1e60-11ea-8be8-eeac5482542f.png)
-![output_50_0](https://user-images.githubusercontent.com/54050356/70124682-2c8b8500-162a-11ea-8f61-7804aef953eb.png)
 
 
 ### Model Raw Output
