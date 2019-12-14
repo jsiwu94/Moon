@@ -306,89 +306,11 @@ train1.info()
 
 
 ## Training the neural network model
-### Model 1 - Used all variables, 1 layer, 20 epoch
-```python
-from sklearn.metrics import roc_auc_score
-
-model = Sequential()
-model.add(Dense(12, input_shape=(47,)))
-#model.add(Dense(128, activation='relu', input_dim=512))
-model.add(Dense(90, activation='relu', input_dim=128))
-model.add(Dense(12, activation='softmax', input_dim=90))
-model.compile(loss='sparse_categorical_crossentropy', metrics=['accuracy']
-              , optimizer='adam')
-
-# The fit() method - trains the model
-model.fit(TrainData, TrainLabels, nb_epoch=20)
-```
-
-    /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/ipykernel_launcher.py:11: UserWarning: The `nb_epoch` argument in `fit` has been renamed `epochs`.
-      # This is added back by InteractiveShellApp.init_path()
-
-
-    Epoch 1/20
-    216985/216985 [==============================] - 7s 34us/step - loss: 2.3499 - accuracy: 0.1841
-    Epoch 2/20
-    216985/216985 [==============================] - 6s 30us/step - loss: 2.3141 - accuracy: 0.1961 0s
-    Epoch 3/20
-    216985/216985 [==============================] - 6s 28us/step - loss: 2.2980 - accuracy: 0.2019 1s - loss: 2.2989 - accura - E
-    Epoch 4/20
-    216985/216985 [==============================] - 7s 33us/step - loss: 2.2897 - accuracy: 0.2049
-    Epoch 5/20
-    216985/216985 [==============================] - 7s 30us/step - loss: 2.2855 - accuracy: 0.2058
-    Epoch 6/20
-    216985/216985 [==============================] - 7s 31us/step - loss: 2.2820 - accuracy: 0.2076
-    Epoch 7/20
-    216985/216985 [==============================] - 7s 30us/step - loss: 2.2798 - accuracy: 0.2080
-    Epoch 8/20
-    216985/216985 [==============================] - 6s 30us/step - loss: 2.2774 - accuracy: 0.2090
-    Epoch 9/20
-    216985/216985 [==============================] - 7s 30us/step - loss: 2.2760 - accuracy: 0.2093
-    Epoch 10/20
-    216985/216985 [==============================] - 6s 28us/step - loss: 2.2746 - accuracy: 0.2100
-    Epoch 11/20
-    216985/216985 [==============================] - 6s 30us/step - loss: 2.2731 - accuracy: 0.2102
-    Epoch 12/20
-    216985/216985 [==============================] - 7s 32us/step - loss: 2.2715 - accuracy: 0.2114
-    Epoch 13/20
-    216985/216985 [==============================] - 6s 28us/step - loss: 2.2700 - accuracy: 0.2111 0s - l
-    Epoch 14/20
-    216985/216985 [==============================] - 7s 31us/step - loss: 2.2688 - accuracy: 0.2129
-    Epoch 15/20
-    216985/216985 [==============================] - 7s 32us/step - loss: 2.2672 - accuracy: 0.2132
-    Epoch 16/20
-    216985/216985 [==============================] - 6s 29us/step - loss: 2.2660 - accuracy: 0.2142
-    Epoch 17/20
-    216985/216985 [==============================] - 7s 30us/step - loss: 2.2644 - accuracy: 0.2151
-    Epoch 18/20
-    216985/216985 [==============================] - 6s 30us/step - loss: 2.2630 - accuracy: 0.2154
-    Epoch 19/20
-    216985/216985 [==============================] - 6s 30us/step - loss: 2.2611 - accuracy: 0.2157
-    Epoch 20/20
-    216985/216985 [==============================] - 6s 29us/step - loss: 2.2597 - accuracy: 0.2167 0s - l
-
-
-
-
-
-    <keras.callbacks.callbacks.History at 0x13bf28c90>
-
-
-
-## Evaluate the model on the cleaned test data
-
-    54638/54638 [==============================] - 1s 14us/step
-    Test Loss:
-    2.2633479155106166
-    Test Accuracy:
-    0.21847432851791382
-
-
-### Model 2 - Dropped street grouping and year variables, 2 layers, 20 epoch
+### Final Model - Dropped street and Season grouping variables as well as year variables, 2 layers, 20 epoch
 
 ```python
 model1 = Sequential()
-model1.add(Dense(12, input_shape=(42,)))
+model1.add(Dense(12, input_shape=(38,)))
 model1.add(Dense(128, activation='relu', input_dim=512))
 model1.add(Dense(90, activation='relu', input_dim=128))
 model1.add(Dense(12, activation='softmax', input_dim=90))
@@ -459,24 +381,19 @@ model1.fit(Train1Data, Train1Labels, nb_epoch=20)
     0.22216306626796722
 
 ## Part 4
-### Model Comparison and Conclusion
+### Model Prediction and Conclusion
 The baseline probability was ~8.3% for each class since there were 12 classes in the dependent variable.
-In the first model, I fitted all the independent variables into the model which resulted in an accuracy of ~21.8% and a loss of ~2.26. This is considerably good since this was a multiclass classification with 12 classes.
+After running 3 different models with backward eliminiatino process, the final model was built based on removing the season, year, and top addresses variables. Based on comparison with the previous models, this has proved to have the best result without overfitting.
+The result for accuracy was ~22.2% and loss was 2.256, both on Test data.
 
-However, there were definitely room for improvements in the model performance. In the second model, I decided to remove the season and address variables to enhance the performance of the model.
-The result was that the accuracy slightly improved to ~22.2% and the loss was reduced slightly.
-
-Though the average TPR and FPR comparison in the ROC curve showed that model 2 has bigger area under the curve compared to model 1, this performance assessment in inaccurate for non-binary classification model. Therefore, I would rely more the loss and accuracy to measure the model performance.
-
-Based on the above, **I chose model 2 to predict the crime type or offense code in Boston**.
-### ROC Curve
-
-##### MODEL 1
-![output_48_0](https://user-images.githubusercontent.com/54050356/70124681-2c8b8500-162a-11ea-9248-c24acb5a0364.png)
+To evaluate the model prediction, ROC does not provide a well enough overview on a multiclass classification. Therefore, I decided to visualize it with a confusion matrix instead. The result on the Confusion Matrix showed that our prediction of crime distribution followed the pattern of the actual crime distribution with Motor Vehicle Accident being the highest.
 
 
-##### MODEL 2
+
+##### Final Model ROC and Confusion Matrix
 ![output_50_0](https://user-images.githubusercontent.com/54050356/70124682-2c8b8500-162a-11ea-8f61-7804aef953eb.png)
+![image](https://user-images.githubusercontent.com/54050356/70853266-76f9d680-1e60-11ea-8be8-eeac5482542f.png)
+
 
 ### Model Raw Output
 ```python
