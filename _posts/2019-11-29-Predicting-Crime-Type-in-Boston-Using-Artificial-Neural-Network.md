@@ -392,7 +392,7 @@ To evaluate the model prediction, ROC does not provide a well enough overview on
 The result for accuracy was ~22.2% and loss was 2.256, both on Test data. The winner of a similar prediction for a Kaggle Competition (Predicting Crime in SF) received a loss of 2.11 and accuracy of 25% predicting 24 classes of crimes using dataset with ~30 years of observations (roughly 7x this project's dataset). Therefore, this prediction is considerably good given the limited amount of data.
 
 ### Final Thought and Conclusion
-Although this model gives a pretty good estimate on crime prediction, it is only as a simple prove of concept (POC). There are definitely a lot of improvements can be made in the future. As time goes by, adding more data would definitely improve the prediction performance. When more data have been collected, a more advanced deep learning method such as RNN (Recurrent Neural Network) can be used for a better prediction. 
+Although this model gives a pretty good estimate on crime prediction, it is only a simple prove of concept (POC). There are definitely a lot of improvements can be made in the future. As time goes by, adding more data would definitely improve the prediction performance. When more data have been collected, a more advanced deep learning method such as RNN (Recurrent Neural Network) can be used for a better prediction. 
 
 ![image](https://user-images.githubusercontent.com/54050356/70853266-76f9d680-1e60-11ea-8be8-eeac5482542f.png)
 ![output_50_0](https://user-images.githubusercontent.com/54050356/70124682-2c8b8500-162a-11ea-8f61-7804aef953eb.png)
