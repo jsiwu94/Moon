@@ -12,7 +12,7 @@ comments: true
 **Plot of High Crime Points in Boston (2015 to 2019)**
 
 
-This project is an extension of my initial Keras & Tensorflow practice in a Kaggle Competition of Predicting Crime in SF. Using a similar approach in ANN, I was ranked within the top 30% in the competition. With that practice, I wanted to take the analysis another step further by trying to apply it to a different state. The detail can be found [here](https://www.kaggle.com/jenniferwu94/using-ann-in-tensorflow-to-predict-sf-crime).
+This project is an extension of my initial Keras & Tensorflow practice in a Kaggle Competition of Predicting Crime in SF. Using a similar approach in ANN, I was ranked within the top 30% in the competition. With that practice, I wanted to take the analysis another step further by trying to apply it to a different state. The detail of my competition result can be found [here](https://www.kaggle.com/jenniferwu94/using-ann-in-tensorflow-to-predict-sf-crime).
 
 ## Purpose
 We hear stories about crimes happening in Boston everyday. Often times, we only found out about it after it happened.
