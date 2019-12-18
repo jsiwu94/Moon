@@ -8,7 +8,8 @@ comments: true
 ---
 
 
-<p style="text-align: center;">[wordcloud_tutorial_here](https://github.com/jsiwu94/SVD_for_Subreddit_Recommendation/blob/master/redditbot_wordcloud.ipynb)</p>
+<p style="text-align: center;">
+you can find my wordcloud tutorial [here](https://github.com/jsiwu94/SVD_for_Subreddit_Recommendation/blob/master/redditbot_wordcloud.ipynb)</p>
 
 <img width="165" alt="Screen Shot 2019-12-17 at 10 50 28 PM" src="https://user-images.githubusercontent.com/54050356/71062990-a6d70180-2120-11ea-955e-90f677d4a721.png">
 
