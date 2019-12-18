@@ -9,7 +9,7 @@ comments: true
 
 
 
-<img width="200" alt="redditbot_wordcloud" src="https://user-images.githubusercontent.com/54050356/71051960-c3fad880-20fe-11ea-9519-c6b04d7e3986.png">
+<img width="150" alt="redditbot_wordcloud" src="https://user-images.githubusercontent.com/54050356/71051960-c3fad880-20fe-11ea-9519-c6b04d7e3986.png">
 
 ```python
 import numpy as np
