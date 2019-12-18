@@ -89,7 +89,7 @@ for submission in r:
   </tbody>
 </table>
 
-## Checking the Data
+#### Checking the Data
 
 The Data contains 15K redditors and ~29K subreddits.
 
@@ -105,7 +105,21 @@ The Data contains 15K redditors and ~29K subreddits.
 
 ## Collaborative Filtering Algorithm using Singular Value Decomposition 
 
+Now that we have the dataset, let's start building the algorithm. For this project, I used the Singular Value Decomposition (SVD) technique to create the subreddit recommendation. 
 
+The SVD is a well-known matrix factorization method and is well-studied in the field of math. The winning team at the Netflix Prize competition in 2009 used SVD matrix factorization models to produce movie recommendations with an improved RMSE of ~8% from Netflix's Recommendation System at the time. Please refer to this [article](https://medium.com/netflix-techblog/netflix-recommendations-beyond-the-5-stars-part-1-55838468f429) to learn more. 
+
+Before we begin, let's look into the concept behind it first. The Collaborative filtering is a method to predict a rating for a user item pair based on the history of ratings given by the user and given to the item. Most Collaborative filtering algorithms are based on user-item rating matrix where each row represents a user, each column an item. The entries of this matrix are ratings given by users to items.
+
+**SVD** is a matrix factorization technique that is usually used to reduce the number of features of a data set by reducing space dimensions from N to K where K < N. For the purpose of the recommendation systems however, we are only interested in the matrix factorization part keeping same dimensionality. The matrix factorization is done on the user-item ratings matrix. From a high level, matrix factorization can be thought of as finding 2 matrices whose product is the original matrix.
+Each item can be represented by a vector `qi`. Similarly each user can be represented by a vector `pu` such that the dot product of those 2 vectors is the expected rating.
+
+
+It is a form of factorization!!
+`qi` and `pu` can be found in such a way that the square error difference between their dot product and the known rating in the user-item matrix is minimum
+
+
+<i>"Collaborative filtering captures the underlying pattern of interests of like-minded users and uses the choices and preferences of similar users to suggest new items."</i>
 
 ```python
 import numpy as np
@@ -621,4 +635,6 @@ Hutchinson, A. (2018, April 20). Reddit Now Has as Many Users as Twitter, and Fa
 
 Baxter, J. (2016). A comparative analysis of subreddit recommenders for Reddit. Retrieved from http://jaybaxter.net/redditrecommender.pdf
 
-#### Thank you for reading! Please feel free to contact me directly for any comments, feedbacks, or suggestions. You can leave a comment below as well!
+
+
+Thank you for reading! Please feel free to contact me directly for any comments, feedbacks, or suggestions. You can leave a comment below as well!
