@@ -89,7 +89,23 @@ for submission in r:
   </tbody>
 </table>
 
-## 
+## Checking the Data
+
+The Data contains 15K redditors and ~29K subreddits.
+
+    unique reddittor: 15000
+    unique subreddit: 29281
+    total data entry: (9391244, 3)
+    
+    Are there null values from our API dataset?  
+    username     False
+    subreddit    False
+    utc          False
+    dtype: bool
+
+## Collaborative Filtering Algorithm using Singular Value Decomposition 
+
+
 
 ```python
 import numpy as np
@@ -106,20 +122,9 @@ from scipy.linalg import sqrtm
 from nltk.tokenize import TreebankWordTokenizer
 ```
 
-## Checking the Data
-
-    unique reddittor: 15000
-    unique subreddit: 29281
-    total data entry: (9391244, 3)
-
-    Are there null values from our API dataset?  
-    username     False
-    subreddit    False
-    utc          False
-    dtype: bool
 
 
-## Evaluating our SVD Model - with Test & Train by Sampling 500 users
+## Evaluating our SVD Model with Train and Test Data by Sampling 500 users
 
 
 ```python
