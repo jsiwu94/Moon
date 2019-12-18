@@ -7,13 +7,7 @@ tags: [Machine Learning, Collaborative Filtering, Predictive Modelling, Factoriz
 comments: true
 ---
 
-
-
-<img width="100" img height="120" alt="redditbot_wordcloud" src="https://user-images.githubusercontent.com/54050356/71051960-c3fad880-20fe-11ea-9519-c6b04d7e3986.png">
-
-
-<img width="179" alt="Screen Shot 2019-12-17 at 10 37 57 PM" src="https://user-images.githubusercontent.com/54050356/71061982-3d55f380-211e-11ea-92b1-57098b58ed37.png">
-
+<img width="165" alt="Screen Shot 2019-12-17 at 10 50 28 PM" src="https://user-images.githubusercontent.com/54050356/71062990-a6d70180-2120-11ea-955e-90f677d4a721.png">
 
 User recommendation system is widely used in a lot of e-commerce or entertainment businesses to encourage more customer satisfaction and generate revenue for the company. The most commonly known method for this is called the **collaborative filtering**. Companies such as Netflix, for example, uses this method to recommend movies that matches their users' taste. Inspired by Nexflix's world class user recommendation algorithm, I am going to generate a recommendation system to help [Reddit](https://www.reddit.com/) users find subreddit that they might enjoy in this project.
 
@@ -22,12 +16,13 @@ User recommendation system is widely used in a lot of e-commerce or entertainmen
 
 Before we began, let me first introduce you to reddit. What is Reddit? Reddit is a website which provide users with news aggregation, web content rating, and discussion. In addition, it allows its members to submit content to the site such as text, images, or links, which other members can interact with by leaving comments or voting up or down. One main component of Reddit is the **subreddit**. Subreddits are specific online communities within the Reddit website that serve as a topic or category that organize all the posts associated with them. 
 
-## Problem Statement
+Despite being a very popular website with over 300 million users based on the data collected in 2018, there is still no good way to discover subreddits. Currently, users have to manually search for popular subreddits or upvote a subreddit so that it will be archived in their subreddit history.
 
-Reddit has become a very popular website with over 300 million users. (Hutchinson A., 2018) However, there is still no good way to discover subreddits. - online communities
-based on specific discussion topics. This paper approaches the subreddit discovery problem by using collaborative filtering to recommend subreddits to Reddit users based
-on their past voting history. Three different methods are considered, and are evaluated on three metrics: accuracy, coverage,
-and novelty.
+## Getting The Data
+
+To get the dataset, I utilized the Reddit API for python called [PRAW](https://praw.readthedocs.io/en/latest/code_overview/models/submission.html). The main requirements are to have your client_id, client_secret, user_agent. Using the API, I collected ~15K redditors (reddit users) data consisting of their username, subreddit submissions (or comments), and the timestamp (utc) when they create the submission.
+
+
 
 
 ```python
