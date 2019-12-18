@@ -25,7 +25,7 @@ To get the dataset, I utilized the Reddit API for python called [PRAW](https://p
 - subreddit submissions (or comments)
 - the timestamp (utc) when they create the submission
 
-Because it took a long time to scrape the data, I exported the final output to a csv.
+Because it took a long time to scrape the data, I exported the final output to a csv. [My PRAW Code](https://github.com/jsiwu94/SVD_for_Subreddit_Recommendation/blob/master/PRAW.ipynb) is also available on my GitHub.
 
 ```python
 reddit = praw.Reddit(client_id='your client id',
@@ -43,7 +43,7 @@ for submission in r:
     subreddit_name.append(submission.subreddit)
     utc.append(submission.created_utc)
     i+=1
-print(f'{i} unique users retrieved')
+    
 ```
 
 <table border="1" class="dataframe">
@@ -89,7 +89,7 @@ print(f'{i} unique users retrieved')
   </tbody>
 </table>
 
-
+## 
 
 ```python
 import numpy as np
@@ -106,7 +106,7 @@ from scipy.linalg import sqrtm
 from nltk.tokenize import TreebankWordTokenizer
 ```
 
-# Checking the Data
+## Checking the Data
 
     unique reddittor: 15000
     unique subreddit: 29281
@@ -119,7 +119,7 @@ from nltk.tokenize import TreebankWordTokenizer
     dtype: bool
 
 
-# Evaluating our SVD Model - with Test & Train by Sampling 500 users
+## Evaluating our SVD Model - with Test & Train by Sampling 500 users
 
 
 ```python
@@ -250,7 +250,7 @@ data.shape
 
 
 
-# Splitting Train and Test Dataset based on Timestamp (utc)
+## Splitting Train and Test Dataset based on Timestamp (utc)
 
 - Calculating implicit rating using number of submissions per subreddit.
 - Ideally need data for upvotes.
@@ -337,7 +337,7 @@ print(test[test.username == '-_-_-_-otalp-_-_-_-'].iloc[:,:3])
     31486  -_-_-_-otalp-_-_-_-              soccer              0.348932
 
 
-### Transforming the Dataframe into Utility Matrix for SVD Computation Later
+## Transforming the Dataframe into Utility Matrix for SVD Computation Later
 
 ```python
 def svd(train, k):
