@@ -585,7 +585,10 @@ Hutchinson, A. (2018, April 20). Reddit Now Has as Many Users as Twitter, and Fa
 
 Baxter, J. (2016). A comparative analysis of subreddit recommenders for Reddit. Retrieved from http://jaybaxter.net/redditrecommender.pdf
 
+Salakhutdinov, R. & Mnih, A. & Hinton G. (2007). Restricted Boltzmann Machines for Collaborative Filtering. Retrieved from 
+https://www.cs.toronto.edu/~rsalakhu/papers/rbmcf.pdf
 
 
 
-Thank you for reading! Please feel free to contact me directly for any comments, feedbacks, or suggestions. You can leave a comment below as well!
+
+**Thank you for reading! Please feel free to contact me directly for any comments, feedbacks, or suggestions. You can leave a comment below as well!**
