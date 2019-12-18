@@ -23,30 +23,27 @@ Despite being a very popular website with over 300 million users based on the da
 To get the dataset, I utilized the Reddit API for python called [PRAW](https://praw.readthedocs.io/en/latest/code_overview/models/submission.html). The main requirements are to have your client_id, client_secret, user_agent. Using the API, I collected ~15K redditors (reddit users) data consisting of: 
 - their username
 - subreddit submissions (or comments)
-- the timestamp (utc) when they create the submission.
+- the timestamp (utc) when they create the submission
 
-
-
-
-```python
-import numpy as np
-import pandas as pd
-import math as mt
-import csv
-from pandas import DataFrame,Series,read_csv
-import scipy
-import scipy.sparse as sp
-from sparsesvd import sparsesvd        #used for matrix factorization
-from scipy.sparse import csc_matrix    #used for sparse matrix
-from scipy.sparse.linalg import *      #used for matrix multiplication
-from scipy.linalg import sqrtm
-from nltk.tokenize import TreebankWordTokenizer
-```
-
-
+Because it took a long time to scrape the data, I exported the final output to a csv.
 
 ```python
-reddit_df.head()
+reddit = praw.Reddit(client_id='your client id',
+                    client_secret='your client secret',
+                    user_agent='project name')
+
+r = reddit.subreddit('all').top(limit=15000)
+redditor = []
+subreddit_name = []
+utc = []
+i=0
+
+for submission in r:
+    redditor.append(submission.author)
+    subreddit_name.append(submission.subreddit)
+    utc.append(submission.created_utc)
+    i+=1
+print(f'{i} unique users retrieved')
 ```
 
 <table border="1" class="dataframe">
@@ -91,6 +88,23 @@ reddit_df.head()
     </tr>
   </tbody>
 </table>
+
+
+
+```python
+import numpy as np
+import pandas as pd
+import math as mt
+import csv
+from pandas import DataFrame,Series,read_csv
+import scipy
+import scipy.sparse as sp
+from sparsesvd import sparsesvd        #used for matrix factorization
+from scipy.sparse import csc_matrix    #used for sparse matrix
+from scipy.sparse.linalg import *      #used for matrix multiplication
+from scipy.linalg import sqrtm
+from nltk.tokenize import TreebankWordTokenizer
+```
 
 # Checking the Data
 
