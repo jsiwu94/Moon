@@ -531,7 +531,7 @@ U, S, Vt = computeSVD(user_subreddit_matrix, no_of_latent_factors)
     
     ------------------------------------------------------------------------------------
     
-    User Subreddit History - 
+    User Subreddit History :
     
     sports
     gaming
@@ -541,8 +541,6 @@ U, S, Vt = computeSVD(user_subreddit_matrix, no_of_latent_factors)
     todayilearned
     TheLastAirbender
     realrule34
-    
-    ------------------------------------------------------------------------------------
     ------------------------------------------------------------------------------------
     
     Recommendation for CarnationsPls : 
@@ -571,15 +569,13 @@ U, S, Vt = computeSVD(user_subreddit_matrix, no_of_latent_factors)
     
     ------------------------------------------------------------------------------------
     
-    User Subreddit History - 
+    User Subreddit History :
     
     reactiongifs
     cringepics
     nba
     lakers
     NBA2k
-    
-    ------------------------------------------------------------------------------------
     ------------------------------------------------------------------------------------
     
     Recommendation for comicfan815 : 
