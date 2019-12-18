@@ -78,7 +78,6 @@ reddit_df.head()
     </tr>
   </tbody>
 </table>
-</div>
 
 # Checking the Data
 
@@ -197,7 +196,6 @@ data.head(10)
     </tr>
   </tbody>
 </table>
-</div>
 
 
 
@@ -417,7 +415,6 @@ doc_df.head()
     </tr>
   </tbody>
 </table>
-</div>
 
 
 
