@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Subreddit User Recommendation System"
-date: 2019-11-10
+date: 2019-12-17
 excerpt: "Using SVD and Matrix Factorization to Recommend Subreddit Topics for Reddit User"
 tags: [Machine Learning, Collaborative Filtering, Predictive Modelling, Factorization Matrix, Gradient Descent Algorithm ,SVD, Python]
 comments: true
