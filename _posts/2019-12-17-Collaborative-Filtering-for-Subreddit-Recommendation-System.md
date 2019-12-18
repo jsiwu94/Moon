@@ -11,9 +11,20 @@ comments: true
 
 <img width="100" img height="120" alt="redditbot_wordcloud" src="https://user-images.githubusercontent.com/54050356/71051960-c3fad880-20fe-11ea-9519-c6b04d7e3986.png">
 
-User recommendation system is widely used in a lot of e-commerce or entertainment businesses to encourage more customer satisfaction and generate revenue for the company. 
+User recommendation system is widely used in a lot of e-commerce or entertainment businesses to encourage more customer satisfaction and generate revenue for the company. The most commonly known method for this is called the **collaborative filtering**. Companies such as Netflix, for example, uses this method to recommend movies that matches their users' taste. Inspired by Nexflix's world class user recommendation algorithm, I am going to generate a recommendation system to help [Reddit](https://www.reddit.com/) users find subreddit that they might enjoy in this project.
 
-## Purpose
+
+## Introduction
+
+Before we began, let me first introduce you to reddit. What is Reddit? Reddit is a website which provide users with news aggregation, web content rating, and discussion. In addition, it allows its members to submit content to the site such as text, images, or links, which other members can interact with by leaving comments or voting up or down. One main component of Reddit is the **subreddit**. Subreddits are specific online communities within the Reddit website that serve as a topic or category that organize all the posts associated with them. 
+
+## Problem Statement
+
+Reddit has become a very popular website with over 300 million users. (Hutchinson A., 2018) However, there is still no good way to discover subreddits. - online communities
+based on specific discussion topics. This paper approaches the subreddit discovery problem by using collaborative filtering to recommend subreddits to Reddit users based
+on their past voting history. Three different methods are considered, and are evaluated on three metrics: accuracy, coverage,
+and novelty.
+
 
 ```python
 import numpy as np
@@ -586,6 +597,7 @@ U, S, Vt = computeSVD(user_subreddit_matrix, no_of_latent_factors)
     torontoraptors
     ------------------------------------------------------------------------------------
     
-
+## References
+Hutchinson, A. (2018, April 20). Reddit Now Has as Many Users as Twitter, and Far Higher Engagement Rates. Retrieved from https://www.socialmediatoday.com/news/reddit-now-has-as-many-users-as-twitter-and-far-higher-engagement-rates/521789/.
 
 #### Thank you for reading! Please feel free to contact me directly for any comments, feedbacks, or suggestions. You can leave a comment below as well!
