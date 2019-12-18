@@ -123,10 +123,10 @@ Before we begin, let's look into the concept behind it first. The **Collaborativ
 <img width="676" alt="Screen Shot 2019-12-17 at 11 49 17 PM" src="https://user-images.githubusercontent.com/54050356/71066648-e3f2c200-2127-11ea-96a1-143a90fbce7e.png">
 
 In our context, U contains data for each username and their subreddit submissions, V is the subreddit name and its number of submissions by the user, while Σ are called the singular values and it indicates the strength of how U and V are related.
-We can approximate the full matrix by observing only the **most important features** using the singular values (Σ). To read more about SVD please refer to these research papers: [netflix svd][1][svd for recommendation engine][2] 
-[1]: http://buzzard.ups.edu/courses/2014spring/420projects/math420-UPS-spring-2014-gower-netflix-SVD.pdf
-[2]: https://www.cs.uic.edu/~liub/KDD-cup-2007/proceedings/Regular-Paterek.pdf
-
+We can approximate the full matrix by observing only the **most important features** using the singular values (Σ). To read more about SVD please refer to these <b>research papers:</b><br>
+  <a href="http://buzzard.ups.edu/courses/2014spring/420projects/math420-UPS-spring-2014-gower-netflix-SVD.pdf">Netflix SVD</a> 
+  <a href="https://www.cs.uic.edu/~liub/KDD-cup-2007/proceedings/Regular-Paterek.pdf
+">SVD for Recommendation Engine</a> 
 
 
 ```python
