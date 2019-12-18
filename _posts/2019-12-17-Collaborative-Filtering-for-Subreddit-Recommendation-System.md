@@ -111,9 +111,11 @@ The SVD is a well-known matrix factorization method and is well-studied in the f
 
 Before we begin, let's look into the concept behind it first. The Collaborative filtering is a method to predict a rating for a user item pair based on the history of ratings given by the user and given to the item. Most Collaborative filtering algorithms are based on user-item rating matrix where each row represents a user, each column an item. The entries of this matrix are ratings given by users to items.
 
-**SVD** is a matrix factorization technique that is usually used to reduce the number of features of a data set by reducing space dimensions from N to K where K < N. For the purpose of the recommendation systems however, we are only interested in the matrix factorization part keeping same dimensionality. The matrix factorization is done on the user-item ratings matrix. From a high level, matrix factorization can be thought of as finding 2 matrices whose product is the original matrix.
-Each item can be represented by a vector `qi`. Similarly each user can be represented by a vector `pu` such that the dot product of those 2 vectors is the expected rating.
+**SVD** is a matrix factorization technique that is usually used to reduce the number of features of a data set by reducing space dimensions from N to K where K < N. The matrix factorization is done on the user-item ratings matrix. From a high level, matrix factorization can be thought of as finding 2 matrices whose product is the original matrix.
 
+
+
+<img width="676" alt="Screen Shot 2019-12-17 at 11 49 17 PM" src="https://user-images.githubusercontent.com/54050356/71066648-e3f2c200-2127-11ea-96a1-143a90fbce7e.png">
 
 It is a form of factorization!!
 `qi` and `pu` can be found in such a way that the square error difference between their dot product and the known rating in the user-item matrix is minimum
