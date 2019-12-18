@@ -15,7 +15,7 @@ comments: true
 </p>
 
 
-User recommendation system is widely used in a lot of e-commerce or entertainment businesses to encourage more customer satisfaction and generate revenue for the company. The most commonly known method for this is called the **collaborative filtering**. Companies such as Netflix, for example, uses this method to recommend movies that matches their users' taste. Inspired by Nexflix's world class user recommendation algorithm, I am going to generate a recommendation system to help [Reddit](https://www.reddit.com/) users find subreddit that they might enjoy in this project.
+User recommendation system is widely used in a lot of e-commerce or entertainment businesses to encourage more customer satisfaction and generate revenue for the company. The most commonly known method for this is called the **collaborative filtering**. Companies such as Netflix, for example, uses this method to recommend movies that matches their users' taste. Inspired by Nexflix's world class user recommendation algorithm, I am going to generate a recommendation system to help [Reddit](https://www.reddit.com/) users find subreddit that they might enjoy in this project. [Find my full python code here](https://github.com/jsiwu94/SVD_for_Subreddit_Recommendation/blob/master/Subreddit_Recommendation_System.ipynb)
 
 
 ## Introduction
@@ -334,7 +334,9 @@ data.dropna(inplace = True)
     31486  -_-_-_-otalp-_-_-_-              soccer              0.348932
 
 
-## Transforming the Dataframe into Utility Matrix for SVD Computation Later
+## Transforming the Dataframe into Utility Matrix and SVD Computation
+
+As mentioned earlier, one of the requirement to use SVD model is to transfor our data into a matrix. In this case, I will fill all the subreddits that a user has not had submission on with zero's. Once we have our matrix ready, let's create the SVD function.
 
 ```python
 def svd(train, k):
@@ -365,6 +367,7 @@ def svd(train, k):
     return UsV
 ```
 
+Now let's run our prediction on test data and compare it againts the actual. In this case, I will use MSE and MAE.
 
 ```python
 def mse(true, pred):
@@ -385,6 +388,8 @@ svdout = svd(X, k=no_of_features)
 print(mse(test['user_implicit_rating'], pred))
 print(mae(test['user_implicit_rating'], pred))
 ```
+
+Based on the output, we got a pretty good result with a MAE is around 0.5%. 
 
     svd done
     mse: 0.0001907806366327251
