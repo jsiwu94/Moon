@@ -1,3 +1,14 @@
+---
+layout: post
+title: "Subreddit User Recommendation System"
+date: 2019-11-10
+excerpt: "Using SVD and Matrix Factorization to Recommend Subreddit Topics for Reddit User"
+tags: [Machine Learning, Collaborative Filtering, Predictive Modelling, Factorization Matrix, Gradient Descent Algorithm ,SVD, Python]
+comments: true
+---
+
+
+
 # Subreddit Recommendation System using SVD
 
 ![bot](https://github.com/jsiwu94/SVD_for_Subreddit_Recommendation/blob/master/redditbot_wordcloud.png?style=centerme)
