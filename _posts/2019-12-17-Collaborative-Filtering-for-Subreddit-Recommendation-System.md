@@ -20,7 +20,10 @@ Despite being a very popular website with over 300 million users based on the da
 
 ## Getting The Data
 
-To get the dataset, I utilized the Reddit API for python called [PRAW](https://praw.readthedocs.io/en/latest/code_overview/models/submission.html). The main requirements are to have your client_id, client_secret, user_agent. Using the API, I collected ~15K redditors (reddit users) data consisting of their username, subreddit submissions (or comments), and the timestamp (utc) when they create the submission.
+To get the dataset, I utilized the Reddit API for python called [PRAW](https://praw.readthedocs.io/en/latest/code_overview/models/submission.html). The main requirements are to have your client_id, client_secret, user_agent. Using the API, I collected ~15K redditors (reddit users) data consisting of: 
+- their username
+- subreddit submissions (or comments)
+- the timestamp (utc) when they create the submission.
 
 
 
