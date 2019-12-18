@@ -95,8 +95,7 @@ for submission in r:
   </tbody>
 </table>
 
-#### Checking the Data
-
+**Checking the Data**
 The Data contains 15K redditors and ~29K subreddits.
 
     unique reddittor: 15000
@@ -113,21 +112,22 @@ The Data contains 15K redditors and ~29K subreddits.
 
 Now that we have the dataset, let's start building the algorithm. For this project, I used the Singular Value Decomposition (SVD) technique to create the subreddit recommendation. 
 
-The SVD is a well-known matrix factorization method and is well-studied in the field of math. The winning team at the Netflix Prize competition in 2009 used SVD matrix factorization models to produce movie recommendations with an improved RMSE of ~8% from Netflix's Recommendation System at the time. Please refer to this [article](https://medium.com/netflix-techblog/netflix-recommendations-beyond-the-5-stars-part-1-55838468f429) to learn more. 
+The SVD is a well-known matrix factorization method and is very well-studied. The winning team at the [Netflix Prize competition in 2009](https://medium.com/netflix-techblog/netflix-recommendations-beyond-the-5-stars-part-1-55838468f429) used some combinations of advanced SVD matrix factorization models to produce movie recommendations with an improved RMSE of ~8% from Netflix's Recommendation System at the time. 
 
-Before we begin, let's look into the concept behind it first. The Collaborative filtering is a method to predict a rating for a user item pair based on the history of ratings given by the user and given to the item. Most Collaborative filtering algorithms are based on user-item rating matrix where each row represents a user, each column an item. The entries of this matrix are ratings given by users to items.
+Before we begin, let's look into the concept behind it first. The **Collaborative filtering** is collaborative filtering is a method to predict a rating for a user item pair based on the history of ratings given by the user and given to the item. 
 
-**SVD** is a matrix factorization technique that is usually used to reduce the number of features of a data set by reducing space dimensions from N to K where K < N. The matrix factorization is done on the user-item ratings matrix. From a high level, matrix factorization can be thought of as finding 2 matrices whose product is the original matrix.
+<i>"Collaborative filtering captures the underlying pattern of interests of like-minded users and uses the choices and preferences of similar users to suggest new items."</i>
 
-
+**SVD** is a matrix factorization technique that is used to reduce the number of features of a data set by reducing space dimensions. The matrix factorization is done on the user-item ratings matrix. From a high level, matrix factorization can be thought of as (using product and factorization) to find 2 matrices whose product is the original matrix. In other words, it approximates a single matrix A by the product of three matrices.
 
 <img width="676" alt="Screen Shot 2019-12-17 at 11 49 17 PM" src="https://user-images.githubusercontent.com/54050356/71066648-e3f2c200-2127-11ea-96a1-143a90fbce7e.png">
 
-It is a form of factorization!!
-`qi` and `pu` can be found in such a way that the square error difference between their dot product and the known rating in the user-item matrix is minimum
+In our context, U contains data for each username and their subreddit submissions, V is the subreddit name and its number of submissions by the user, while Σ are called the singular values and it indicates the strength of how U and V are related.
+We can approximate the full matrix by observing only the **most important features** using the singular values (Σ). To read more about SVD please refer to these research papers: [netflix svd][1][svd for recommendation engine][2] 
+[1]: http://buzzard.ups.edu/courses/2014spring/420projects/math420-UPS-spring-2014-gower-netflix-SVD.pdf
+[2]: https://www.cs.uic.edu/~liub/KDD-cup-2007/proceedings/Regular-Paterek.pdf
 
 
-<i>"Collaborative filtering captures the underlying pattern of interests of like-minded users and uses the choices and preferences of similar users to suggest new items."</i>
 
 ```python
 import numpy as np
