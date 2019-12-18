@@ -9,7 +9,7 @@ comments: true
 
 
 
-<img width="150" alt="redditbot_wordcloud" src="https://user-images.githubusercontent.com/54050356/71051960-c3fad880-20fe-11ea-9519-c6b04d7e3986.png">
+<img width="100" alt="redditbot_wordcloud" src="https://user-images.githubusercontent.com/54050356/71051960-c3fad880-20fe-11ea-9519-c6b04d7e3986.png">
 
 User recommendation system is widely used in a lot of e-commerce or entertainment businesses to encourage more customer satisfaction and generate revenue for the company. 
 
