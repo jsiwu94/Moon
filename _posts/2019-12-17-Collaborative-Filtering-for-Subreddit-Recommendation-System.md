@@ -389,9 +389,7 @@ def mae(true, pred):
 # to test the performance over a different number of features
 no_of_features = [134]
 svdout = svd(X, k=no_of_features)
-```
 
-```python
 print(mse(test['user_implicit_rating'], pred))
 print(mae(test['user_implicit_rating'], pred))
 ```
@@ -620,5 +618,7 @@ U, S, Vt = computeSVD(user_subreddit_matrix, no_of_latent_factors)
     
 ## References
 Hutchinson, A. (2018, April 20). Reddit Now Has as Many Users as Twitter, and Far Higher Engagement Rates. Retrieved from https://www.socialmediatoday.com/news/reddit-now-has-as-many-users-as-twitter-and-far-higher-engagement-rates/521789/.
+
+Baxter, J. (2016). A comparative analysis of subreddit recommenders for Reddit. Retrieved from http://jaybaxter.net/redditrecommender.pdf
 
 #### Thank you for reading! Please feel free to contact me directly for any comments, feedbacks, or suggestions. You can leave a comment below as well!
