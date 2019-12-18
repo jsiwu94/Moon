@@ -8,7 +8,7 @@ comments: true
 ---
 
 <p align="center">
-  you can find my wordcloud tutorial here:<br>
+  you can find my wordcloud tutorial here:
   <a href="https://github.com/jsiwu94/SVD_for_Subreddit_Recommendation/blob/master/redditbot_wordcloud.ipynb">Link</a>
   <br><br>
 </p>
