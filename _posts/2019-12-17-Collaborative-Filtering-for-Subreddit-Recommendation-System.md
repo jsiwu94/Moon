@@ -108,7 +108,7 @@ The Data contains 15K redditors and ~29K subreddits.
     utc          False
     dtype: bool
 
-## Collaborative Filtering Algorithm using Singular Value Decomposition 
+## Collaborative Filtering and Singular Value Decomposition 
 
 Now that we have the dataset, let's start building the algorithm. For this project, I used the Singular Value Decomposition (SVD) technique to create the subreddit recommendation. 
 
@@ -127,6 +127,10 @@ We can approximate the full matrix by observing only the **most important featur
 [1] <a href="http://buzzard.ups.edu/courses/2014spring/420projects/math420-UPS-spring-2014-gower-netflix-SVD.pdf">Netflix SVD</a> [2] <a href="https://www.cs.uic.edu/~liub/KDD-cup-2007/proceedings/Regular-Paterek.pdf
 ">SVD for Recommendation Engine</a> 
 
+Now that you have enough theoritical information about SVD, let's look into the application. In this project, I will be using python's scipy package of [sparsesvd](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.svds.html). With this package, the requirement is to have our data in a matrix format and state the **latent factor** or the number of important features we would like to consider. I will explain more about this in the later section.
+
+#### Libraries
+Below are the libraries I used:
 
 ```python
 import numpy as np
@@ -140,13 +144,13 @@ from sparsesvd import sparsesvd        #used for matrix factorization
 from scipy.sparse import csc_matrix    #used for sparse matrix
 from scipy.sparse.linalg import *      #used for matrix multiplication
 from scipy.linalg import sqrtm
-from nltk.tokenize import TreebankWordTokenizer
+from nltk.tokenize import TreebankWordTokenizer #used this to create the document on my matrix
 ```
-
 
 
 ## Evaluating our SVD Model with Train and Test Data by Sampling 500 users
 
+Using a sample of 500 users from the entire dataset, I created both train and test data (20% the data in the test data) to evaluate the prediction of my SVD model. 
 
 ```python
 sample_username = list(reddit_df.username.unique())[300:800]
@@ -156,8 +160,13 @@ users = list(sample_df.username.unique())
 subreddits = list(sample_df.subreddit.unique())
 ```
 
-    Top 134 subreddits contribute a total of 64.9 % to the total subreddits in the dataset
+Let's look at the top 65% subreddits within the sample dataset. There are ~134 subreddits that contribute to the entire sample dataset. We will use this for our **latent factor** in the SVD model later.
 
+    Top 134 subreddits contribute a total of 64.9 % to the total subreddits in the dataset
+    
+#### Splitting Train and Test Dataset based on Timestamp (utc)
+
+I wanted to ensure that my test and train data are as realistic as possible. Therefore, I used the timestamp (utc) information to split the data instead of doing random 20% split. In this case, I sorted the data from the earliest submission to the most recent by each user, and using those, pick the bottom or most recent 20% data of each user as the test data.
 
 ```python
 data =sample_df.groupby(['username','subreddit']).agg({'subreddit':'count',
@@ -251,7 +260,13 @@ data.head(10)
 </table>
 
 
+#### Defining The Rating in The Train and Test Data
 
+Evaluating our SVD model means that we are comparing the predicted vs actual **rating** that a user give to a subreddit. Since there is no obvious way to capture rating with Reddit data, we will define the rating as the number of times user i has submmited a post in subreddit j, vi,j, divided by his total number of submission.
+
+<img width="169" alt="Screen Shot 2019-12-18 at 1 00 41 PM" src="https://user-images.githubusercontent.com/54050356/71122933-78940900-2196-11ea-9cfc-5c3c2b365983.png">
+
+In a different studies by [Jay Baxter](http://jaybaxter.net/redditrecommender.pdf), a user upvote can also be used to capture the rating. However, the user upvote data are proctected and can not be retrieved using PRAW (Reddit API for Python). Therefore, I used user submission instead.
 
 ```python
 user_sum = data.groupby(['username'], as_index=False).agg({'submission_freq':'sum'})
@@ -264,51 +279,7 @@ data = pd.concat([data.iloc[:,:2],data.iloc[:,-1:],data['most_recent_timestamp']
 data.dropna(inplace = True)
 ```
 
-
-```python
-data.shape
-```
-
-
-
-
-    (32018, 4)
-
-
-
-## Splitting Train and Test Dataset based on Timestamp (utc)
-
-- Calculating implicit rating using number of submissions per subreddit.
-- Ideally need data for upvotes.
-
-
-```python
-users = data['username'].unique() #list of all users
-subs = data['subreddit'].unique() #list of all movies
-
-test = pd.DataFrame(columns=data.columns)
-train = pd.DataFrame(columns=data.columns)
-test_ratio = 0.2 #fraction of data to be used as test set.
-temp1 = data[data.username.isin(users)]
-for u in users:
-    n = len(temp1)
-    test_size = int(test_ratio*n)
-
-temp1 = temp1.sort_values('most_recent_timestamp').reset_index()
-temp1.drop('index', axis=1, inplace=True)
-    
-dummy_test = temp1.ix[n-1-test_size :]
-dummy_train = temp1.ix[: n-2-test_size]
-    
-test = pd.concat([test, dummy_test])
-train = pd.concat([train, dummy_train])
-
-print("""Train Data for User "-_-_-_-otalp-_-_-_-"        :""")
-print(train[train.username == '-_-_-_-otalp-_-_-_-'].iloc[:,:3])
-print(" ")
-print("""Test Data for User "-_-_-_-otalp-_-_-_-"        :""")
-print(test[test.username == '-_-_-_-otalp-_-_-_-'].iloc[:,:3])
-```
+ Let's look at an example train and test data for a user.
 
     Train Data for User "-_-_-_-otalp-_-_-_-"        :
                       username             subreddit  user_implicit_rating
