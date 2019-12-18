@@ -26,9 +26,9 @@ Despite being a very popular website with over 300 million users based on the da
 
 ## Getting The Data
 
-To get the dataset, I utilized the Reddit API for python called [PRAW](https://praw.readthedocs.io/en/latest/code_overview/models/submission.html). The main requirements are to have your client_id, client_secret, user_agent. Using the API, I collected ~15K redditors (reddit users) data consisting of: 
-- their username
-- subreddit submissions (or comments)
+To get the dataset, I utilized the Reddit API for python called [PRAW](https://praw.readthedocs.io/en/latest/code_overview/models/submission.html). The main requirements are to have your client_id, client_secret, user_agent. Using the API, I collected a dataset consisting  of ~15K unique redditors (reddit users) and ~29K unique subreddits in the below format: 
+- the redditors' username
+- their subreddit submissions (or comments)
 - the timestamp (utc) when they create the submission
 
 Because it took a long time to scrape the data, I exported the final output to a csv. [My PRAW Code](https://github.com/jsiwu94/SVD_for_Subreddit_Recommendation/blob/master/PRAW.ipynb) is also available on my GitHub.
@@ -400,7 +400,12 @@ Based on the output, we got a pretty good result with a MAE is around 0.5%.
 
 Now that we have evaluated the model, let's use the entire dataset and make a demo recommendation. To do this, we will do the same steps of converting the data into a matrix as well as finding the latent factor.
 
-However, given that this dataset is much larger than the sample, we will use another method to organize the data and alter it into a matrix form for the SVD. 
+In the full dataset, there are 293 subreddits contributing to the top 65% subreddit topics. Therefore, I used this number to define the latent factor in the SVD model.
+
+    Top 293 subreddits contribute a total of 65.0 % to the total subreddits in the dataset
+
+
+Given that this dataset is much larger than the sample, we will use another method to organize the data and alter it into a matrix form for the SVD. 
 
 In this case, I changed the row in the dataset to be 1 row per each user and tokenize all the subreddits where each users had posted a submission on using the TreebankWordTokenizer from the [nltk](https://www.nltk.org/) library.
 
@@ -420,8 +425,8 @@ document.head()
 
 
 ## Creating User-Subreddit Matrix
-Using CSC Matrix to Handle highly sparse matrix. To view normally, use : user_subreddit_matrix.todense()
 
+Once we tokenized the subreddit, time to create our matrix for the SVD. Our matrix is very sparse in that it has a lot of zeros because there are a lot of user-subreddit combinations where the users have not posted a submission on. This large and sparse matrix can take a long time to run. Therefore, I will use the [sparse matrix](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csc_matrix.html) from the scipy library. This helps storing the matrices in less memory.
 
 ```python
 corpus_of_subs = []
@@ -443,7 +448,9 @@ print((user_subreddit_matrix.shape))
     (14999, 29280)
 
 
+Now, our matrix is pretty much ready and we run the SVD and the recommendation with the full matrix. 
 
+#### SVD Function
 ```python
 def computeSVD(user_subreddit_matrix, no_of_latent_factors):
     
@@ -469,7 +476,7 @@ def computeSVD(user_subreddit_matrix, no_of_latent_factors):
     return U, S, Vt
 ```
 
-
+#### Recommendation Output Function
 ```python
 #Compute estimated recommendations for the given user
 def computeEstimatedRecommendation(U, S, Vt, uTest):
@@ -500,9 +507,7 @@ def computeEstimatedRecommendation(U, S, Vt, uTest):
     return recom
 ```
 
-
-    Top 293 subreddits contribute a total of 65.0 % to the total subreddits in the dataset
-
+Below are some recommendation demo based on the output of our SVD model using the entire dataset of 15K users and ~29 subreddits.
 
 ## Recommendation Demo 1
 
@@ -571,10 +576,15 @@ U, S, Vt = computeSVD(user_subreddit_matrix, no_of_latent_factors)
     torontoraptors
     ------------------------------------------------------------------------------------
     
+## Conclusion
+
+SVD is definitely a great technique for collaborative filtering and it handles large dataset really well in that it is able to sort through the most important features to use for the prediction. There are so much more things that we can do with SVD to create better prediction for collaborative filtering, including utilizing gradient descent to minimize the error produced by the SVD model. While this project is only a POC (Prove of Concept) and I am only using the simple built-in SVD function by the scipy library, I hope to utilize this method with the conjuction of other technique such as the Restricted Boltzman Machine (RBM) in my future work.
+
 ## References
 Hutchinson, A. (2018, April 20). Reddit Now Has as Many Users as Twitter, and Far Higher Engagement Rates. Retrieved from https://www.socialmediatoday.com/news/reddit-now-has-as-many-users-as-twitter-and-far-higher-engagement-rates/521789/.
 
 Baxter, J. (2016). A comparative analysis of subreddit recommenders for Reddit. Retrieved from http://jaybaxter.net/redditrecommender.pdf
+
 
 
 
