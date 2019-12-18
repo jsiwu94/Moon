@@ -545,8 +545,6 @@ U, S, Vt = computeSVD(user_subreddit_matrix, no_of_latent_factors)
     
     Recommendation for CarnationsPls : 
     
-    ------------------------------------------------------------------------------------
-    
     Calgary
     Amd
     pcgaming
@@ -579,8 +577,6 @@ U, S, Vt = computeSVD(user_subreddit_matrix, no_of_latent_factors)
     ------------------------------------------------------------------------------------
     
     Recommendation for comicfan815 : 
-    
-    ------------------------------------------------------------------------------------
     
     rockets
     warriors
