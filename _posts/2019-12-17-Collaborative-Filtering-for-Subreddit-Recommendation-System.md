@@ -11,6 +11,10 @@ comments: true
 
 <img width="100" img height="120" alt="redditbot_wordcloud" src="https://user-images.githubusercontent.com/54050356/71051960-c3fad880-20fe-11ea-9519-c6b04d7e3986.png">
 
+
+<img width="179" alt="Screen Shot 2019-12-17 at 10 37 57 PM" src="https://user-images.githubusercontent.com/54050356/71061982-3d55f380-211e-11ea-92b1-57098b58ed37.png">
+
+
 User recommendation system is widely used in a lot of e-commerce or entertainment businesses to encourage more customer satisfaction and generate revenue for the company. The most commonly known method for this is called the **collaborative filtering**. Companies such as Netflix, for example, uses this method to recommend movies that matches their users' taste. Inspired by Nexflix's world class user recommendation algorithm, I am going to generate a recommendation system to help [Reddit](https://www.reddit.com/) users find subreddit that they might enjoy in this project.
 
 
