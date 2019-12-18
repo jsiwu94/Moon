@@ -398,53 +398,11 @@ Based on the output, we got a pretty good result with a MAE is around 0.5%.
 
 ## Creating The Recommendation System Using The Complete Dataset (15K Users)
 
-```python
-user = reddit_df.username.unique()
-subreddit = reddit_df.subreddit.unique()
-doc_df = reddit_df.groupby('username')['subreddit'].apply(lambda x: "%s" % ' '.join(x)).reset_index()
-doc_df.head()
-```
+Now that we have evaluated the model, let's use the entire dataset and make a demo recommendation. To do this, we will do the same steps of converting the data into a matrix as well as finding the latent factor.
 
+However, given that this dataset is much larger than the sample, we will use another method to organize the data and alter it into a matrix form for the SVD. 
 
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>username</th>
-      <th>subreddit</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>--ANUSTART-</td>
-      <td>Testosterone Testosterone Testosterone Testost...</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>--Sko--</td>
-      <td>DestinyTheGame DestinyTheGame DestinyTheGame D...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>--UNKN0WN--</td>
-      <td>AceAttorney AceAttorney AceAttorney AceAttorne...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>--harley--quinn--</td>
-      <td>LGBTeens Patriots asktransgender Patriots Patr...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>-A-p-r-i-l-</td>
-      <td>tdi tdi tdi AskReddit tdi tdi tdi tdi tdi tdi ...</td>
-    </tr>
-  </tbody>
-</table>
-
-
-
+In this case, I changed the row in the dataset to be 1 row per each user and tokenize all the subreddits where each users had posted a submission on using the TreebankWordTokenizer from the [nltk](https://www.nltk.org/) library.
 
 ```python
 tokenizer = TreebankWordTokenizer()
