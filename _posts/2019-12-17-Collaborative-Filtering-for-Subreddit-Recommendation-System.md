@@ -114,7 +114,7 @@ Now that we have the dataset, let's start building the algorithm. For this proje
 
 The SVD is a well-known matrix factorization method and is very well-studied. The winning team at the [Netflix Prize competition in 2009](https://medium.com/netflix-techblog/netflix-recommendations-beyond-the-5-stars-part-1-55838468f429) used some combinations of advanced SVD matrix factorization models to produce movie recommendations with an improved RMSE of ~8% from Netflix's Recommendation System at the time. 
 
-Before we begin, let's look into the concept behind it first. The **Collaborative filtering** is collaborative filtering is a method to predict a rating for a user item pair based on the history of ratings given by the user and given to the item. 
+Before we begin, let's look into the concept behind it first. The **Collaborative filtering** is a method to predict a rating for a user item pair based on the history of ratings given by the user and given to the item. 
 
 <i>"Collaborative filtering captures the underlying pattern of interests of like-minded users and uses the choices and preferences of similar users to suggest new items."</i>
 
