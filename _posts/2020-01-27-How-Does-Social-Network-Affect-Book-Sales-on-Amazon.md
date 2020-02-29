@@ -11,7 +11,7 @@ comments: true
 ## Understanding The Effect of Social Network on Sales and Demand Spillover on Amazon Books
 <img width="542" alt="Screen Shot 2020-02-28 at 7 00 38 PM" src="https://user-images.githubusercontent.com/54050356/75599764-b77af080-5a5c-11ea-9321-260ea0576c8a.png">
 
-In this post I am going to uncover the effect that social network has on Amazon Book Sales. I have been particularly interested in of <b>Social Network Analysis</b> given how broad and applicable the concepts are in today's businesses, especially in the tech or e-commerce industry. Recently,I had the opportunity to work on a project from one of my Graduate classes, where I got to analyze the network or connection between each book sold on Amazon, identify the links or relationships in the network, and finally conclude how these links can affect the sales of each book. Alright, without further ado, let's take a look at the analysis!
+In this post I am going to uncover the effect that social network has on Amazon Book Sales. I have been particularly interested in <b>Social Network Analysis</b> given how broad and applicable the concepts are in today's businesses, especially in the tech or e-commerce industry. Recently, I had the opportunity to work on a project from one of my Graduate classes, where I got to analyze the networks or connections between each book sold on Amazon, identify the links or relationships in the network, and finally conclude how these links can affect the sales of each book. Alright, without further ado, let's take a look at the analysis!
 
 ## Data and Libraries
 
