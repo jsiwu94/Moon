@@ -448,7 +448,7 @@ To conclude, social network is a powerful fuel for today's business. Without soc
 Thank you for reading through this post! As usual, I appreciate any feedbacks/suggestions/questions.
 
 # References
-
-
-
+ https://www.cs.cornell.edu/home/kleinber/networks-book/networks-book-ch02.pdf
+ https://www.cs.cornell.edu/home/kleinber/networks-book/networks-book-ch03.pdf
+ https://cs.hse.ru/data/2015/04/30/1098187988/1._tutorial_igraph.pdf
 
