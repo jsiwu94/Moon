@@ -74,12 +74,7 @@ To limit the data and for the sake of the analysis, I have filtered the data to 
 Now that we've understand how the data look like, let's move on to the fun part.. Visualization! 
 Below, we will see the network and connections that were form between these books. Using the igraph library, we can turn our dataframe into graph data frame that will treat all the book ids as a <b>Node</b> and based on the source and target column, we can identify the <b>in and out degree</b>. Each book id in the source column will have an out degree to the book in the target column. Likewise, every book in target column will have an in degree from a book in the source column.
 
-With the steps below, I identified book id or a node that has the highest degree. In other words, this book has the most total links (in + out) in the network. Based on the result, I picked book id = 33 with 53 degrees total and this book happened to be a thriller book called, Double Jeopardy. 
-
-       id                          title group salesrank review_cnt downloads rating
-       33 Double Jeopardy (T*Witches, 6)  Book     97166          4         4      5
-<img width="1001" alt="Screen Shot 2020-02-28 at 7 12 44 PM" src="https://user-images.githubusercontent.com/54050356/75599931-62d87500-5a5e-11ea-9556-7527e2c4e156.png">
-
+With the steps below, I identified book id or a node that has the highest degree. In other words, this book has the most total links (in + out) in the network. Based on the result, book 33 and 4429 had the same total in and out degree. However, when I removed the salesrank filter or in the full dataset, book 33 has a lot more sources pointing to it. Therefore, I picked book id = 33 with 53 degrees total. Book 33 happened to be a thriller book called, Double Jeopardy while Book 4429 was a Harley-Davidson Panheads book. Before we move further, keep in mind that this book has a quite high salesrank, which indicated low sales volume. (We will get more into the demand topic later on in this analysis)
 
     net1 <- graph.data.frame(purch1, directed=T)
 
@@ -98,10 +93,18 @@ With the steps below, I identified book id or a node that has the highest degree
     ## 4429   33 
     ##   53   53
 
+    ## 4. Choosing book id = 33
+       id                          title group salesrank review_cnt downloads rating
+       33 Double Jeopardy (T*Witches, 6)  Book     97166          4         4      5
 
-Now, let's analyze all the other books or subcomponents of book = 33.
+#### Book 33
+<img width="1001" alt="Screen Shot 2020-02-28 at 7 12 44 PM" src="https://user-images.githubusercontent.com/54050356/75599931-62d87500-5a5e-11ea-9556-7527e2c4e156.png">
 
-    ## 4. Choosing product id =  33 
+#### Book 4429
+<img width="1080" alt="Screen Shot 2020-02-28 at 7 28 38 PM" src="https://user-images.githubusercontent.com/54050356/75600126-8f8d8c00-5a60-11ea-9bb4-179ea7f5932c.png">
+
+Now, let's get all the subcomponents of book = 33 (in other words, all books that were connected to book 33 in the network) and plot the network.
+
     sub <- subcomponent(net1, "33", mode = "all")
 
     # 5. Visualize the subcomponent
@@ -117,9 +120,9 @@ Now, let's analyze all the other books or subcomponents of book = 33.
          vertex.label.cex=0.03,
          layout=layout.fruchterman.reingold)
 
-![](Social_Network_Analysis_files/figure-markdown_strict/unnamed-chunk-3-1.png)
+<img width="453" alt="Screen Shot 2020-02-28 at 7 20 15 PM" src="https://user-images.githubusercontent.com/54050356/75600040-9667cf00-5a5f-11ea-8fcc-d91ecfae9515.png">
 
-No let’s look at the main authorities and the diameter nodes. Insight:
+Overall, this is how the network looked like. The big 2 nodes in the center indicate nodes with highest total in and out degree. The big nodes on the right was the Double Jeopary Book (33) and the other one on the left was the Harley Davidson Book (4429).
 
     ##plot 2 to see authorities and diameter
     diam <- get_diameter(graph, directed=T)
@@ -139,7 +142,9 @@ No let’s look at the main authorities and the diameter nodes. Insight:
          vertex.label.family = "sans",
          layout=layout.fruchterman.reingold)
 
-![](Social_Network_Analysis_files/figure-markdown_strict/unnamed-chunk-4-1.png)
+<img width="453" alt="Screen Shot 2020-02-28 at 7 20 15 PM" src="https://user-images.githubusercontent.com/54050356/75600142-ba77e000-5a60-11ea-82d1-55924691627c.png">
+
+
 analyzing the diamter nodes. Insight:
 
     #analyze the Diameter Nodes
