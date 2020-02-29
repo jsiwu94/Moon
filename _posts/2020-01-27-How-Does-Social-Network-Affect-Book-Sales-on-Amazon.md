@@ -316,7 +316,7 @@ The final data for the model looked like below. It had 9 additional columns with
 
 # Running Poisson Regression to Predict The Book Salesrank
 
-Before running the model, let's look at each of the variables in the dataset. Based on the summary statistics, we can definitely see that there were a lot of variables that were highly skewed. We can see it visually as well that variable <b>closeness</b> was the only variable that looked normally distributed.
+Before running the model, let's look at each of the variables in the dataset. Based on the summary statistics, we can definitely see that there were a lot of variables that were highly skewed. We can see it visually as well that variable <b>closeness and nghb_mn_salesrank</b>  were the only variables that looked normally distributed.
 
     ##                    vars   n     mean       sd   median  trimmed      mad  min
     ## salesrank             1 518 70850.97 45410.37 68466.50 69754.01 59099.40   64
@@ -349,102 +349,86 @@ Before running the model, let's look at each of the variables in the dataset. Ba
 
 <img width="1011" alt="Screen Shot 2020-02-28 at 9 12 30 PM" src="https://user-images.githubusercontent.com/54050356/75601350-12b5de80-5a6f-11ea-84a8-cb10558eba23.png">
 
+#### Running The Models
 
-    p1 <- glm(salesrank ~ review_cnt+downloads+
-                      rating+in_degree+
-                      out_degree+closeness+between+
-                      hub_score+authority_score+
-                      nghb_mn_review_cnt+nghb_mn_salesrank+
-                      nghb_mn_rating
-              , data = data, family = "poisson")
-    summary(p1)
+As mentioned above, I used poisson regression to estimate the salesrank given that salesrank is a count data and there were multiple books having the same salesrank. The dependent variable will be salesrank, and all other variables will be independent.
 
-    ## 
-    ## Call:
-    ## glm(formula = salesrank ~ review_cnt + downloads + rating + in_degree + 
-    ##     out_degree + closeness + between + hub_score + authority_score + 
-    ##     nghb_mn_review_cnt + nghb_mn_salesrank + nghb_mn_rating, 
-    ##     family = "poisson", data = data)
-    ## 
-    ## Deviance Residuals: 
-    ##     Min       1Q   Median       3Q      Max  
-    ## -363.25  -160.45    -7.61   122.01   519.58  
-    ## 
-    ## Coefficients:
-    ##                      Estimate Std. Error   z value Pr(>|z|)    
-    ## (Intercept)         1.119e+01  1.108e-03 10096.697   <2e-16 ***
-    ## review_cnt         -2.868e-02  1.877e-04  -152.749   <2e-16 ***
-    ## downloads           2.457e-02  1.879e-04   130.759   <2e-16 ***
-    ## rating             -7.061e-03  1.098e-04   -64.314   <2e-16 ***
-    ## in_degree           2.801e-03  6.819e-05    41.069   <2e-16 ***
-    ## out_degree          5.646e-02  2.057e-04   274.476   <2e-16 ***
-    ## closeness          -1.789e+01  7.874e+00    -2.272   0.0231 *  
-    ## between            -7.349e-04  1.111e-05   -66.157   <2e-16 ***
-    ## hub_score           2.452e-01  8.593e-04   285.400   <2e-16 ***
-    ## authority_score     1.895e-01  4.754e-03    39.861   <2e-16 ***
-    ## nghb_mn_review_cnt  7.386e-04  1.969e-06   375.165   <2e-16 ***
-    ## nghb_mn_salesrank   2.057e-07  4.498e-09    45.733   <2e-16 ***
-    ## nghb_mn_rating     -9.723e-03  1.253e-04   -77.613   <2e-16 ***
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ## 
-    ## (Dispersion parameter for poisson family taken to be 1)
-    ## 
-    ##     Null deviance: 16968896  on 517  degrees of freedom
-    ## Residual deviance: 15315200  on 505  degrees of freedom
-    ## AIC: 15321778
-    ## 
-    ## Number of Fisher Scoring iterations: 5
+#### Model 1
+In the first model, I included all the variables as is just to see how it performed. The result indicated that variable closeness were not significant to determine the salesrank of the book and the AIC was pretty high.
 
-Model 2
+   Call:
+glm(formula = salesrank ~ review_cnt + downloads + rating + in_degree + 
+    out_degree + closeness + between + hub_score + authority_score + 
+    nghb_mn_review_cnt + nghb_mn_salesrank + nghb_mn_rating + 
+    eigen_centrality.vector, family = "poisson", data = data)
 
-    p2 <- glm(salesrank ~ log(review_cnt+1)+log(downloads+1)+
-                            log(rating+1)+log(in_degree+1)+
-                            log(out_degree+1)+closeness+log(between+1)+
-                            log(hub_score+1)+log(authority_score+1)+
-                      log(nghb_mn_review_cnt+1)+log(nghb_mn_salesrank+1)+
-                      log(nghb_mn_rating+1)
-                      , data = data, family = "poisson")
+    Deviance Residuals: 
+     Min      1Q  Median      3Q     Max  
+    -370.8  -160.0    -8.7   122.1   522.0  
 
-    summary(p2)
+    Coefficients:
+                               Estimate      Std. Error  z value             Pr(>|z|)    
+    (Intercept)              11.17702215504   0.00110466751 10118.00 < 0.0000000000000002 ***
+    review_cnt               -0.02796466091   0.00018801201  -148.74 < 0.0000000000000002 ***
+    downloads                 0.02380425972   0.00018815296   126.52 < 0.0000000000000002 ***
+    rating                   -0.00634948813   0.00010974014   -57.86 < 0.0000000000000002 ***
+    in_degree                 0.01138846743   0.00007092589   160.57 < 0.0000000000000002 ***
+    out_degree                0.08326014263   0.00021449805   388.16 < 0.0000000000000002 ***
+    closeness               -10.59983144669   7.84379908137    -1.35                 0.18    
+    between                  -0.00187610074   0.00001186298  -158.15 < 0.0000000000000002 ***
+    hub_score                 0.22333468517   0.00086024101   259.62 < 0.0000000000000002 ***
+    authority_score          -0.22656835179   0.00484944821   -46.72 < 0.0000000000000002 ***
+    nghb_mn_review_cnt        0.00070560244   0.00000198202   356.00 < 0.0000000000000002 ***
+    nghb_mn_salesrank         0.00000003477   0.00000000451     7.72    0.000000000000012 ***
+    nghb_mn_rating           -0.01283122704   0.00012470470  -102.89 < 0.0000000000000002 ***
+    eigen_centrality.vector  -1.52987902187   0.00355836448  -429.94 < 0.0000000000000002 ***
+    ---
+    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-    ## 
-    ## Call:
-    ## glm(formula = salesrank ~ log(review_cnt + 1) + log(downloads + 
-    ##     1) + log(rating + 1) + log(in_degree + 1) + log(out_degree + 
-    ##     1) + closeness + log(between + 1) + log(hub_score + 1) + 
-    ##     log(authority_score + 1) + log(nghb_mn_review_cnt + 1) + 
-    ##     log(nghb_mn_salesrank + 1) + log(nghb_mn_rating + 1), family = "poisson", 
-    ##     data = data)
-    ## 
-    ## Deviance Residuals: 
-    ##     Min       1Q   Median       3Q      Max  
-    ## -334.64  -165.84   -20.24   122.84   395.53  
-    ## 
-    ## Coefficients:
-    ##                               Estimate Std. Error z value Pr(>|z|)    
-    ## (Intercept)                  1.093e+01  2.941e-03 3716.91   <2e-16 ***
-    ## log(review_cnt + 1)         -4.664e-01  3.263e-03 -142.96   <2e-16 ***
-    ## log(downloads + 1)           2.970e-01  3.265e-03   90.95   <2e-16 ***
-    ## log(rating + 1)              1.513e-01  3.451e-04  438.43   <2e-16 ***
-    ## log(in_degree + 1)          -1.088e-01  4.484e-04 -242.56   <2e-16 ***
-    ## log(out_degree + 1)          9.994e-02  5.246e-04  190.50   <2e-16 ***
-    ## closeness                   -5.452e+02  7.956e+00  -68.52   <2e-16 ***
-    ## log(between + 1)             6.065e-03  1.940e-04   31.26   <2e-16 ***
-    ## log(hub_score + 1)           2.868e-01  1.232e-03  232.87   <2e-16 ***
-    ## log(authority_score + 1)     8.500e-01  5.135e-03  165.53   <2e-16 ***
-    ## log(nghb_mn_review_cnt + 1)  6.363e-02  1.460e-04  435.68   <2e-16 ***
-    ## log(nghb_mn_salesrank + 1)   3.367e-02  2.375e-04  141.75   <2e-16 ***
-    ## log(nghb_mn_rating + 1)     -7.052e-02  3.978e-04 -177.25   <2e-16 ***
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ## 
-    ## (Dispersion parameter for poisson family taken to be 1)
-    ## 
-    ##     Null deviance: 16968896  on 517  degrees of freedom
-    ## Residual deviance: 14957037  on 505  degrees of freedom
-    ## AIC: 14963614
-    ## 
-    ## Number of Fisher Scoring iterations: 5
+    (Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 16968896  on 517  degrees of freedom
+    Residual deviance: 15060277  on 504  degrees of freedom
+    AIC: 15066856
+
+    Number of Fisher Scoring iterations: 5
+
+#### Model 2
+
+With the findings from the first model, I created model 2 while removing the variable closeness and conducting a log transformations on all the other variables except for nghb_mn_salesrank due to the skewness of the data. The result showed a much improved AIC from the first model. Looking at the deviance residuals, the min and max were also more aligned as compared to the first model. Therefore, I chose this model as the final model. Now, let's interpret the result!
+
+    Deviance Residuals: 
+       Min      1Q  Median      3Q     Max  
+    -337.3  -164.7   -18.9   120.4   394.9  
+
+    Coefficients:
+                                      Estimate Std. Error z value            Pr(>|z|)    
+    (Intercept)                      10.891289   0.002819  3863.3 <0.0000000000000002 ***
+    log(review_cnt + 1)              -0.444245   0.003262  -136.2 <0.0000000000000002 ***
+    log(downloads + 1)                0.274481   0.003265    84.1 <0.0000000000000002 ***
+    log(rating + 1)                   0.152331   0.000344   442.2 <0.0000000000000002 ***
+    log(in_degree + 1)               -0.060936   0.000465  -131.0 <0.0000000000000002 ***
+    log(out_degree + 1)               0.159693   0.000546   292.6 <0.0000000000000002 ***
+    log(between + 1)                 -0.015351   0.000195   -78.7 <0.0000000000000002 ***
+    log(hub_score + 1)                0.238475   0.001121   212.7 <0.0000000000000002 ***
+    log(authority_score + 1)          0.606572   0.005093   119.1 <0.0000000000000002 ***
+    log(nghb_mn_review_cnt + 1)       0.059945   0.000141   425.3 <0.0000000000000002 ***
+    log(nghb_mn_salesrank + 1)        0.027622   0.000237   116.7 <0.0000000000000002 ***
+    nghb_mn_rating                   -0.027886   0.000132  -210.8 <0.0000000000000002 ***
+    log(eigen_centrality.vector + 1) -1.722708   0.004586  -375.7 <0.0000000000000002 ***
+    ---
+    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+    (Dispersion parameter for poisson family taken to be 1)
+
+        Null deviance: 16968896  on 517  degrees of freedom
+    Residual deviance: 14773532  on 505  degrees of freedom
+    AIC: 14780109
+
+    Number of Fisher Scoring iterations: 5
+
+#### Interpretation
+
+Based on Model 2 result,
 
 The End!
