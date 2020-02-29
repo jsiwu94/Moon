@@ -31,7 +31,7 @@ The copurchase data tells us for every book id, what was the source book that po
 
 To limit the data and for the sake of the analysis, I have filtered the data to only include books with Sales Rank less than 150K. 
 
-### Product Data
+#### Product Data
 
     head(product1)
 
@@ -57,7 +57,7 @@ To limit the data and for the sake of the analysis, I have filtered the data to 
     ## 74  Book     27507          2         2    4.0
     ## 77  Book     27012         11        11    4.5
 
-### Copurchase Data
+#### Copurchase Data
 
     head(purch1)
     
@@ -72,7 +72,7 @@ To limit the data and for the sake of the analysis, I have filtered the data to 
 # Plotting The Social Networks
 
 Now that we've understand how the data look like, let's move on to the fun part.. Visualization! 
-Below, we will see the network and connections that were form between these books. Using the igraph library, we can turn our dataframe into graph data frame that will treat all the book ids as a <b>Node</b> and based on the source and target column, we can identify the <b>in and out degree</b>. Each book id in the source column will have an out degree to the book in the target column. Likewise, every book in target column will have an in degree from a book in the source column.
+Below, we will see the network and connections that were formed between these books. Using the igraph library, we can turn our dataframe into graph data frame that will treat all the book ids as a <b>Node</b> and based on the source and target column, we can identify the <b>in and out degree</b>. Each book id in the source column will have an out degree to the book in the target column. Likewise, every book in target column will have an in degree from a book in the source column.
 
 With the steps below, I identified book id or a node that has the highest degree. In other words, this book has the most total links (in + out) in the network. Based on the result, book 33 and 4429 had the same total in and out degree. However, when I removed the salesrank filter or in the full dataset, book 33 has a lot more sources pointing to it. Therefore, I picked book id = 33 with 53 degrees total. Book 33 happened to be a thriller book called, Double Jeopardy while Book 4429 was a Harley-Davidson Panheads book. Before we move further, keep in mind that this book has a quite high salesrank, which indicated low sales volume. (We will get more into the demand topic later on in this analysis)
 
@@ -122,27 +122,16 @@ Now, let's get all the subcomponents of book = 33 (in other words, all books tha
 
 <img width="453" alt="Screen Shot 2020-02-28 at 7 20 15 PM" src="https://user-images.githubusercontent.com/54050356/75600040-9667cf00-5a5f-11ea-8fcc-d91ecfae9515.png">
 
-Overall, this is how the network looked like. The big 2 nodes in the center indicate nodes with highest total in and out degree. The big nodes on the right was the Double Jeopary Book (33) and the other one on the left was the Harley Davidson Book (4429).
+Overall, this was how the network looked like. The big 2 nodes in the center indicate nodes with highest total in and out degree. The big nodes on the right was the Double Jeopary Book (33) and the other one on the left was the Harley Davidson Book (4429). We can see that both of these big nodes have their own community of books formed around them. The nides closer to Book 33 and 4429 are closer to each other than the nodes that are further away from the center. This means that the influence power within these nodes closer to the center are relatively high. 
 
-    ##plot 2 to see authorities and diameter
-    diam <- get_diameter(graph, directed=T)
+Both of these books were connected by a local bridge link which indicated a weak connection and low influence power yet served as the link where most information transfers take place. The information flow from all the nodes on one side of the bridge have to go through the bridge to get to the other side. Therefore, given that these two main nodes are connected, there can be demand spillover from people who purchased the books around or at node 33 to the books around or at node 4429. 
+The bridge link is highly related to the concept of the "strength of weak ties" where more novel information were passed on through weak ties rather than strong ties.
 
-    vcol <- rep("lightsteelblue2", vcount(graph))
-    vcol[diam] <- "pink"
-    ecol <- rep("lightsteelblue2", ecount(graph))
-    ecol[E(graph, path=diam)] <- "black" 
-
-    set.seed(222)
-    plot(graph,
-         vertex.color=vcol,
-         vertex.size=V(graph)$degree/3,
-         edge.arrow.size=0.10,
-         vertex.label.cex=V(graph)$degree*0.03,
-         vertex.label.color="black",
-         vertex.label.family = "sans",
-         layout=layout.fruchterman.reingold)
+Let's visualize the clusters in this network.
 
 <img width="453" alt="Screen Shot 2020-02-28 at 7 20 15 PM" src="https://user-images.githubusercontent.com/54050356/75600142-ba77e000-5a60-11ea-82d1-55924691627c.png">
+
+<img width="542" alt="Screen Shot 2020-02-28 at 7 00 38 PM" src="https://user-images.githubusercontent.com/54050356/75599764-b77af080-5a5c-11ea-9321-260ea0576c8a.png">
 
 
 analyzing the diamter nodes. Insight:
