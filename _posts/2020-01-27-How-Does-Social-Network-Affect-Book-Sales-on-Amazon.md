@@ -72,7 +72,14 @@ To limit the data and for the sake of the analysis, I have filtered the data to 
 # Plotting The Social Networks
 
 Now that we've understand how the data look like, let's move on to the fun part.. Visualization! 
-Below, we will see the network and connections that were form between these books. Using the igraph library, we can turn our dataframe into graph data frame that will treat all the book ids as a <b>Node</b> and based on the source and target column, we can identify the <b>in and out degree</b>.
+Below, we will see the network and connections that were form between these books. Using the igraph library, we can turn our dataframe into graph data frame that will treat all the book ids as a <b>Node</b> and based on the source and target column, we can identify the <b>in and out degree</b>. Each book id in the source column will have an out degree to the book in the target column. Likewise, every book in target column will have an in degree from a book in the source column.
+
+With the steps below, I identified book id or a node that has the highest degree. In other words, this book has the most total links (in + out) in the network. Based on the result, I picked book id = 33 with 53 degrees total and this book happened to be a thriller book called, Double Jeopardy. 
+
+       id                          title group salesrank review_cnt downloads rating
+       33 Double Jeopardy (T*Witches, 6)  Book     97166          4         4      5
+<img width="1001" alt="Screen Shot 2020-02-28 at 7 12 44 PM" src="https://user-images.githubusercontent.com/54050356/75599931-62d87500-5a5e-11ea-9556-7527e2c4e156.png">
+
 
     net1 <- graph.data.frame(purch1, directed=T)
 
@@ -91,10 +98,8 @@ Below, we will see the network and connections that were form between these book
     ## 4429   33 
     ##   53   53
 
-With that, we pick Book 33 since it has 53 incoming nodes. Now let’s
-plot the subcomponent.
 
-The first plot is the general network. Insight:
+Now, let's analyze all the other books or subcomponents of book = 33.
 
     ## 4. Choosing product id =  33 
     sub <- subcomponent(net1, "33", mode = "all")
