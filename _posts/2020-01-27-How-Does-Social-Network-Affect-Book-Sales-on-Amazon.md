@@ -28,6 +28,8 @@ The salesrank in the product dataset has inverse relationship with book sales vo
 
 The copurchase data tells us for every book id, what was the source book that pointed to that and in reverse, for every book id, which other book does it link to. Both dataset were from Amazon.
 
+To limit the data and for the sake of the analysis, I have filtered the data to only include books with Sales Rank less than 150K. 
+
 ### Product Data
 
     head(product1)
@@ -56,7 +58,7 @@ The copurchase data tells us for every book id, what was the source book that po
 
 ### Copurchase Data
 
-head(purch1)
+    head(purch1)
     
     ##     Source Target
     ## 50      12    261
@@ -67,6 +69,9 @@ head(purch1)
     ## 582    120    439
 
 # Plotting The Social Networks
+
+Now that we've understand how the data look like, let's move on to the fun part.. Visualization! 
+Below, we will see the network and connections that were form between these books. Using the igraph library, we can turn our dataframe into graph data frame that will treat all the book ids as a <b>Node</b> and based on the source and target column, we can identify the <b>in and out degree</b>.
 
     net1 <- graph.data.frame(purch1, directed=T)
 
