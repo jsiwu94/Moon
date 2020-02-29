@@ -592,3 +592,5 @@ https://www.cs.toronto.edu/~rsalakhu/papers/rbmcf.pdf
 
 
 **Thank you for reading! Please feel free to contact me directly for any comments, feedbacks, or suggestions. You can leave a comment below as well!**
+
+Analysis and Report Written by : Jennifer Siwu 
