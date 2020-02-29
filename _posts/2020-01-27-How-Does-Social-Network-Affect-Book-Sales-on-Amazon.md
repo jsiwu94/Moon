@@ -449,10 +449,11 @@ Interestingly, 1% increase in rating was associated with a 15% increase in the s
 
 To conclude, social network is a powerful fuel for today's business. Without social network, it is almost impossible for a business to grow. Given how import it is, understanding the effect and how to manage these networks become even more crucial. This post is just a POC of what we can do with social network analysis. In the future, I hope to use more of these analysis to analyze clusters and social influences in customer behavior. I am also interested in applying this concept to social science projects. I hope to expand and utilize this methodologies more in the near future. 
 
-Thank you for reading through this post! As usual, I appreciate any feedbacks/suggestions/questions.
-
 # References
  https://www.cs.cornell.edu/home/kleinber/networks-book/networks-book-ch02.pdf
  https://www.cs.cornell.edu/home/kleinber/networks-book/networks-book-ch03.pdf
  https://cs.hse.ru/data/2015/04/30/1098187988/1._tutorial_igraph.pdf
 
+**Thank you for reading through this post! As usual, I appreciate any feedbacks/suggestions/questions.**
+
+Analysis and Report Written by : Jennifer Siwu 
