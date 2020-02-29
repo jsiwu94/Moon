@@ -1,19 +1,20 @@
 ---
 layout: post
 title: "How Does Social Network Affect Book Sales on Amazon?"
-date: 2019-11-10
+date: 2020-01-27
 excerpt: "Using Social Network Analysis and Statistics to Understand Demand Pattern"
 tags: [Machine Learning, Predictive Modelling, Poisson Regression, R, igraph, Social Network Analysis]
 comments: true
 ---
 
 
-Understanding The Effect of Social Network on Sales and Demand Spillover for Amazon Books
------------------------------------------------------------------------------------------
+## Understanding The Effect of Social Network on Sales and Demand Spillover for Amazon Books
 
-This post I am going to uncover the effect that social network has on
-the Amazon Book Sales. Social Network is a very powerful source in
-today’s business. 
+In this post I am going to uncover the effect that social network has on Amazon Book Sales. I have been particularly interested in of <b>Social Network Analysis</b> given how broad and applicable the concepts are in today's businesses, especially in the tech or e-commerce industry. Recently,I had the opportunity to work on a project from one of my Graduate classes, where I got to analyze the network or connection between each book sold on Amazon, identify the links or relationships in the network, and finally conclude how these links can affect the sales of each book. Alright, without further ado, let's take a look at the analysis!
+
+## Data and Libraries
+
+First, below are the libraries that I used for this analysis. The analysis was done in R and the required library to run social network analysis in R was igraph. 
 
     library(igraph)
     library(dplyr)
@@ -21,19 +22,13 @@ today’s business.
     library(ggplot2)
     library(psych)
 
+Now, Let's take a look into our dataset. There were 2 datasets that I used for this analysis. One was on product, which includes individual books related information such as their id, sales rank, and book title. The second dataset was about co-purchase, which contain Source and Target nodes for every book id. 
 
-Looking at The Data
--------------------
-    
-    head(purch1)
-    
-    ##     Source Target
-    ## 50      12    261
-    ## 357     74    282
-    ## 369     77    422
-    ## 381     79     82
-    ## 565    117    131
-    ## 582    120    439
+The salesrank in the product dataset has inverse relationship with book sales volume, in that the higher the salesrank, the lower the sales volume will be. Conversly, the lower the salesrank, the higher the sales volume will be. A study has proved that the relationship between Amazon book salesrank and sales volume is significant and that it is appropriate to use salesrank as a subsite of sales volume for the analysis. To access the full document on the study mentioned above, please visit this [link](https://kk.org/mt-files/reCCearch-mt/The_Effect_of_Word.pdf). 
+
+The copurchase data tells us for every book id, what was the source book that pointed to that and in reverse, for every book id, which other book does it link to. Both dataset were from Amazon.
+
+### Product Data
 
     head(product1)
 
@@ -59,8 +54,19 @@ Looking at The Data
     ## 74  Book     27507          2         2    4.0
     ## 77  Book     27012         11        11    4.5
 
-Note that the `echo = FALSE` parameter was added to the code chunk to
-prevent printing of the R code that generated the plot.
+### Copurchase Data
+
+head(purch1)
+    
+    ##     Source Target
+    ## 50      12    261
+    ## 357     74    282
+    ## 369     77    422
+    ## 381     79     82
+    ## 565    117    131
+    ## 582    120    439
+
+# Plotting The Social Networks
 
     net1 <- graph.data.frame(purch1, directed=T)
 
