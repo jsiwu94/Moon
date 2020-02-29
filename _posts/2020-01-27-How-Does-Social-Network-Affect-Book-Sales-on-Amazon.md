@@ -439,7 +439,8 @@ Based on Model 2 result, we can see that the increase in number of reviews, numb
          log(eigen_centrality.vector + 1) 
                             -1.69954 
 
-Interestingly, an increase in rating was associated with a 15% increase in the salesrank. This indicated that having higher ranking did not mean that the book would have more sales. Rather, the number of reviews was found to be more relevant to increase the sales (or reduce the salesrank). Based on the above, every 1% increase in the number of reviews, the salesrank was estimated to decrease by 44%. Although having a small effect, in degree did play a role in the estimated decrease of salesrank. This indicated that the more the book is linked-to by other books, there would be a demand spillover.
+Interestingly, 1% increase in rating was associated with a 15% increase in the salesrank while one unit increase in the average neighborhood rating can reduce the salesrank by ~2.7%. This indicated that having higher ranking did not mean that the book would have more sales. Rather, <b>having highly rated books surrounding a particular book and the number of reviews were found to be more relevant to increase the sales (or reduce the salesrank)</b>. Based on the above, every 1% increase in the number of reviews, the salesrank was estimated to decrease by 44%. Although having a small effect, in degree and betweeness did play a role in the estimated decrease of salesrank. This indicated that <b>the more the book is linked-to by other books and the more other books a particular book connects, there would be a demand spillover to this particular book</b>. Lastly, <b>if a book is surrounded by lower sales books, that particular book is estimated to have a lower sales as well</b> (this was estimated from the average neighborhood salesrank).
+
 
 # Conclusion
 
