@@ -315,7 +315,8 @@ The final data for the model looked like below. It had 9 additional columns with
         ## 6 5.989914e-04
 
 # Running Poisson Regression to Predict The Book Salesrank
-looking at the summary stat for each variable
+
+Before running the model, let's look at each of the variables in the dataset. Based on the summary statistics, we can definitely see that there were a lot of variables that were highly skewed. We can see it visually as well that variable <b>closeness</b> was the only variable that looked normally distributed.
 
     ##                    vars   n     mean       sd   median  trimmed      mad  min
     ## salesrank             1 518 70850.97 45410.37 68466.50 69754.01 59099.40   64
@@ -346,6 +347,7 @@ looking at the summary stat for each variable
     ## authority_score         1      1 22.42   504.54    0.00
     ## hub_score               1      1  4.77    20.85    0.01
 
+<img width="1011" alt="Screen Shot 2020-02-28 at 9 12 30 PM" src="https://user-images.githubusercontent.com/54050356/75601350-12b5de80-5a6f-11ea-84a8-cb10558eba23.png">
 
 
     p1 <- glm(salesrank ~ review_cnt+downloads+
