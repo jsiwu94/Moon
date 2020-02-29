@@ -227,7 +227,7 @@ Additionally, the low edge density does not necessarily indicate that the inform
 
 Moreover, the mean distance was relatively small. This indicated that the nodes were on average closely positioned to each other. In a social network with relatively small mean distance, the information transfer and influence power are relatively strong.
 
-Looking at the centrality measures, we can tell which node was more important in maintaining the network than others. In our case, we can see in the closeness measure that the node 33 has the highest closeness score. Meaning that information transfer was faster from this node to other nodes. Therefore, there will be a demand spillover to other nodes around node 33 once someone purchases book 33. 
+Looking at the centrality measures, we can tell which node was more important in maintaining the network than others. In our case, we can see in the closeness measure that the node 33 has the highest closeness score. Meaning that information transfer was faster from this node to other nodes. Therefore, there will be a demand spillover to other nodes around node 33 once someone purchases book 33. Besides closeness, I also measured the eigen centrality. Just like degree centrality, eigen centrality measures how many other nodes a particular node is connected to. However, it takes the calculation a step further by also consider the connection of the connected nodes and using that information to assign weight to those connected nodes.  A more central neighborhood node gets assigned higher weight.
 
 Based on the betweenness measure, we can see that node 2501 and 4429 were the top 2 nodes that a lot of these subcomponent nodes needed to pass through to get to the other nodes. This indicated that node 2501 and 4429 are important in the network to connect other nodes to each other. 
 
@@ -354,13 +354,7 @@ Before running the model, let's look at each of the variables in the dataset. Ba
 As mentioned above, I used poisson regression to estimate the salesrank given that salesrank is a count data and there were multiple books having the same salesrank. The dependent variable will be salesrank, and all other variables will be independent.
 
 #### Model 1
-In the first model, I included all the variables as is just to see how it performed. The result indicated that variable closeness were not significant to determine the salesrank of the book and the AIC was pretty high.
-
-   Call:
-glm(formula = salesrank ~ review_cnt + downloads + rating + in_degree + 
-    out_degree + closeness + between + hub_score + authority_score + 
-    nghb_mn_review_cnt + nghb_mn_salesrank + nghb_mn_rating + 
-    eigen_centrality.vector, family = "poisson", data = data)
+In the first model, I included all the variables as is just to see how it performed. The result indicated that almost all variables except for closeness were significant to determine the salesrank of the book. However, the AIC was pretty high and had rooms for improvements.
 
     Deviance Residuals: 
      Min      1Q  Median      3Q     Max  
@@ -429,6 +423,32 @@ With the findings from the first model, I created model 2 while removing the var
 
 #### Interpretation
 
-Based on Model 2 result,
+Based on Model 2 result, we can see that the increase in number of reviews, number of in degree, the betweeness, average neighborhood rating can bring the salesrank down thus will bring the sales volume up. The interesting note here was that the eigen centrality significantly reduced the estimated salesrank. This indicated that the more "popular" books that a book was linked-to, the higher the estimated increase in the demand for that book. In this case "popular" means that the connected book was also linked to a lot of other books. Below was the estimate of the increase in the salesrank for every 1% increase in each variable when all other variables remain constant.
 
-The End!
+     > print(((1.01**coef(p2)[2:13])-1)*100)
+                 log(review_cnt + 1)               log(downloads + 1) 
+                            -0.44106                          0.27349 
+                     log(rating + 1)               log(in_degree + 1) 
+                             0.15169                         -0.06062 
+                 log(out_degree + 1)                 log(between + 1) 
+                             0.15903                         -0.01527 
+                  log(hub_score + 1)         log(authority_score + 1) 
+                             0.23757                          0.60538 
+         log(nghb_mn_review_cnt + 1)       log(nghb_mn_salesrank + 1) 
+                             0.05966                          0.02749 
+         log(eigen_centrality.vector + 1) 
+                            -1.69954 
+
+Interestingly, an increase in rating was associated with a 15% increase in the salesrank. This indicated that having higher ranking did not mean that the book would have more sales. Rather, the number of reviews was found to be more relevant to increase the sales (or reduce the salesrank). Based on the above, every 1% increase in the number of reviews, the salesrank was estimated to decrease by 44%. Although having a small effect, in degree did play a role in the estimated decrease of salesrank. This indicated that the more the book is linked-to by other books, there would be a demand spillover.
+
+# Conclusion
+
+To conclude, social network is a powerful fuel for today's business. Without social network, it is almost impossible for a business to grow. Given how import it is, understanding the effect and how to manage these networks become even more crucial. This post is just a POC of what we can do with social network analysis. In the future, I hope to use more of these analysis to analyze clusters and social influences in customer behavior. I am also interested in applying this concept to social science projects. I hope to expand and utilize this methodologies more in the near future. 
+
+Thank you for reading through this post! As usual, I appreciate any feedbacks/suggestions/questions.
+
+# References
+
+
+
+
