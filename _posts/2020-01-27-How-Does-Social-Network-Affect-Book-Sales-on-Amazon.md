@@ -8,7 +8,7 @@ comments: true
 ---
 
 
-## Understanding The Effect of Social Network on Sales and Demand Spillover for Amazon Books
+## Understanding The Effect of Social Network on Sales and Demand Spillover on Amazon Books
 <img width="542" alt="Screen Shot 2020-02-28 at 7 00 38 PM" src="https://user-images.githubusercontent.com/54050356/75599764-b77af080-5a5c-11ea-9321-260ea0576c8a.png">
 
 In this post I am going to uncover the effect that social network has on Amazon Book Sales. I have been particularly interested in of <b>Social Network Analysis</b> given how broad and applicable the concepts are in today's businesses, especially in the tech or e-commerce industry. Recently,I had the opportunity to work on a project from one of my Graduate classes, where I got to analyze the network or connection between each book sold on Amazon, identify the links or relationships in the network, and finally conclude how these links can affect the sales of each book. Alright, without further ado, let's take a look at the analysis!
@@ -157,7 +157,7 @@ We can see how spread out the network is using the diameter measurement. The <b>
     27936                     Numerology For Personal Transformation  Book    111939          1         1    5.0
     37895              Sons and Lovers (Signet Classics (Paperback))  Book      9236         70        70    4.0
  
-Now let’s measure the statistics. Insight:
+To fully analyze and quantify the effect of these links between each nodes in the network, there are numerous statistics that we can compute. For this analysis, I focused on the diameter, edge density and distance. I also analyzed the network centrality measures with methodology such as degree centrality, closeness, betweeness, eigen centrality, hub and authority scores.
 
     diameter <- diameter(graph, directed=T, weights=NA)
     edge_density <- edge_density(graph, loops=F)
@@ -192,6 +192,13 @@ Betweeness
 
     ##  2501  4429  3588 31513 30106 60266 
     ##   298   260   150    92    64    62
+    
+Eigen Centrality    
+    
+    eigen_centrality <- eigen_centrality(graph, directed=T, weights=NA)
+    head(sort(eigen_centrality$vector, decreasing = TRUE))
+    ## 8160  26268  39157  26267    302  46301 
+    ## 1.0000 0.6340 0.6340 0.6340 0.5000 0.4641 
 
 Hub Score
 
