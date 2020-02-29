@@ -132,45 +132,31 @@ Let's visualize the clusters in this network. Looking at the plot below, we can 
 
 <img width="542" alt="Screen Shot 2020-02-28 at 7 00 38 PM" src="https://user-images.githubusercontent.com/54050356/75599764-b77af080-5a5c-11ea-9321-260ea0576c8a.png">
 
-We can see how spread out the network is using the diameter measurement. 
+We can see how spread out the network is using the diameter measurement. The <b>pink nodes</b> below indicated the <b>diameter nodes</b>. As shown below, The Harley Davidson Book was one of the diameter node (4429). The node was the furthest out in the diameter was node 37895, which was a romantic genre book (Book Title : Sons and Lovers (Signet Classics (Paperback)). As we can see from the book title, book 37895 was highly unrelated with Double Geopardy book thus it was on the edge of the network.
 
 <img width="509" alt="Screen Shot 2020-02-28 at 8 01 25 PM" src="https://user-images.githubusercontent.com/54050356/75600549-5572b900-5a65-11ea-9845-794f8277fd67.png">
 
 <img width="347" alt="Screen Shot 2020-02-28 at 8 02 41 PM" src="https://user-images.githubusercontent.com/54050356/75600553-66232f00-5a65-11ea-8a4e-31ebb123bffd.png">
 
-
-    #analyze the Diameter Nodes
+    #Diameter Nodes
     print(as_ids(diam))
 
     ##  [1] "37895" "27936" "21584" "10889" "11080" "14111" "4429"  "2501"  "3588" 
     ## [10] "6676"
 
     diameterbooks <- product[product$id %in%  as_ids(diam),]
-    diameterbooks[order(-diameterbooks$salesrank), ]
-
-    ##          id                                                      title group
-    ## 4390   4429                   Harley-Davidson Panheads, 1948-1965/M418  Book
-    ## 6608   6676                                             Song of Eagles  Book
-    ## 27613 27936                     Numerology For Personal Transformation  Book
-    ## 21376 21584                                           A Year and a Day  Book
-    ## 10790 10889                                 Sixpence Bride (Timeswept)  Book
-    ## 3558   3588                     A Fourth Treasury of Knitting Patterns  Book
-    ## 10980 11080 Counter Intelligence: Where to Eat in the Real Los Angeles  Book
-    ## 2481   2501          The Narcissistic Family : Diagnosis and Treatment  Book
-    ## 37464 37895              Sons and Lovers (Signet Classics (Paperback))  Book
-    ## 13976 14111                    Memories, Dreams, Reflections (Vintage)  Book
-    ##       salesrank review_cnt downloads rating
-    ## 4390     147799          3         3    4.5
-    ## 6608     130216          1         1    5.0
-    ## 27613    111939          1         1    5.0
-    ## 21376    107460         52        52    4.0
-    ## 10790     96977         16        16    4.5
-    ## 3558      91126          1         1    5.0
-    ## 10980     28673         13        13    5.0
-    ## 2481       9727         19        19    5.0
-    ## 37464      9236         70        70    4.0
-    ## 13976      4818         38        38    4.5
-
+       id                                                      title group salesrank review_cnt downloads rating
+     2501          The Narcissistic Family : Diagnosis and Treatment  Book      9727         19        19    5.0
+     3588                     A Fourth Treasury of Knitting Patterns  Book     91126          1         1    5.0
+     4429                   Harley-Davidson Panheads, 1948-1965/M418  Book    147799          3         3    4.5
+     6676                                             Song of Eagles  Book    130216          1         1    5.0
+    10889                                 Sixpence Bride (Timeswept)  Book     96977         16        16    4.5
+    11080 Counter Intelligence: Where to Eat in the Real Los Angeles  Book     28673         13        13    5.0
+    14111                    Memories, Dreams, Reflections (Vintage)  Book      4818         38        38    4.5
+    21584                                           A Year and a Day  Book    107460         52        52    4.0
+    27936                     Numerology For Personal Transformation  Book    111939          1         1    5.0
+    37895              Sons and Lovers (Signet Classics (Paperback))  Book      9236         70        70    4.0
+ 
 Now let’s measure the statistics. Insight:
 
     diameter <- diameter(graph, directed=T, weights=NA)
