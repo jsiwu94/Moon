@@ -1,3 +1,13 @@
+---
+layout: post
+title: "How Does Social Network Affect Book Sales on Amazon?"
+date: 2019-11-10
+excerpt: "Using Social Network Analysis and Statistics to Understand Demand Pattern"
+tags: [Machine Learning, Predictive Modelling, Poisson Regression, R, igraph, Social Network Analysis]
+comments: true
+---
+
+
 Understanding The Effect of Social Network on Sales and Demand Spillover for Amazon Books
 -----------------------------------------------------------------------------------------
 
