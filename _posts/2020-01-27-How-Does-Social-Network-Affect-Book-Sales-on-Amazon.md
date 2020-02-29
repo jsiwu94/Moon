@@ -215,37 +215,25 @@ Authority Score
 
     ##  626 2423 2501 4429 7325 7544 
     ##    0    0    0    0    0    0
+    
 
-Looking at the Degree Distribution
+Degree Distribution and Cummulative Frequency Distribution
+<img width="543" alt="Screen Shot 2020-02-28 at 8 39 23 PM" src="https://user-images.githubusercontent.com/54050356/75600924-7db0e680-5a6a-11ea-82dd-4fe1fd1c128f.png">
+<img width="545" alt="Screen Shot 2020-02-28 at 8 39 46 PM" src="https://user-images.githubusercontent.com/54050356/75600926-899ca880-5a6a-11ea-96ed-8feeb1f45760.png">
 
-    all_degree_df <- data.frame(id = names(all_degree), degree=all_degree)
-    qplot(all_degree_df$degree,
-          geom="histogram",
-          binwidth = 0.5,  
-          main = "Degree Distribution", 
-          xlab = "Degree",  
-          ylab="Frequency",
-          fill=I("blue"), 
-          col=I("red"), 
-          alpha=I(.2),
-          xlim=c(0,20))
+The degree distribution followed a “power law distribution”, or in other words, it showed a skewed distribution with a long right tail where there were a lot of nodes that have only a few links. Since Book 33 and 4429 had a lot of degree, they are at the tail of this distribution. Therefore, if we randomly remove a node from the network, the probability of removing the nodes with a high number of degrees are very low. In this case, we definitely do not want to remove book 4429 and 33 since they hold the network together. 
 
-    ## Warning: Removed 6 rows containing non-finite values (stat_bin).
+Additionally, the low edge density does not necessarily indicate that the information transferability is slow amongst these nodes, or in this context, the low edge density does not indicate slow demand spillover between these books. This is due to the fact that the bigger the group, the more likely the density to be low.
 
-    ## Warning: Removed 2 rows containing missing values (geom_bar).
+Moreover, the mean distance was relatively small. This indicated that the nodes were on average closely positioned to each other. In a social network with relatively small mean distance, the information transfer and influence power are relatively strong.
 
-![](Social_Network_Analysis_files/figure-markdown_strict/unnamed-chunk-12-1.png)
+Looking at the centrality measures, we can tell which node was more important in maintaining the network than others. In our case, we can see in the closeness measure that the node 33 has the highest closeness score. Meaning that information transfer was faster from this node to other nodes. Therefore, there will be a demand spillover to other nodes around node 33 once someone purchases book 33. 
 
-Cummulative Frequency Dist
+Based on the betweenness measure, we can see that node 2501 and 4429 were the top 2 nodes that a lot of these subcomponent nodes needed to pass through to get to the other nodes. This indicated that node 2501 and 4429 are important in the network to connect other nodes to each other. 
 
-    ggplot(all_degree_df, aes(degree, colour = "skyblue")) + stat_ecdf() +
-            ggtitle("Cummulative Frequency Distribution") +
-            ylab("Cummulative Frequency")
+# Merging Analysis the Output Together
 
-![](Social_Network_Analysis_files/figure-markdown_strict/unnamed-chunk-13-1.png)
-
-Merging the data together and adding social network analysis into the
-main data
+Since the goal of the analysis is to estimate how these social network aspects affect the demand on these books, we would need to compute a predictive model for that analysis. Therefore, I began by merging the result of the computed statistics on the social network analysis to my product1 dataframe.
 
     # 7. Create neighbors variable
     names(purch1)[1] <- "id"
@@ -284,45 +272,49 @@ main data
     data <- data %>% inner_join(authority, by="id") 
     data <- data %>% inner_join(hub, by="id")
 
+The final data for the model looked like below. It had 9 additional columns with information such as: 
+- neighborhood mean rating (nghb_mn_rating) or the average rating for the nodes within the neighborhood of each book.
+- neighborhood mean salesrank (nghb_mn_salesrank) or the average salesrank for the nodes within the neighborhood of each book.
+- neighborhood mean review count (nghb_mn_review_cnt) or the average review count for the nodes within the neighborhood of each book.
+- Additionally, it has the social network statistics above.
 
-    head(data)
+        ##    id
+        ## 1  33
+        ## 2  77
+        ## 3  78
+        ## 4 130
+        ## 5 148
+        ## 6 187
+        ##                                                                                    title
+        ## 1                                                         Double Jeopardy (T*Witches, 6)
+        ## 2                                                                   Water Touching Stone
+        ## 3                                                 The Ebony Cookbook: A Date With a Dish
+        ## 4 The O'Reilly Factor: The Good, the Bad, and the Completely Ridiculous in American Life
+        ## 5                                                                               Firebird
+        ## 6                         Words for Smart Test Takers (Academic Test Preparation Series)
+        ##   group salesrank review_cnt downloads rating nghb_mn_rating nghb_mn_salesrank
+        ## 1  Book     97166          4         4    5.0       4.103774          82153.26
+        ## 2  Book     27012         11        11    4.5       4.666667          41744.00
+        ## 3  Book    140480          3         3    4.5       4.500000          73179.00
+        ## 4  Book     29460        375       375    3.5       4.500000          19415.00
+        ## 5  Book     77008         42        42    4.0       0.000000          46701.00
+        ## 6  Book     17104          4         4    5.0       4.500000         133546.67
+        ##   nghb_mn_review_cnt in_degree out_degree    closeness between authority_score
+        ## 1          21.075472        53          0 1.612383e-04       0    1.000000e+00
+        ## 2           4.000000         3          1 9.045681e-05      12    4.449831e-17
+        ## 3         157.818182        11          0 1.191753e-04       0    5.753636e-04
+        ## 4           6.000000         1          1 1.077935e-04       1    2.473186e-17
+        ## 5           0.000000         1          1 1.009897e-04       2    2.567663e-17
+        ## 6           3.666667         3          3 1.076774e-04       2    2.431071e-05
+        ##      hub_score
+        ## 1 0.000000e+00
+        ## 2 2.239872e-16
+        ## 3 1.140518e-17
+        ## 4 5.531568e-04
+        ## 5 3.592652e-05
+        ## 6 5.989914e-04
 
-    ##    id
-    ## 1  33
-    ## 2  77
-    ## 3  78
-    ## 4 130
-    ## 5 148
-    ## 6 187
-    ##                                                                                    title
-    ## 1                                                         Double Jeopardy (T*Witches, 6)
-    ## 2                                                                   Water Touching Stone
-    ## 3                                                 The Ebony Cookbook: A Date With a Dish
-    ## 4 The O'Reilly Factor: The Good, the Bad, and the Completely Ridiculous in American Life
-    ## 5                                                                               Firebird
-    ## 6                         Words for Smart Test Takers (Academic Test Preparation Series)
-    ##   group salesrank review_cnt downloads rating nghb_mn_rating nghb_mn_salesrank
-    ## 1  Book     97166          4         4    5.0       4.103774          82153.26
-    ## 2  Book     27012         11        11    4.5       4.666667          41744.00
-    ## 3  Book    140480          3         3    4.5       4.500000          73179.00
-    ## 4  Book     29460        375       375    3.5       4.500000          19415.00
-    ## 5  Book     77008         42        42    4.0       0.000000          46701.00
-    ## 6  Book     17104          4         4    5.0       4.500000         133546.67
-    ##   nghb_mn_review_cnt in_degree out_degree    closeness between authority_score
-    ## 1          21.075472        53          0 1.612383e-04       0    1.000000e+00
-    ## 2           4.000000         3          1 9.045681e-05      12    4.449831e-17
-    ## 3         157.818182        11          0 1.191753e-04       0    5.753636e-04
-    ## 4           6.000000         1          1 1.077935e-04       1    2.473186e-17
-    ## 5           0.000000         1          1 1.009897e-04       2    2.567663e-17
-    ## 6           3.666667         3          3 1.076774e-04       2    2.431071e-05
-    ##      hub_score
-    ## 1 0.000000e+00
-    ## 2 2.239872e-16
-    ## 3 1.140518e-17
-    ## 4 5.531568e-04
-    ## 5 3.592652e-05
-    ## 6 5.989914e-04
-
+# Running Poisson Regression to Predict The Book Salesrank
 looking at the summary stat for each variable
 
     ##                    vars   n     mean       sd   median  trimmed      mad  min
@@ -354,8 +346,7 @@ looking at the summary stat for each variable
     ## authority_score         1      1 22.42   504.54    0.00
     ## hub_score               1      1  4.77    20.85    0.01
 
-![](Social_Network_Analysis_files/figure-markdown_strict/unnamed-chunk-15-1.png)
-Model 1
+
 
     p1 <- glm(salesrank ~ review_cnt+downloads+
                       rating+in_degree+
