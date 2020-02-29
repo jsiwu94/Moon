@@ -94,8 +94,9 @@ With the steps below, I identified book id or a node that has the highest degree
     ##   53   53
 
     ## 4. Choosing book id = 33
-       id                          title group salesrank review_cnt downloads rating
-       33 Double Jeopardy (T*Witches, 6)  Book     97166          4         4      5
+         id                                    title group salesrank review_cnt downloads rating
+         33           Double Jeopardy (T*Witches, 6)  Book     97166          4         4    5.0
+       4429 Harley-Davidson Panheads, 1948-1965/M418  Book    147799          3         3    4.5
 
 #### Book 33
 <img width="1001" alt="Screen Shot 2020-02-28 at 7 12 44 PM" src="https://user-images.githubusercontent.com/54050356/75599931-62d87500-5a5e-11ea-9556-7527e2c4e156.png">
@@ -127,14 +128,16 @@ Overall, this was how the network looked like. The big 2 nodes in the center ind
 Both of these books were connected by a local bridge link which indicated a weak connection and low influence power yet served as the link where most information transfers take place. The information flow from all the nodes on one side of the bridge have to go through the bridge to get to the other side. Therefore, given that these two main nodes are connected, there can be demand spillover from people who purchased the books around or at node 33 to the books around or at node 4429. 
 The bridge link is highly related to the concept of the "strength of weak ties" where more novel information were passed on through weak ties rather than strong ties.
 
-Let's visualize the clusters in this network.
-
-<img width="453" alt="Screen Shot 2020-02-28 at 7 20 15 PM" src="https://user-images.githubusercontent.com/54050356/75600142-ba77e000-5a60-11ea-82d1-55924691627c.png">
+Let's visualize the clusters in this network. Looking at the plot below, we can see that there were multiple subclusters formed inside of the main clusters due to the degree or link density of each these small nodes. 
 
 <img width="542" alt="Screen Shot 2020-02-28 at 7 00 38 PM" src="https://user-images.githubusercontent.com/54050356/75599764-b77af080-5a5c-11ea-9321-260ea0576c8a.png">
 
+We can see how spread out the network is using the diameter measurement. 
 
-analyzing the diamter nodes. Insight:
+<img width="509" alt="Screen Shot 2020-02-28 at 8 01 25 PM" src="https://user-images.githubusercontent.com/54050356/75600549-5572b900-5a65-11ea-9845-794f8277fd67.png">
+
+<img width="347" alt="Screen Shot 2020-02-28 at 8 02 41 PM" src="https://user-images.githubusercontent.com/54050356/75600553-66232f00-5a65-11ea-8a4e-31ebb123bffd.png">
+
 
     #analyze the Diameter Nodes
     print(as_ids(diam))
