@@ -7,44 +7,49 @@ tags: [Machine Learning, Collaborative Filtering, Predictive Modelling, Factoriz
 comments: true
 ---
 
+<img width="165" alt="Screen Shot 2019-12-17 at 10 50 28 PM" src="https://user-images.githubusercontent.com/54050356/71062990-a6d70180-2120-11ea-955e-90f677d4a721.png">
+<p align="center">
+  you can find my wordcloud tutorial here:
+  <a href="https://github.com/jsiwu94/SVD_for_Subreddit_Recommendation/blob/master/redditbot_wordcloud.ipynb">Link</a>
+  <br><br>
+</p>
 
 
-<img width="100" img height="120" alt="redditbot_wordcloud" src="https://user-images.githubusercontent.com/54050356/71051960-c3fad880-20fe-11ea-9519-c6b04d7e3986.png">
-
-User recommendation system is widely used in a lot of e-commerce or entertainment businesses to encourage more customer satisfaction and generate revenue for the company. The most commonly known method for this is called the **collaborative filtering**. Companies such as Netflix, for example, uses this method to recommend movies that matches their users' taste. Inspired by Nexflix's world class user recommendation algorithm, I am going to generate a recommendation system to help [Reddit](https://www.reddit.com/) users find subreddit that they might enjoy in this project.
+User recommendation system is widely used in a lot of e-commerce or entertainment businesses to encourage more customer satisfaction and generate revenue for the company. The most commonly known method for this is called the **collaborative filtering**. Companies such as Netflix, for example, uses this method to recommend movies that matches their users' taste. Inspired by Nexflix's world class user recommendation algorithm, I am going to generate a recommendation system to help [Reddit](https://www.reddit.com/) users find subreddit that they might enjoy in this project. [Find my full python code here](https://github.com/jsiwu94/SVD_for_Subreddit_Recommendation/blob/master/Subreddit_Recommendation_System.ipynb)
 
 
 ## Introduction
 
 Before we began, let me first introduce you to reddit. What is Reddit? Reddit is a website which provide users with news aggregation, web content rating, and discussion. In addition, it allows its members to submit content to the site such as text, images, or links, which other members can interact with by leaving comments or voting up or down. One main component of Reddit is the **subreddit**. Subreddits are specific online communities within the Reddit website that serve as a topic or category that organize all the posts associated with them. 
 
-## Problem Statement
+Despite being a very popular website with over 300 million users based on the data collected in 2018, there is still no good way to discover subreddits. Currently, users have to manually search for popular subreddits or upvote a subreddit so that it will be archived in their subreddit history.
 
-Reddit has become a very popular website with over 300 million users. (Hutchinson A., 2018) However, there is still no good way to discover subreddits. - online communities
-based on specific discussion topics. This paper approaches the subreddit discovery problem by using collaborative filtering to recommend subreddits to Reddit users based
-on their past voting history. Three different methods are considered, and are evaluated on three metrics: accuracy, coverage,
-and novelty.
+## Getting The Data
 
+To get the dataset, I utilized the Reddit API for python called [PRAW](https://praw.readthedocs.io/en/latest/code_overview/models/submission.html). The main requirements are to have your client_id, client_secret, user_agent. Using the API, I collected a dataset consisting  of ~15K unique redditors (reddit users) and ~29K unique subreddits in the below format: 
+- the redditors' username
+- their subreddit submissions (or comments)
+- the timestamp (utc) when they create the submission
 
-```python
-import numpy as np
-import pandas as pd
-import math as mt
-import csv
-from pandas import DataFrame,Series,read_csv
-import scipy
-import scipy.sparse as sp
-from sparsesvd import sparsesvd        #used for matrix factorization
-from scipy.sparse import csc_matrix    #used for sparse matrix
-from scipy.sparse.linalg import *      #used for matrix multiplication
-from scipy.linalg import sqrtm
-from nltk.tokenize import TreebankWordTokenizer
-```
-
-
+Because it took a long time to scrape the data, I exported the final output to a csv. [My PRAW Code](https://github.com/jsiwu94/SVD_for_Subreddit_Recommendation/blob/master/PRAW.ipynb) is also available on my GitHub.
 
 ```python
-reddit_df.head()
+reddit = praw.Reddit(client_id='your client id',
+                    client_secret='your client secret',
+                    user_agent='project name')
+
+r = reddit.subreddit('all').top(limit=15000)
+redditor = []
+subreddit_name = []
+utc = []
+i=0
+
+for submission in r:
+    redditor.append(submission.author)
+    subreddit_name.append(submission.subreddit)
+    utc.append(submission.created_utc)
+    i+=1
+    
 ```
 
 <table border="1" class="dataframe">
@@ -90,21 +95,62 @@ reddit_df.head()
   </tbody>
 </table>
 
-# Checking the Data
+**Checking the Data**
+The Data contains 15K redditors and ~29K subreddits.
 
     unique reddittor: 15000
     unique subreddit: 29281
     total data entry: (9391244, 3)
-
+    
     Are there null values from our API dataset?  
     username     False
     subreddit    False
     utc          False
     dtype: bool
 
+## Collaborative Filtering and Singular Value Decomposition 
 
-# Evaluating our SVD Model - with Test & Train by Sampling 500 users
+Now that we have the dataset, let's start building the algorithm. For this project, I used the Singular Value Decomposition (SVD) technique to create the subreddit recommendation. 
 
+The SVD is a well-known matrix factorization method and is very well-studied. The winning team at the [Netflix Prize competition in 2009](https://medium.com/netflix-techblog/netflix-recommendations-beyond-the-5-stars-part-1-55838468f429) used some combinations of advanced SVD matrix factorization models to produce movie recommendations with an improved RMSE of ~8% from Netflix's Recommendation System at the time. 
+
+Before we begin, let's look into the concept behind it first. The **Collaborative filtering** is a method to predict a rating for a user item pair based on the history of ratings given by the user and given to the item. 
+
+<i>"Collaborative filtering captures the underlying pattern of interests of like-minded users and uses the choices and preferences of similar users to suggest new items."</i>
+
+**SVD** is a matrix factorization technique that is used to reduce the number of features of a data set by reducing space dimensions. The matrix factorization is done on the user-item ratings matrix. From a high level, matrix factorization can be thought of as (using product and factorization) to find 2 matrices whose product is the original matrix. In other words, it approximates a single matrix A by the product of three matrices.
+
+<img width="676" alt="Screen Shot 2019-12-17 at 11 49 17 PM" src="https://user-images.githubusercontent.com/54050356/71066648-e3f2c200-2127-11ea-96a1-143a90fbce7e.png">
+
+In our context, U contains data for each username and their subreddit submissions, V is the subreddit name and its number of submissions by the user, while Σ are called the singular values and it indicates the strength of how U and V are related.
+We can approximate the full matrix by observing only the **most important features** using the singular values (Σ). To read more about SVD please refer to these <b>research papers:</b>
+[1] <a href="http://buzzard.ups.edu/courses/2014spring/420projects/math420-UPS-spring-2014-gower-netflix-SVD.pdf">Netflix SVD</a> [2] <a href="https://www.cs.uic.edu/~liub/KDD-cup-2007/proceedings/Regular-Paterek.pdf
+">SVD for Recommendation Engine</a> 
+
+Now that you have enough theoritical information about SVD, let's look into the application. In this project, I will be using python's scipy package of [sparsesvd](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.svds.html). With this package, the requirement is to have our data in a matrix format and state the **latent factor** or the number of important features we would like to consider. I will explain more about this in the later section.
+
+#### Libraries
+Below are the libraries I used:
+
+```python
+import numpy as np
+import pandas as pd
+import math as mt
+import csv
+from pandas import DataFrame,Series,read_csv
+import scipy
+import scipy.sparse as sp
+from sparsesvd import sparsesvd        #used for matrix factorization
+from scipy.sparse import csc_matrix    #used for sparse matrix
+from scipy.sparse.linalg import *      #used for matrix multiplication
+from scipy.linalg import sqrtm
+from nltk.tokenize import TreebankWordTokenizer #used this to create the document on my matrix
+```
+
+
+## Evaluating our SVD Model with Train and Test Data by Sampling 500 users
+
+Using a sample of 500 users from the entire dataset, I created both train and test data (20% the data in the test data) to evaluate the prediction of my SVD model. 
 
 ```python
 sample_username = list(reddit_df.username.unique())[300:800]
@@ -114,8 +160,13 @@ users = list(sample_df.username.unique())
 subreddits = list(sample_df.subreddit.unique())
 ```
 
-    Top 134 subreddits contribute a total of 64.9 % to the total subreddits in the dataset
+Let's look at the top 65% subreddits within the sample dataset. There are ~134 subreddits that contribute to the entire sample dataset. We will use this for our **latent factor** in the SVD model later.
 
+    Top 134 subreddits contribute a total of 64.9 % to the total subreddits in the dataset
+    
+#### Splitting Train and Test Dataset based on Timestamp (utc)
+
+I wanted to ensure that my test and train data are as realistic as possible. Therefore, I used the timestamp (utc) information to split the data instead of doing random 20% split. In this case, I sorted the data from the earliest submission to the most recent by each user, and using those, pick the bottom or most recent 20% data of each user as the test data.
 
 ```python
 data =sample_df.groupby(['username','subreddit']).agg({'subreddit':'count',
@@ -209,7 +260,13 @@ data.head(10)
 </table>
 
 
+#### Defining The Rating in The Train and Test Data
 
+Evaluating our SVD model means that we are comparing the predicted vs actual **rating** that a user give to a subreddit. Since there is no obvious way to capture rating with Reddit data, we will define the rating as the number of times user i has submmited a post in subreddit j, vi,j, divided by his total number of submission.
+
+<img width="169" alt="Screen Shot 2019-12-18 at 1 00 41 PM" src="https://user-images.githubusercontent.com/54050356/71122933-78940900-2196-11ea-9cfc-5c3c2b365983.png">
+
+In a different studies by [Jay Baxter](http://jaybaxter.net/redditrecommender.pdf), a user upvote can also be used to capture the rating. However, the user upvote data are proctected and can not be retrieved using PRAW (Reddit API for Python). Therefore, I used user submission instead.
 
 ```python
 user_sum = data.groupby(['username'], as_index=False).agg({'submission_freq':'sum'})
@@ -222,51 +279,7 @@ data = pd.concat([data.iloc[:,:2],data.iloc[:,-1:],data['most_recent_timestamp']
 data.dropna(inplace = True)
 ```
 
-
-```python
-data.shape
-```
-
-
-
-
-    (32018, 4)
-
-
-
-# Splitting Train and Test Dataset based on Timestamp (utc)
-
-- Calculating implicit rating using number of submissions per subreddit.
-- Ideally need data for upvotes.
-
-
-```python
-users = data['username'].unique() #list of all users
-subs = data['subreddit'].unique() #list of all movies
-
-test = pd.DataFrame(columns=data.columns)
-train = pd.DataFrame(columns=data.columns)
-test_ratio = 0.2 #fraction of data to be used as test set.
-temp1 = data[data.username.isin(users)]
-for u in users:
-    n = len(temp1)
-    test_size = int(test_ratio*n)
-
-temp1 = temp1.sort_values('most_recent_timestamp').reset_index()
-temp1.drop('index', axis=1, inplace=True)
-    
-dummy_test = temp1.ix[n-1-test_size :]
-dummy_train = temp1.ix[: n-2-test_size]
-    
-test = pd.concat([test, dummy_test])
-train = pd.concat([train, dummy_train])
-
-print("""Train Data for User "-_-_-_-otalp-_-_-_-"        :""")
-print(train[train.username == '-_-_-_-otalp-_-_-_-'].iloc[:,:3])
-print(" ")
-print("""Test Data for User "-_-_-_-otalp-_-_-_-"        :""")
-print(test[test.username == '-_-_-_-otalp-_-_-_-'].iloc[:,:3])
-```
+ Let's look at an example train and test data for a user.
 
     Train Data for User "-_-_-_-otalp-_-_-_-"        :
                       username             subreddit  user_implicit_rating
@@ -321,7 +334,9 @@ print(test[test.username == '-_-_-_-otalp-_-_-_-'].iloc[:,:3])
     31486  -_-_-_-otalp-_-_-_-              soccer              0.348932
 
 
-### Transforming the Dataframe into Utility Matrix for SVD Computation Later
+## Transforming the Dataframe into Utility Matrix and SVD Computation
+
+As mentioned earlier, one of the requirement to use SVD model is to transfor our data into a matrix. In this case, I will fill all the subreddits that a user has not had submission on with zero's. Once we have our matrix ready, let's create the SVD function.
 
 ```python
 def svd(train, k):
@@ -352,6 +367,7 @@ def svd(train, k):
     return UsV
 ```
 
+Now let's run our prediction on test data and compare it againts the actual. In this case, I will use MSE and MAE.
 
 ```python
 def mse(true, pred):
@@ -368,12 +384,12 @@ def mae(true, pred):
 # to test the performance over a different number of features
 no_of_features = [134]
 svdout = svd(X, k=no_of_features)
-```
 
-```python
 print(mse(test['user_implicit_rating'], pred))
 print(mae(test['user_implicit_rating'], pred))
 ```
+
+Based on the output, we got a pretty good result with a MAE is around 0.5%. 
 
     svd done
     mse: 0.0001907806366327251
@@ -382,53 +398,16 @@ print(mae(test['user_implicit_rating'], pred))
 
 ## Creating The Recommendation System Using The Complete Dataset (15K Users)
 
-```python
-user = reddit_df.username.unique()
-subreddit = reddit_df.subreddit.unique()
-doc_df = reddit_df.groupby('username')['subreddit'].apply(lambda x: "%s" % ' '.join(x)).reset_index()
-doc_df.head()
-```
+Now that we have evaluated the model, let's use the entire dataset and make a demo recommendation. To do this, we will do the same steps of converting the data into a matrix as well as finding the latent factor.
+
+In the full dataset, there are 293 subreddits contributing to the top 65% subreddit topics. Therefore, I used this number to define the latent factor in the SVD model.
+
+    Top 293 subreddits contribute a total of 65.0 % to the total subreddits in the dataset
 
 
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>username</th>
-      <th>subreddit</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>--ANUSTART-</td>
-      <td>Testosterone Testosterone Testosterone Testost...</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>--Sko--</td>
-      <td>DestinyTheGame DestinyTheGame DestinyTheGame D...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>--UNKN0WN--</td>
-      <td>AceAttorney AceAttorney AceAttorney AceAttorne...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>--harley--quinn--</td>
-      <td>LGBTeens Patriots asktransgender Patriots Patr...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>-A-p-r-i-l-</td>
-      <td>tdi tdi tdi AskReddit tdi tdi tdi tdi tdi tdi ...</td>
-    </tr>
-  </tbody>
-</table>
+Given that this dataset is much larger than the sample, we will use another method to organize the data and alter it into a matrix form for the SVD. 
 
-
-
+In this case, I changed the row in the dataset to be 1 row per each user and tokenize all the subreddits where each users had posted a submission on using the TreebankWordTokenizer from the [nltk](https://www.nltk.org/) library.
 
 ```python
 tokenizer = TreebankWordTokenizer()
@@ -446,8 +425,8 @@ document.head()
 
 
 ## Creating User-Subreddit Matrix
-Using CSC Matrix to Handle highly sparse matrix. To view normally, use : user_subreddit_matrix.todense()
 
+Once we tokenized the subreddit, time to create our matrix for the SVD. Our matrix is very sparse in that it has a lot of zeros because there are a lot of user-subreddit combinations where the users have not posted a submission on. This large and sparse matrix can take a long time to run. Therefore, I will use the [sparse matrix](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csc_matrix.html) from the scipy library. This helps storing the matrices in less memory.
 
 ```python
 corpus_of_subs = []
@@ -469,7 +448,9 @@ print((user_subreddit_matrix.shape))
     (14999, 29280)
 
 
+Now, our matrix is pretty much ready and we run the SVD and the recommendation with the full matrix. 
 
+#### SVD Function
 ```python
 def computeSVD(user_subreddit_matrix, no_of_latent_factors):
     
@@ -495,7 +476,7 @@ def computeSVD(user_subreddit_matrix, no_of_latent_factors):
     return U, S, Vt
 ```
 
-
+#### Recommendation Output Function
 ```python
 #Compute estimated recommendations for the given user
 def computeEstimatedRecommendation(U, S, Vt, uTest):
@@ -526,9 +507,7 @@ def computeEstimatedRecommendation(U, S, Vt, uTest):
     return recom
 ```
 
-
-    Top 293 subreddits contribute a total of 65.0 % to the total subreddits in the dataset
-
+Below are some recommendation demo based on the output of our SVD model using the entire dataset of 15K users and ~29 subreddits.
 
 ## Recommendation Demo 1
 
@@ -597,7 +576,19 @@ U, S, Vt = computeSVD(user_subreddit_matrix, no_of_latent_factors)
     torontoraptors
     ------------------------------------------------------------------------------------
     
+## Conclusion
+
+SVD is definitely a great technique for collaborative filtering and it handles large dataset really well in that it is able to sort through the most important features to use for the prediction. There are so much more things that we can do with SVD to create better prediction for collaborative filtering, including utilizing gradient descent to minimize the error produced by the SVD model. While this project is only a POC (Prove of Concept) and I am only using the simple built-in SVD function by the scipy library, I hope to utilize this method with the conjuction of other technique such as the Restricted Boltzman Machine (RBM) in my future work.
+
 ## References
 Hutchinson, A. (2018, April 20). Reddit Now Has as Many Users as Twitter, and Far Higher Engagement Rates. Retrieved from https://www.socialmediatoday.com/news/reddit-now-has-as-many-users-as-twitter-and-far-higher-engagement-rates/521789/.
 
-#### Thank you for reading! Please feel free to contact me directly for any comments, feedbacks, or suggestions. You can leave a comment below as well!
+Baxter, J. (2016). A comparative analysis of subreddit recommenders for Reddit. Retrieved from http://jaybaxter.net/redditrecommender.pdf
+
+Salakhutdinov, R. & Mnih, A. & Hinton G. (2007). Restricted Boltzmann Machines for Collaborative Filtering. Retrieved from 
+https://www.cs.toronto.edu/~rsalakhu/papers/rbmcf.pdf
+
+
+
+
+**Thank you for reading! Please feel free to contact me directly for any comments, feedbacks, or suggestions. You can leave a comment below as well!**
