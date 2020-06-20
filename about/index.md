@@ -11,7 +11,7 @@ comments: false
 
 ## About Me
 
-My name is Jennifer, and I am a Machine Learning Enthusiast and Analytics Professional with business impact orientation. Currently, I am pursuing a Master's degree in Analytics and Applied Statistics until June 2020 from University of California, Irvine. My 2.5 years of professional experience includes **Supply Chain, Customer Insight, & Continuous Improvement Analytics**.
+My name is Jennifer, and I am a Machine Learning Enthusiast and Analytics Professional with business impact orientation. I recently graduated from a Master's degree in Analytics and Applied Statistics from University of California, Irvine. My 2.5 years of professional experience includes **Supply Chain, Customer Insight, & Continuous Improvement Analytics**.
 I leveraged data and statistical concepts to analyze areas of improvement, root cause issues, test hypotheses, and identify optimal solutions.
 <br>
 <br>
