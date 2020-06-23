@@ -31,11 +31,11 @@ Before jumping into modeling, we did some preliminary data analysis to understan
 Twitter mood distribution: The tweets data has 63% of negative, 16% positive and 21% neutral tweets
 <img width="296" alt="image" src="https://user-images.githubusercontent.com/54050356/85476277-cd14a880-b56c-11ea-81b3-2b71b0a765af.png">
 
-
 Tweet counts by airline: United airlines has the most #tweets followed by US airways, American and Southwest airlines
-
+<img width="297" alt="image" src="https://user-images.githubusercontent.com/54050356/85476363-03eabe80-b56d-11ea-8cba-feb08b9358b6.png">
 
 Tweet sentiment by Location:  Most of the tweets were concentrated around the east coast. This is due to the busiest international airports being around that.
+<img width="452" alt="image" src="https://user-images.githubusercontent.com/54050356/85476398-1238da80-b56d-11ea-9b65-c41275453070.png">
 
 
 Twitter mood by airline: American, United and US airways have >60% negative tweets.
