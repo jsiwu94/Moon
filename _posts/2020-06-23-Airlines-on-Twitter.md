@@ -7,6 +7,9 @@ tags: [Machine Learning, Predictive Modelling, Logistics Regression, Python, Lat
 comments: true
 ---
 
+
+<img width="468" alt="image" src="https://user-images.githubusercontent.com/54050356/85477250-cc7d1180-b56e-11ea-9251-8a06fa71a87b.png">
+
 In this project, I worked with a group of 5 for our last final project in my Master's degree. With this, we aimed to understand customer complaints on social media, specifically Twitter, regarding the major airlines in the US. 
 To learn more about our project and the codes we used to implement it, please check out our github repository here. This article was also featured by [AnalyticsVidhya on Medium.com](https://medium.com/@jsiwu/airlines-on-twitter-understanding-customer-complaints-with-nlp-81278f2b68dc) 
 
@@ -45,13 +48,16 @@ Before jumping into modeling, we did some preliminary data analysis to understan
 
 # Approach
 
-### Sentiment Analysis Model Summary
+### Approach 1 – Sentiment Analysis
 
-Approach 1 – Sentiment Analysis
+<u>Method</u>
 
-Method
+![img5](https://cdn-images-1.medium.com/max/1600/1*oPXztCQsbsBljjg-Ru9CQw.png)
+<i>(**) Indicates Best Model in each algorithm</i>
 
+Based on the model result summary shown above, we chose the Logistic Regression with TFIDF as our best model to predict the sentiment. Below, we will talk about our approach for this model.
 Since we are only interested in the content of the tweet and sentiment level of each tweet, we extracted the corresponding two columns, which are ‘text’ and ‘airline_sentiment’.  The screenshot below shows 5 random samples of texts and their sentiment levels. 
+![img6](https://cdn-images-1.medium.com/max/1600/0*SZgpndhumfVTo68Z)
 
 
 1.Text Processing 
@@ -61,8 +67,7 @@ First off, we cleaned the text using regular expressions to remove hashtags, sym
 Also, we set up stopwords and excluded some words that indicated negativity such as “not”, “no” as well as updated some words that are not meaningful to predict the sentiment. 
 
 Next up, in order to segment text into words, we did tokenization and below shows the examples. 
-
-
+<img width="490" alt="image" src="https://user-images.githubusercontent.com/54050356/85477298-ea4a7680-b56e-11ea-9514-5a489d459797.png">
 
 2.Text vectorization
 Then we did the text vectorization to transform documents into vectors using CountVectorizer and TFIDF.  
@@ -82,12 +87,8 @@ ngram_range: (1, 2)
 However, the accuracy turns out to  be lower than the previous two models. When looking at parameters we noticed that the hyper parameters recommended by gridsearch are more strict in terms of dropping the terms. For example, TFIDF ignores terms that appear in less than 7 documents whereas gridsearch suggests ignoring terms that appear in less than 1 document (min_df). 
 
 
-Result: 
-
+<u>Result:</u> 
 Among those 3 models, logistic regression using TFIDF had the highest test accuracy at 80.3% 
-
-
-
 
 
 With logistic regression classifiers, we were able to plot the most important coefficients that are considered to make the predictions for each sentiment level. As you can see below, for negative, “worst”, “hours”, “ridiculous” or words specifically related to hours  appear to highly  contribute to the prediction. And similarly, for positive, “great”, “awesome”, “thanks” and words related to gratitude highly contribute to the sentiment prediction.   
