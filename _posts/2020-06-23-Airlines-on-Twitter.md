@@ -11,11 +11,10 @@ comments: true
 <img width="468" alt="image" src="https://user-images.githubusercontent.com/54050356/85477250-cc7d1180-b56e-11ea-9251-8a06fa71a87b.png">
 
 In this project, I worked with a group of 5 for our last final project in my Master's degree. With this, we aimed to understand customer complaints on social media, specifically Twitter, regarding the major airlines in the US. 
-To learn more about our project and the codes we used to implement it, please check out our github repository here. This article was also featured by [AnalyticsVidhya on Medium.com](https://medium.com/@jsiwu/airlines-on-twitter-understanding-customer-complaints-with-nlp-81278f2b68dc) 
+To learn more about our project and the codes we used to implement it, please check out our github repository here. This article was also featured by [AnalyticsVidhya on Medium.com](https://medium.com/@jsiwu/airlines-on-twitter-understanding-customer-complaints-with-nlp-81278f2b68dc). 
 
 
 # Objective
-
 **Customer sentiment:**<br>
 To identify positive and negative opinions, emotions, and evaluations.<br>
 **Identify negative topics:**<br>
@@ -58,8 +57,7 @@ Since we are only interested in the content of the tweet and sentiment level of 
 ![img6](https://cdn-images-1.medium.com/max/1600/0*SZgpndhumfVTo68Z)
 
 
-1.Text Processing 
-
+1.Text Processing<br>
 First off, we cleaned the text using regular expressions to remove hashtags, symbols, mentions, URLs, digits, and punctuations. After applying previous steps, texts had some extra white spaces that later the tokenizer can split as words. That said, we removed those extra spaces. In addition, we ensured to remove all single characters, for example, “ it's ” can be transformed to “ it s “, then we need to remove “s” since it doesn’t have any meaning. For stemming, we noticed that although  Porter is the most commonly used stemmer, also one of the most gentle stemmers, there are many words we missed their original meaning after taking stemming and ended up lowering the accuracy. Therefore, we decided to not add stemming for the text cleansing part. 
  
 Also, we set up stopwords and excluded some words that indicated negativity such as “not”, “no” as well as updated some words that are not meaningful to predict the sentiment. 
@@ -100,7 +98,7 @@ df[['text', 'tokenized']].head()
 ```
 <img width="490" alt="image" src="https://user-images.githubusercontent.com/54050356/85477298-ea4a7680-b56e-11ea-9514-5a489d459797.png">
 
-2.Text vectorization
+2.Text vectorization<br>
 Then we did the text vectorization to transform documents into vectors using CountVectorizer and TFIDF.  
 
 *TFIDF : The hyperparameter without using grid search, we used maximum features with 2500, and  ignored terms that have a document frequency strictly higher than 0.8, and lower than 7. For the solver we used newton-cg  since it’s robust to unscaled dataset and performs better with multinomials with an l2 penalty, which is also known as Ridge. Ridge includes all variables in the model, though some are shrunk as well as it is less computationally intensive than the lasso. We chose 10 for the  Inverse of regularization strength.
@@ -138,20 +136,18 @@ With approach 1, we were able to identify the sentiment of tweets with a relativ
 
 Latent Dirichlet Allocation (LDA)
 The way that LDA works is that it assumes each document consists of a mix with various topics and every topic consists of a mix with various words. It builds a topic per document model and words per topic model, which are based upon Dirichlet distributions. The below graph helps explain the algorithm flow.
-
-
+![img10](https://cdn-images-1.medium.com/max/1600/1*DViWh_pZOJfyDDTjWmSeQw.png)
 
 Using our data, we can build a dictionary to train the LDA model. Then, the LDA model will output the top words within each topic, from which the analyst then can categorize them into topic names (yes, it does require that manual part but, it still works well).
 
 **Method**
 
-1.Text Preprocessing
+1.Text Preprocessing<br>
 First and most important step in LDA is data cleaning or, more specifically, stopwords removal. This is also considered as the major drawback of LDA modeling as we need to clean and nitpick a lot of words which don’t really indicate topics. For example, in this context, words such as “baggage” and “delay” indicate different topics or complaint categories. However, words such as “completely” or “chicago” do not. 
 
 The steps we took in text preprocessing were (As shown in the code below):
-Regex 
-Removing Flight Number, Emoji, Hashtags, Twitter Username, Text Punctuations, and Symbols
-Html Parser + Lowercase 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Regex: Removing Flight Number, Emoji, Hashtags, Twitter Username, Text Punctuations, and Symbols<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Html Parser + Lowercase<br>
 Stopwords Extension (>500 words) 
 including:
 US city names
@@ -161,15 +157,13 @@ Spacy Tokens
 Remove Adjective and Conjunction
 Stemmer + Lemmatizer 
 
-2.Choosing the Number of Topics (K)
+2.Choosing the Number of Topics (K)<br>
 Once we’ve preprocessed the words into tokens, we can create a dictionary (or bag of word) that contains the number of times a word appears in the training dataset. Using this bag of words, we can then train our LDA model. 
 
-We also need to identify the number of topics (K) for LDA (similar to identifying the k for k-means clustering). Although there are many ways to identify the optimal number of topics, the most adopted ones are using the perplexity score and coherence score. The idea is the less the perplexity score and the higher the coherence score, the better that “K” is. (click here if you would like to learn more about coherence or perplexity score)
- 
-Based on the plot below, we identified that the best “K” for this data is 8. Therefore, we used that to train our LDA model.
+We also need to identify the number of topics (K) for LDA (similar to identifying the k for k-means clustering). Although there are many ways to identify the optimal number of topics, the most adopted ones are using the perplexity score and coherence score. The idea is the less the perplexity score and the higher the coherence score, the better that “K” is. (click here if you would like to learn more about coherence or perplexity score). Based on the plot below, we identified that the best “K” for this data is 8. Therefore, we used that to train our LDA model.
 
 
-3.Training the LDA model
+3.Training the LDA model<br>
 Using k of 8, we received a perplexity score of -9.34 and coherence score of 0.60, which is pretty decent considering there are more than 5 topics.
 
 **Result**
