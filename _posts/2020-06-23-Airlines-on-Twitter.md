@@ -50,7 +50,7 @@ Before jumping into modeling, we did some preliminary data analysis to understan
 
 ### Approach 1 – Sentiment Analysis
 
-<u>Method</u>
+**Method**
 
 ![img5](https://cdn-images-1.medium.com/max/1600/1*oPXztCQsbsBljjg-Ru9CQw.png)
 <i>(**) Indicates Best Model in each algorithm</i>
@@ -67,35 +67,67 @@ First off, we cleaned the text using regular expressions to remove hashtags, sym
 Also, we set up stopwords and excluded some words that indicated negativity such as “not”, “no” as well as updated some words that are not meaningful to predict the sentiment. 
 
 Next up, in order to segment text into words, we did tokenization and below shows the examples. 
+```
+def clean_text(txt):
+    
+    """
+    removing all hashtags , punctuations, stop_words  and links, also stemming words 
+    """
+    txt = txt.lower()
+    def remove_stopwords(txt):
+        return [t for t in txt if t not in stop]
+    #txt = re.sub(r"(?<=\w)nt", "not",txt) #change don't to do not cna't to cannot 
+    txt = re.sub(r"(@\S+)", "", txt)  # remove hashtags
+    txt = re.sub(r'\W', ' ', str(txt)) # remove all special characters including apastrophie 
+    txt = txt.translate(str.maketrans('', '', string.punctuation)) # remove punctuations 
+    txt = re.sub(r'\s+[a-zA-Z]\s+', ' ', txt)   # remove all single characters (it's -> it s then we need to remove s)
+    txt = re.sub(r'\s+', ' ', txt, flags=re.I) # Substituting multiple spaces with single space
+    txt = re.sub(r"(http\S+|http)", "", txt) # remove links 
+#    txt = ' '.join([PorterStemmer().stem(word=word) for word in txt.split(" ") if word not in stop_words ]) # stem & remove stop words
+    txt = ''.join([i for i in txt if not i.isdigit()]).strip() # remove digits ()
+    return txt
+df['cleaned_text'] = df['text'].apply(clean_text)
+re_tok = re.compile(f'([{string.punctuation}""¨«»®´·º½¾¿¡§£₤''])')
+def tokenize(s): 
+    return re_tok.sub(r' \1 ', s).split()
+df['tokenized'] = df['cleaned_text'].apply(lambda row: tokenize(row))
+stop = set(stopwords.words('english'))
+stop.update(['amp', 'rt', 'cc'])
+stop = stop - set(['no', 'not'])
+def remove_stopwords(row):
+    return [t for t in row if t not in stop]
+df['tokenized'] = df['tokenized'].apply(lambda row: remove_stopwords(row))
+
+df[['text', 'tokenized']].head()
+```
 <img width="490" alt="image" src="https://user-images.githubusercontent.com/54050356/85477298-ea4a7680-b56e-11ea-9514-5a489d459797.png">
 
 2.Text vectorization
 Then we did the text vectorization to transform documents into vectors using CountVectorizer and TFIDF.  
 
-TFIDF : The hyperparameter without using grid search, we used maximum features with 2500, and  ignored terms that have a document frequency strictly higher than 0.8, and lower than 7. For the solver we used newton-cg  since it’s robust to unscaled dataset and performs better with multinomials with an l2 penalty, which is also known as Ridge. Ridge includes all variables in the model, though some are shrunk as well as it is less computationally intensive than the lasso. We chose 10 for the  Inverse of regularization strength.
+*TFIDF : The hyperparameter without using grid search, we used maximum features with 2500, and  ignored terms that have a document frequency strictly higher than 0.8, and lower than 7. For the solver we used newton-cg  since it’s robust to unscaled dataset and performs better with multinomials with an l2 penalty, which is also known as Ridge. Ridge includes all variables in the model, though some are shrunk as well as it is less computationally intensive than the lasso. We chose 10 for the  Inverse of regularization strength.
 
-Countvectorizer : The hyper parameter without using grid search, we  ignored terms that have a document frequency strictly lower than 5 and had unigram and bigram for  n gram ranges. 
+*Countvectorizer : The hyper parameter without using grid search, we  ignored terms that have a document frequency strictly lower than 5 and had unigram and bigram for  n gram ranges. 
 
-CV Gridsearch : Then we tried with hyper parameters recommended by gridsearch which are:
-C: 3
-Penalty: 'l2'
-max_df: 0.5 (ignores terms that appear in more than 50% of the documents)
-min_df: 1 (ignore terms that appear in less than 1 documents)
-ngram_range: (1, 2)
+*CV Gridsearch : Then we tried with hyper parameters recommended by gridsearch which are:
+*C: 3
+*Penalty: 'l2'
+*max_df: 0.5 (ignores terms that appear in more than 50% of the documents)
+*min_df: 1 (ignore terms that appear in less than 1 documents)
+*ngram_range: (1, 2)
 
 
 However, the accuracy turns out to  be lower than the previous two models. When looking at parameters we noticed that the hyper parameters recommended by gridsearch are more strict in terms of dropping the terms. For example, TFIDF ignores terms that appear in less than 7 documents whereas gridsearch suggests ignoring terms that appear in less than 1 document (min_df). 
 
 
-<u>Result:</u> 
+**Result**<br>
 Among those 3 models, logistic regression using TFIDF had the highest test accuracy at 80.3% 
-
 
 With logistic regression classifiers, we were able to plot the most important coefficients that are considered to make the predictions for each sentiment level. As you can see below, for negative, “worst”, “hours”, “ridiculous” or words specifically related to hours  appear to highly  contribute to the prediction. And similarly, for positive, “great”, “awesome”, “thanks” and words related to gratitude highly contribute to the sentiment prediction.   
 
-learning & challenges
+**learning & challenges**
 
-We believe one of the reasons TFIDF performed better than countvectorizer is that it can be more useful in capturing  frequent yet not meaningful words since it weighs down those words such as LOL or ASAP while it scales up the unique words related to customer experience. 
+We believe one of the reasons TFIDF performed better than countvectorizer is that it can be more useful in capturing  frequent yet not meaningful words since it weighs down those words such as **"LOL"** or **"ASAP"** while it scales up the unique words related to customer experience. 
 
 One of challenges of performing sentiment analysis on Twitter is that since each of Twitteruser speaks differently about their experience, there are many slangs, new words, acronym, abbreviation, curse, or simply misspelled words that can hard to capture with current text cleaning packages or regex especially when data is large. For the next step, we would like to search for better text cleaning packages that can reduce issues mentioned above. 
 
