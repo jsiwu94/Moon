@@ -124,16 +124,15 @@ Among those 3 models, logistic regression using TFIDF had the highest test accur
 ![img8](https://cdn-images-1.medium.com/max/1600/1*jvjMnn8ykzLmIMDuSHKubQ.png)
 
 With logistic regression classifiers, we were able to plot the most important coefficients that are considered to make the predictions for each sentiment level. As you can see below, for negative, “worst”, “hours”, “ridiculous” or words specifically related to hours  appear to highly  contribute to the prediction. And similarly, for positive, “great”, “awesome”, “thanks” and words related to gratitude highly contribute to the sentiment prediction.   
-
+![img9](https://cdn-images-1.medium.com/max/1600/0*fA8rXsxEALWs9WrC)
 
 **learning & challenges**
 
 We believe one of the reasons TFIDF performed better than countvectorizer is that it can be more useful in capturing  frequent yet not meaningful words since it weighs down those words such as **"LOL"** or **"ASAP"** while it scales up the unique words related to customer experience. 
-
 One of challenges of performing sentiment analysis on Twitter is that since each of Twitteruser speaks differently about their experience, there are many slangs, new words, acronym, abbreviation, curse, or simply misspelled words that can hard to capture with current text cleaning packages or regex especially when data is large. For the next step, we would like to search for better text cleaning packages that can reduce issues mentioned above. 
 
 
-Approach 2 – Topic Modeling with LDA
+### Approach 2 – Topic Modeling with LDA
 
 With approach 1, we were able to identify the sentiment of tweets with a relatively high degree of accuracy. To take the analysis a step further, we wanted to understand what are the general topics or categories that people are raising their concern about on the negative tweets. One of the most popular and well adopted algorithms for topic modeling is the LDA (Latent Dirichlet Allocation). 
 
@@ -144,7 +143,7 @@ The way that LDA works is that it assumes each document consists of a mix with v
 
 Using our data, we can build a dictionary to train the LDA model. Then, the LDA model will output the top words within each topic, from which the analyst then can categorize them into topic names (yes, it does require that manual part but, it still works well).
 
-Method
+**Method**
 
 1.Text Preprocessing
 First and most important step in LDA is data cleaning or, more specifically, stopwords removal. This is also considered as the major drawback of LDA modeling as we need to clean and nitpick a lot of words which don’t really indicate topics. For example, in this context, words such as “baggage” and “delay” indicate different topics or complaint categories. However, words such as “completely” or “chicago” do not. 
@@ -173,7 +172,7 @@ Based on the plot below, we identified that the best “K” for this data is 8.
 3.Training the LDA model
 Using k of 8, we received a perplexity score of -9.34 and coherence score of 0.60, which is pretty decent considering there are more than 5 topics.
 
-4. LDA Result
+**Result**
 We can now print the top words within each topic to identify the topic name.
 
 To visualize it better, we used pyLDAvis from gensim package that outputs an interactive result of our LDA model into an html as below where each bubble represents a topic. An ideal LDA model is one where all the bubbles are separated from each other. In this case, our model is pretty good since the big bubbles (bubbles consisting more tokens in the documents) are far apart from each other with only small ones being so close to each other. 
@@ -202,12 +201,12 @@ When we tie the LDA model results back to the business questions, we found that 
 Furthermore, there seems to be different topic distributions in negative tweets per airline. Take United vs American Airlines for example. United seems to have more complaints regarding baggage issues as compared to American Airlines.
 
 
-5.Learning and Challenges
+**Learning and Challenges**
 Overall, the LDA model is a powerful and easy to use algorithm for topic analysis as the implementation time is relatively fast. However, it still requires and relies on manual work such as thoroughly removing the stopwords and correctly labeling the topics based on the top words. With that said, it requires a high attention to detail and a subject matter expert to identify which words to include/remove.
 
 
 
-Business Implications and Recommendation
+# Business Implications and Recommendation
 
 The Airline industry is a very traditional industry, with some airline general business practices that span back to their inception (1931 in the case of United Airlines). Customer feedback and sentiment was not something that the airlines always tried to gauge. J.D. Power kick-started a rush of surveys to collect consumer feedback in 1968, and it was quite a few more years until airlines had a reliable source of information to measure customer feedback information.
 
