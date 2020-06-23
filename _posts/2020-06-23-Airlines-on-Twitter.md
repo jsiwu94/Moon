@@ -109,12 +109,13 @@ Then we did the text vectorization to transform documents into vectors using Cou
 
 *Countvectorizer : The hyper parameter without using grid search, we  ignored terms that have a document frequency strictly lower than 5 and had unigram and bigram for  n gram ranges. 
 
-*CV Gridsearch : Then we tried with hyper parameters recommended by gridsearch which are:
-*C: 3
-*Penalty: 'l2'
-*max_df: 0.5 (ignores terms that appear in more than 50% of the documents)
-*min_df: 1 (ignore terms that appear in less than 1 documents)
-*ngram_range: (1, 2)
+*CV Gridsearch : Then we tried with hyper parameters recommended by gridsearch which are:<br>
+    *C: 3<br>
+    *Penalty: 'l2'<br>
+    *max_df: 0.5 (ignores terms that appear in more than 50% of the documents)<br>
+    *min_df: 1 (ignore terms that appear in less than 1 documents)<br>
+    *ngram_range: (1, 2)<br>
+![img7](https://cdn-images-1.medium.com/max/1600/0*skY1iUv845W84Sbt)
 
 
 However, the accuracy turns out to  be lower than the previous two models. When looking at parameters we noticed that the hyper parameters recommended by gridsearch are more strict in terms of dropping the terms. For example, TFIDF ignores terms that appear in less than 7 documents whereas gridsearch suggests ignoring terms that appear in less than 1 document (min_df). 
@@ -122,8 +123,10 @@ However, the accuracy turns out to  be lower than the previous two models. When 
 
 **Result**<br>
 Among those 3 models, logistic regression using TFIDF had the highest test accuracy at 80.3% 
+![img8](https://cdn-images-1.medium.com/max/1600/1*jvjMnn8ykzLmIMDuSHKubQ.png)
 
 With logistic regression classifiers, we were able to plot the most important coefficients that are considered to make the predictions for each sentiment level. As you can see below, for negative, “worst”, “hours”, “ridiculous” or words specifically related to hours  appear to highly  contribute to the prediction. And similarly, for positive, “great”, “awesome”, “thanks” and words related to gratitude highly contribute to the sentiment prediction.   
+
 
 **learning & challenges**
 
