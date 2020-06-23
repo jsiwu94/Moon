@@ -16,14 +16,12 @@ To learn more about our project and the codes we used to implement it, please ch
 
 # Objective
 
-### Customer sentiment:
-To identify positive and negative opinions, emotions, and evaluations.
-
-### Identify negative topics: 
-Derive negative topics that people are likely to mention when talking with their experience with airlines.
-
-### Derive actionable insights: 
-Insights may later be used by airlines in planning and execution of customer service initiatives, media relationships etc. 
+**Customer sentiment:**<br>
+To identify positive and negative opinions, emotions, and evaluations.<br>
+**Identify negative topics:**<br>
+Derive negative topics that people are likely to mention when talking with their experience with airlines.<br>
+**Derive actionable insights:**<br>
+Insights may later be used by airlines in planning and execution of customer service initiatives, media relationships etc.<br>
 
 # Dataset
 The data originally came from Crowdflower's Data for Everyone library, which was then made available to us on Kaggle. The twitter data was scraped from February 2015 for 2 weeks. It contains over 14K tweets and their sentiment (positive, neutral, or negative) regarding 6 major airlines in the US.
