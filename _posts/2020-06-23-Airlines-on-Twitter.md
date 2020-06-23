@@ -34,21 +34,18 @@ Before jumping into modeling, we did some preliminary data analysis to understan
 **Tweet sentiment by Location:**  Most of the tweets were concentrated around the east coast. This is due to the busiest international airports being around that.
 ![gif1](https://cdn-images-1.medium.com/max/1600/0*ndAiowj2bnS2B3Cs)
 
-Twitter mood by airline: American, United and US airways have >60% negative tweets.
+**Twitter mood by airline:** American, United and US airways have >60% negative tweets and have a lot of negative retweets.
+![img2](https://cdn-images-1.medium.com/max/1600/1*QCVc5zDSLs9Oz0K9BE7fiA.png)
 
-Twitter retweet mood by airline: United and US airways have the most negative retweets.
-
-
-The Distribution of Word Count between Sentiment: Based on the below density curve and boxplot, we can see that negative tweets are generally wordier than the other sentiments. Our One-way Anova Test concluded that there are indeed differences in word count between these sentiments (p < 0.01).
+**The Distribution of Word Count between Sentiment:** Based on the below density curve and boxplot, we can see that negative tweets are generally wordier than the other sentiments. Our One-way Anova Test concluded that there are indeed differences in word count between these sentiments (p < 0.01).
+![img3](https://cdn-images-1.medium.com/max/1600/1*Ep01NvPJPTYhg2K11l7hqw.png)
          
-Top words for negative tweets: The word cloud for negative tweets indicates high frequency words such as delayed, hold, bag, hour, call.
+**Top words for negative tweets:** The word cloud for negative tweets indicates high frequency words such as delayed, hold, bag, hour, call.
+![wcneg](https://user-images.githubusercontent.com/54050356/85477069-6d1f0180-b56e-11ea-84a0-24c4b77be532.png)
 
+# Approach
 
-Approach
-
-Sentiment Analysis Model Summary
-
-
+### Sentiment Analysis Model Summary
 
 Approach 1 – Sentiment Analysis
 
