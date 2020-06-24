@@ -8,6 +8,7 @@ comments: true
 ---
 
 
+# Understanding Customer Complaints with NLP and Identify Business Process to Improve
 <img width="468" alt="image" src="https://user-images.githubusercontent.com/54050356/85477250-cc7d1180-b56e-11ea-9251-8a06fa71a87b.png">
 
 In this project, I worked with a group of 5 for our last final project in my Master's degree. With this, we aimed to understand customer complaints on social media, specifically Twitter, regarding the major airlines in the US. 
