@@ -145,17 +145,16 @@ Using our data, we can build a dictionary to train the LDA model. Then, the LDA 
 1.Text Preprocessing<br>
 First and most important step in LDA is data cleaning or, more specifically, stopwords removal. This is also considered as the major drawback of LDA modeling as we need to clean and nitpick a lot of words which don’t really indicate topics. For example, in this context, words such as “baggage” and “delay” indicate different topics or complaint categories. However, words such as “completely” or “chicago” do not. 
 
-The steps we took in text preprocessing were (As shown in the code below):
+The steps we took in text preprocessing were (As shown in the code below):<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Regex: Removing Flight Number, Emoji, Hashtags, Twitter Username, Text Punctuations, and Symbols<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Html Parser + Lowercase<br>
-Stopwords Extension (>500 words) 
-including:
-US city names
-Airline Names
-Date, Time, Day of Week
-Spacy Tokens
-Remove Adjective and Conjunction
-Stemmer + Lemmatizer 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Stopwords Extension (>500 words), including:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-US city names<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Airline Names<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Date, Time, Day of Week<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Spacy Tokens<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Remove Adjective and Conjunction<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Stemmer + Lemmatizer<br>
 
 2.Choosing the Number of Topics (K)<br>
 Once we’ve preprocessed the words into tokens, we can create a dictionary (or bag of word) that contains the number of times a word appears in the training dataset. Using this bag of words, we can then train our LDA model. 
