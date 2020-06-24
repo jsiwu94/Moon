@@ -2,13 +2,13 @@
 layout: post
 title: "What are Customer Saying About US Major Airlines?"
 date: 2020-06-23
-excerpt: "Understanding Customer Complaints with NLP and Identify Business Process to Improve"
+excerpt: "Understanding Customer Complaints with NLP to Identify Business Process Improvement"
 tags: [Machine Learning, Natural Language Processing, NLP, Predictive Modelling, Logistics Regression, Python, Latent Dirichlet Allocation, LDA Topic Modelling, Voila, Ipywidgets]
 comments: true
 ---
 
 
-# Understanding Customer Complaints with NLP and Identify Business Process to Improve
+# Understanding Customer Complaints with NLP to Identify Business Process Improvement
 <img width="468" alt="image" src="https://user-images.githubusercontent.com/54050356/85477250-cc7d1180-b56e-11ea-9251-8a06fa71a87b.png">
 
 In this project, I worked with a group of 5 for our last final project in my Master's degree. With this, we aimed to understand customer complaints on social media, specifically Twitter, regarding the major airlines in the US. 
