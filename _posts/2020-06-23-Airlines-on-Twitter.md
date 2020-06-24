@@ -231,7 +231,7 @@ model_list, coherence_values = compute_coherence_values(dictionary=id2word,
                                     texts=processed_docs,
                                     start=start, stop=stop)
 ```
-https://cdn-images-1.medium.com/max/1600/0*Ojo-0CIDfNvygJP0
+![img11](https://cdn-images-1.medium.com/max/1600/0*Ojo-0CIDfNvygJP0)
 
 3.Training the LDA model<br>
 Using k of 8, we received a perplexity score of -9.34 and coherence score of 0.60, which is pretty decent considering there are more than 5 topics.
@@ -258,13 +258,24 @@ doc_lda = lda_model1[corpus]
 
 **Result**<br>
 We can now print the top words within each topic to identify the topic name.
+```
+from pprint import pprint
+pprint(lda_model4.print_topics())
+```
+![img12](https://cdn-images-1.medium.com/max/1600/0*G1LBsLBEnk3_XfeW)
 
 To visualize it better, we used pyLDAvis from gensim package that outputs an interactive result of our LDA model into an html as below where each bubble represents a topic. An ideal LDA model is one where all the bubbles are separated from each other. In this case, our model is pretty good since the big bubbles (bubbles consisting more tokens in the documents) are far apart from each other with only small ones being so close to each other. 
 
 When we click on each bubble, we can see the % of tokens they include as well as the words in it with its corresponding probability score (that is the probability of that word belonging to that topic).
-
-
-
+```
+import pyLDAvis
+from pyLDAvis import gensim
+pyLDAvis.enable_notebook()
+vis = pyLDAvis.gensim.prepare(lda_model4, corpus, id2word,sort_topics=False)
+pyLDAvis.save_html(vis, 'ldaviz.html') #run this to save your vis as html file
+vis
+```
+![img14](https://cdn-images-1.medium.com/max/1600/0*iDq8vHPajcaafgPm)
 
 Based on the above word distributions, we decided the name the topics as below:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Topic 1 --> Delay and Customer Service<br>
@@ -275,19 +286,17 @@ Based on the above word distributions, we decided the name the topics as below:<
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Topic 6 --> Seating Preferences<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Topic 7 --> Extra Charges<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Topic 8 --> Customer Experience<br>
-To make the result more interactive, we also created a short demo within a localhost site using jupyter notebook, ipywidgets, and voila. Below are the snippets.<br>
-
-
+To make the result more interactive, we also created a short demo within a localhost site using jupyter notebook, ipywidgets, and Voila. Below are the snippets.<br>
+![gif3](https://cdn-images-1.medium.com/max/1600/0*98kW8mWV8GroB5V5)
 
 When we tie the LDA model results back to the business questions, we found that the top negative tweet topics are around Delays, Customer Experience, Refund/Reschedule, and Baggage. Similar to our preliminary findings on wordcloud.
-
+![img16](https://cdn-images-1.medium.com/max/1600/0*zysMd6iYPlrDslZh)
 
 Furthermore, there seems to be different topic distributions in negative tweets per airline. Take United vs American Airlines for example. United seems to have more complaints regarding baggage issues as compared to American Airlines.
+![img19](https://cdn-images-1.medium.com/max/1600/1*_gjxKh1tuzU_W1rzfrWBKQ.png)
 
-
-**Learning and Challenges**
+**Learning and Challenges**<br>
 Overall, the LDA model is a powerful and easy to use algorithm for topic analysis as the implementation time is relatively fast. However, it still requires and relies on manual work such as thoroughly removing the stopwords and correctly labeling the topics based on the top words. With that said, it requires a high attention to detail and a subject matter expert to identify which words to include/remove.
-
 
 
 # Business Implications and Recommendation
@@ -296,14 +305,14 @@ The Airline industry is a very traditional industry, with some airline general b
 
 To gauge the validity of our findings from analyzing sentiment and topic for tweets regarding the six airlines in our scope, we compared some of our findings to facts pulled from the US Department of Transportation’s (DOT) Air Traffic Consumer Reports (ATCR). This is a report published monthly that contains various statistics regarding delays, service complaints, and other airline-related data points that compare the various US flying airlines. Statistics are also occasionally summarized to produce quarterly and annual figures.
 
-A few fun facts:
-There was an increase of 29.8% in the annual count of complaints overall for 2015
-Cancellation rate for all scheduled US domestic flights was 1.5%
-United Airlines ranking out of 17 airlines:
-Fewest mishandled bags: 11th
-On-time performance: 15th
-Fewest cancellations: 16th
-Fewest complaints per passenger flown: 17th
+A few fun facts:<br>
+There was an increase of 29.8% in the annual count of complaints overall for 2015<br>
+Cancellation rate for all scheduled US domestic flights was 1.5%<br>
+United Airlines ranking out of 17 airlines:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fewest mishandled bags: 11th<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On-time performance: 15th<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fewest cancellations: 16th<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fewest complaints per passenger flown: 17th<br>
 
 As shown above, the volume of complaints increased in 2015, and has continued to increase as the industry grows. Also, the cancellation rate may sound small at 1.5%. But when looking at a market with 9.5 million scheduled domestic flights per year, this means roughly 142,500 flights-worth of passengers are affected throughout the year. Airlines need a method to understand consumer sentiment in a more real-time method than a monthly/quarterly/annual report. It is simply not frequent enough if airlines want to be truly agile and cater to customers’ needs when they arise. 
 
@@ -314,13 +323,12 @@ A few interesting rankings in regards to United Airlines performance were that t
 Airlines should definitely adopt some social media and sentiment/topic analysis strategy if they haven't already done so.
 
 Using our 2015 Twitter data, we have observed that there is indeed some observable relationship between our analysis insights and the quantitative insights gained by the US DOT and also potentially to performance. A simple implementation of this would be having a real-time engine to flag tweets tagged or related to the airline, tag the sentiment of this tweet with something like RNN, and then analyze the topic on negative tweets to forward to specific customer teams (i.e. customer service at Boston Logan, food caterer at LAX, or even cabin upholstery team) to plan the appropriate business action.
-
-
+![img22](https://cdn-images-1.medium.com/max/1600/0*Inn_oLCx8GJWF-33)
 
 Social media platforms are also strengthening their position as peoples’ primary source of news, social interaction, e-commerce, and much more. Airlines should take advantage of this. Conducting surveys is a decent method to engage customers and collect feedback, but airlines should shift into the spaces where people already are voicing their opinions and concerns, and take advantage of these short messages of 280 characters to immediately plan an improvement plan.
 
 
-References
+# References
 https://www.kaggle.com/crowdflower/twitter-airline-sentiment
 http://qpleple.com/topic-coherence-to-evaluate-topic-models/
 https://www.transportation.gov/individuals/aviation-consumer-protection/air-travel-consumer-reports
