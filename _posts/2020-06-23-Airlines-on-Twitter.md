@@ -332,5 +332,6 @@ Social media platforms are also strengthening their position as peoples’ prima
 https://www.kaggle.com/crowdflower/twitter-airline-sentiment
 http://qpleple.com/topic-coherence-to-evaluate-topic-models/
 https://www.transportation.gov/individuals/aviation-consumer-protection/air-travel-consumer-reports
-https://www.transportation.gov/airconsumer/air-travel-consumer-report-archive
-
+https://medium.com/nanonets/topic-modeling-with-lsa-psla-lda-and-lda2vec-555ff65b0b05
+http://blog.echen.me/2012/03/20/infinite-mixture-models-with-nonparametric-bayes-and-the-dirichlet-process/
+https://slidesgo.com/
