@@ -165,7 +165,7 @@ We also need to identify the number of topics (K) for LDA (similar to identifyin
 3.Training the LDA model<br>
 Using k of 8, we received a perplexity score of -9.34 and coherence score of 0.60, which is pretty decent considering there are more than 5 topics.
 
-**Result**
+**Result**<br>
 We can now print the top words within each topic to identify the topic name.
 
 To visualize it better, we used pyLDAvis from gensim package that outputs an interactive result of our LDA model into an html as below where each bubble represents a topic. An ideal LDA model is one where all the bubbles are separated from each other. In this case, our model is pretty good since the big bubbles (bubbles consisting more tokens in the documents) are far apart from each other with only small ones being so close to each other. 
@@ -175,16 +175,16 @@ When we click on each bubble, we can see the % of tokens they include as well as
 
 
 
-Based on the above word distributions, we decided the name the topics as below:
-Topic 1 --> Delay and Customer Service
-Topic 2 --> Baggage Issue
-Topic 3 --> Reschedule and Refund
-Topic 4 --> Phone and Online Booking
-Topic 5 --> Reservation Issue
-Topic 6 --> Seating Preferences
-Topic 7 --> Extra Charges
-Topic 8 --> Customer Experience
-To make the result more interactive, we also created a short demo within a localhost site using jupyter notebook, ipywidgets, and voila. Below are the snippets.
+Based on the above word distributions, we decided the name the topics as below:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Topic 1 --> Delay and Customer Service<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Topic 2 --> Baggage Issue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Topic 3 --> Reschedule and Refund<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Topic 4 --> Phone and Online Booking<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Topic 5 --> Reservation Issue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Topic 6 --> Seating Preferences<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Topic 7 --> Extra Charges<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Topic 8 --> Customer Experience<br>
+To make the result more interactive, we also created a short demo within a localhost site using jupyter notebook, ipywidgets, and voila. Below are the snippets.<br>
 
 
 
