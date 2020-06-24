@@ -10,7 +10,7 @@ comments: true
 <img width="468" alt="image" src="https://user-images.githubusercontent.com/54050356/85477250-cc7d1180-b56e-11ea-9251-8a06fa71a87b.png">
 
 In this project, I worked with a group of 5 for our last final project in my Master's degree. With this, we aimed to understand customer complaints on social media, specifically Twitter, regarding the major airlines in the US. 
-To learn more about our project and the codes we used to implement it, please check out our github repository here. This article was also featured by [AnalyticsVidhya on Medium.com](https://medium.com/@jsiwu/airlines-on-twitter-understanding-customer-complaints-with-nlp-81278f2b68dc). 
+To learn more about our project and the codes we used to implement it, please check out our github repository ![here](https://github.com/jsiwu94/airline_tweet_nlp). This article was also featured by [AnalyticsVidhya on Medium.com](https://medium.com/@jsiwu/airlines-on-twitter-understanding-customer-complaints-with-nlp-81278f2b68dc). 
 
 
 # Objective
