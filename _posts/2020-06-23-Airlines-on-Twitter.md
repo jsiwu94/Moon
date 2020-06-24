@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Sentiment and Topic Modelling for Major Airlines on Twitter"
+title: "What are Customer Saying About US Major Airlines?"
 date: 2020-06-23
-excerpt: "Understanding Customer Complaints with NLP"
-tags: [Machine Learning, Predictive Modelling, Logistics Regression, Python, Latent Dirichlet Allocation, LDA Topic Modelling, Voila, Ipywidgets]
+excerpt: "Understanding Customer Complaints with NLP and Identify Business Process to Improve"
+tags: [Machine Learning, Natural Language Processing, NLP, Predictive Modelling, Logistics Regression, Python, Latent Dirichlet Allocation, LDA Topic Modelling, Voila, Ipywidgets]
 comments: true
 ---
 
