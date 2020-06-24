@@ -156,14 +156,105 @@ The steps we took in text preprocessing were (As shown in the code below):<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Remove Adjective and Conjunction<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Stemmer + Lemmatizer<br>
 
+```
+cities = pd.read_csv("https://raw.githubusercontent.com/grammakov/USA-cities-and-states/master/us_cities_states_counties.csv",sep="|")
+cities = cities.iloc[:,:2]
+cities.drop_duplicates(keep='first',inplace=True)
+#preprocess data
+def preprocess(text):
+    stopwords = set(STOPWORDS)
+    stopwords.update(exclude_word_list) 
+#this list was saved to csv and made available on our Github repo
+#stopwords.update([i for i in ts])
+    # stopwords.update([str(i).lower() for i in cities.City]) #removing City names in US
+    r = re.compile(r'(?<=\@)(\w+)') #remove words after tags --> usually twitter account
+    ra = re.compile(r'(?<=\#)(\w+)') #remove words after hashtags
+    ro = re.compile(r'(flt\d*)') #remove words after flight number
+    names = r.findall(text.lower())
+    hashtag = ra.findall(text.lower())
+    flight = ro.findall(text.lower())
+    lmtzr = WordNetLemmatizer()
+    def stem_tokens(tokens, lemmatize):
+        lemmatized = []
+        for item in tokens:
+            lemmatized.append(lmtzr.lemmatize(item,'v'))
+        return lemmatized
+    def deEmojify(inputString):
+        return inputString.encode('ascii', 'ignore').decode('ascii')
+    
+    doc = nlp(text)
+    text = deEmojify(text)
+    soup = BeautifulSoup(text)
+    text = soup.get_text()
+    text = "".join([ch.lower() for ch in text if ch not in string.punctuation])
+    tokens = nltk.word_tokenize(text)
+    tokens = [ch for ch in tokens if len(ch)>4] #remove words with character length below 2
+    tokens = [ch for ch in tokens if len(ch)<=15] #remove words with character length above 15 
+    lemm = stem_tokens(tokens, lmtzr)
+    lemstop = [i for i in lemm if i not in stopwords]
+    lemstopcl = [i for i in lemstop if i not in names]
+    lemstopcl = [i for i in lemstopcl if i not in hashtag]
+    lemstopcl = [i for i in lemstopcl if i not in flight]
+    lemstopcl = [i for i in lemstopcl if not i.isdigit()]
+    lemstopcl1 = [i for i in lemstopcl if i not in t]
+    return lemstopcl
+```
+
 2.Choosing the Number of Topics (K)<br>
 Once we’ve preprocessed the words into tokens, we can create a dictionary (or bag of word) that contains the number of times a word appears in the training dataset. Using this bag of words, we can then train our LDA model. 
 
 We also need to identify the number of topics (K) for LDA (similar to identifying the k for k-means clustering). Although there are many ways to identify the optimal number of topics, the most adopted ones are using the perplexity score and coherence score. The idea is the less the perplexity score and the higher the coherence score, the better that “K” is. (click here if you would like to learn more about coherence or perplexity score). Based on the plot below, we identified that the best “K” for this data is 8. Therefore, we used that to train our LDA model.
-
+```
+def compute_coherence_values(dictionary, corpus, texts, start, stop):
+    """
+    Compute c_v coherence for various number of topics
+    """
+    coherence_values = []
+    model_list = []
+    for num_topics in range(start, stop):
+        model = gensim.models.ldamodel.LdaModel(corpus=corpus, 
+                                              num_topics=num_topics,
+                                              id2word=id2word,
+                                              random_state=90,
+                                              alpha='auto',
+                                              eta='auto',
+                                              per_word_topics=True)
+        model_list.append(model)
+        coherencemodel = CoherenceModel(model=model, texts=texts,
+                             dictionary=dictionary, coherence='c_v')
+        coherence_values.append(coherencemodel.get_coherence())
+    return model_list, coherence_values
+start=4
+stop=9
+model_list, coherence_values = compute_coherence_values(dictionary=id2word, 
+                                    corpus=corpus,
+                                    texts=processed_docs,
+                                    start=start, stop=stop)
+```
+https://cdn-images-1.medium.com/max/1600/0*Ojo-0CIDfNvygJP0
 
 3.Training the LDA model<br>
 Using k of 8, we received a perplexity score of -9.34 and coherence score of 0.60, which is pretty decent considering there are more than 5 topics.
+```
+%%time
+# Create Dictionary
+id2word = gensim.corpora.Dictionary(processed_docs)
+# Create Corpus: Term Document Frequency
+corpus = [id2word.doc2bow(text) for text in processed_docs]
+# Build LDA model
+lda_model1 = gensim.models.ldamodel.LdaModel(corpus=corpus,
+                                           id2word=id2word,
+                                           num_topics=8, 
+                                           random_state=123,
+                                           update_every=1,
+                                           chunksize=10,
+                                           passes=10,
+                                           alpha='auto',
+                                           eta='auto',
+                                           iterations=125,
+                                           per_word_topics=True)
+doc_lda = lda_model1[corpus]
+```
 
 **Result**<br>
 We can now print the top words within each topic to identify the topic name.
